@@ -155,7 +155,7 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         path-to-lcov: src/SamSmithNZ.Tests/TestResults/coverage.info  
-    - uses: samsmithnz/DotNetTestResults@0.1.10 
+    - uses: samsmithnz/DotNetTestResults@0.1.11 
       if: false
       with:
         fileName: ${{ github.workspace }}/TestOutput.xml
