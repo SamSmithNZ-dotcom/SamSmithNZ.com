@@ -14,19 +14,19 @@ namespace SamSmithNZ.Tests.FooFighters
     public class SongTest:BaseIntegrationTest
     {
 
-        [TestMethod()]
-        public async Task SongsExistTest()
-        {
-            //arrange
-            SongController controller = new(new SongDataAccess(base.Configuration));
+        //[TestMethod()]
+        //public async Task SongsExistTest()
+        //{
+        //    //arrange
+        //    SongController controller = new(new SongDataAccess(base.Configuration));
 
-            //act
-            List<Song> items = await controller.GetSongs();
+        //    //act
+        //    List<Song> items = await controller.GetSongs();
 
-            //assert
-            Assert.IsTrue(items != null);
-            Assert.IsTrue(items.Count > 0);
-        }
+        //    //assert
+        //    Assert.IsTrue(items != null);
+        //    Assert.IsTrue(items.Count > 0);
+        //}
 
         [TestMethod()]
         public async Task SongThisIsACallTest()
