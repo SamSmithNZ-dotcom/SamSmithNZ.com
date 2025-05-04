@@ -7,7 +7,9 @@
 	@GameCode INT = NULL
 AS
 BEGIN
-	
+	-- Define constants
+	DECLARE @SoccerballFlagName VARCHAR(50) = 'Soccerball_svg.png';
+
 	IF (NOT @TeamCode IS NULL)
 	BEGIN
 		CREATE TABLE #TmpAlternativeTeams (tournament_code INT, team_code INT)
@@ -191,7 +193,7 @@ BEGIN
 			NULL AS Team2EloRating,
 			NULL AS Team2PreGameEloRating,
 			NULL AS Team2PostGameEloRating,
-			'Soccerball_svg.png' AS Team1FlagName, 
+			@SoccerballFlagName AS Team1FlagName, 
 			NULL AS Team2FlagName,
 			0 AS Team1Withdrew, 
 			0 AS Team2Withdrew,
@@ -240,7 +242,7 @@ BEGIN
 			NULL AS Team2EloRating,
 			NULL AS Team2PreGameEloRating,
 			NULL AS Team2PostGameEloRating,
-			'Soccerball_svg.png' AS Team1FlagName, 
+			@SoccerballFlagName AS Team1FlagName, 
 			NULL AS Team2FlagName,
 			0 AS Team1Withdrew, 
 			0 AS Team2Withdrew,
@@ -290,7 +292,7 @@ BEGIN
 			NULL AS Team2PreGameEloRating,
 			NULL AS Team2PostGameEloRating,
 			NULL AS Team1FlagName, 
-			'Soccerball_svg.png' AS Team2FlagName,
+			@SoccerballFlagName AS Team2FlagName,
 			0 AS Team1Withdrew, 
 			0 AS Team2Withdrew,
 			NULL AS [Location],
@@ -339,7 +341,7 @@ BEGIN
 			NULL AS Team2PreGameEloRating,
 			NULL AS Team2PostGameEloRating,
 			NULL AS Team1FlagName, 
-			'Soccerball_svg.png' AS Team2FlagName,
+			@SoccerballFlagName AS Team2FlagName,
 			0 AS Team1Withdrew, 
 			0 AS Team2Withdrew,
 			NULL AS [Location],
