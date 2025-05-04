@@ -107,7 +107,7 @@ namespace SamSmithNZ.Service.Models.WorldCup
             {
                 if (this.Team1PreGameEloRating != null && this.Team2PreGameEloRating != null)
                 {
-                    if (_team1ChanceToWin == -1 || _team2ChanceToWin == -1)
+                    if (Math.Round(_team1ChanceToWin, 0) == -1 || Math.Round(_team2ChanceToWin,0) == -1)
                     {
                         CalculateOdds();
                     }
@@ -126,7 +126,7 @@ namespace SamSmithNZ.Service.Models.WorldCup
             {
                 if (this.Team1PreGameEloRating != null && this.Team2PreGameEloRating != null)
                 {
-                    if (_team1ChanceToWin == -1 || _team2ChanceToWin == -1)
+                    if (Math.Round(_team1ChanceToWin, 0) == -1 || Math.Round(_team2ChanceToWin,0) == -1)
                     {
                         CalculateOdds();
                     }
@@ -155,7 +155,7 @@ namespace SamSmithNZ.Service.Models.WorldCup
             {
                 if (this.Team1PreGameEloRating != null && this.Team2PreGameEloRating != null)
                 {
-                    if (_team1ChanceToWin == -1 || _team2ChanceToWin == -1)
+                    if (Math.Round(_team1ChanceToWin, 0) == -1 || Math.Round(_team2ChanceToWin,0) == -1)
                     {
                         CalculateOdds();
                     }
