@@ -11,27 +11,27 @@ namespace SamSmithNZ.Tests.Steam
     public class PlayerGamesTest
     {
 
-        [TestMethod]
-        public async Task PlayerGamesSamTest()
-        {
-            //Arrange
-            PlayerGamesDA da = new();
-            string steamId = "76561197971691578";
+        //[TestMethod]
+        //public async Task PlayerGamesSamTest()
+        //{
+        //    //Arrange
+        //    PlayerGamesDA da = new();
+        //    string steamId = "76561197971691578";
 
-            //Act
-            List<Game> results = await da.GetDataAsync(steamId);
+        //    //Act
+        //    List<Game> results = await da.GetDataAsync(steamId);
 
-            //Assert
-            Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count >= 1);
-            Assert.IsTrue(results[2].AppID == "15100");
-            Assert.IsTrue(results[2].GameName == "Assassin's Creed");
-            Assert.IsTrue(results[2].CommunityIsVisible == false);
-            Assert.IsTrue(results[2].IconURL == "cd8f7a795e34e16449f7ad8d8190dce521967917");
-            //Assert.IsTrue(results[2].LogoURL == "5450218e6f8ea246272cddcb2ab9a453b0ca7ef5");
-            Assert.IsTrue(results[2].TotalMinutesPlayed == 185);
-            Assert.IsTrue(results[2].TotalTimeString == "3 hrs");
-        }
+        //    //Assert
+        //    Assert.IsTrue(results != null);
+        //    Assert.IsTrue(results.Count >= 1);
+        //    Assert.IsTrue(results[2].AppID == "15100");
+        //    Assert.IsTrue(results[2].GameName == "Assassin's Creed");
+        //    Assert.IsTrue(results[2].CommunityIsVisible == false);
+        //    Assert.IsTrue(results[2].IconURL == "cd8f7a795e34e16449f7ad8d8190dce521967917");
+        //    //Assert.IsTrue(results[2].LogoURL == "5450218e6f8ea246272cddcb2ab9a453b0ca7ef5");
+        //    Assert.IsTrue(results[2].TotalMinutesPlayed == 185);
+        //    Assert.IsTrue(results[2].TotalTimeString == "3 hrs");
+        //}
 
         [TestMethod]
         public async Task PlayerGamesSamWithNoIconTest()

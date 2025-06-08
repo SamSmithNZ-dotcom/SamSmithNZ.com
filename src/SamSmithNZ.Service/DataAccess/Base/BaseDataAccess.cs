@@ -18,18 +18,18 @@ namespace SamSmithNZ.Service.DataAccess.Base
 
         public void SetupConnectionString(IConfiguration configuration)
         {
-            ConnectionString = configuration["ConnectionStrings:DefaultConnectionString"];
+            this.ConnectionString = configuration["ConnectionStrings:DefaultConnectionString"];
         }
 
         public async Task<List<T>> GetList(string query, DynamicParameters parameters = null, int timeOut = 15) //15 seconds is the default timeout
         {
-            if (ConnectionString == null)
+            if (this.ConnectionString == null)
             {
                 throw new Exception("ConnectionString not set");
             }
 
             IEnumerable<T> results;
-            SqlConnection connection = new(ConnectionString);
+            SqlConnection connection = new(this.ConnectionString);
             try
             {
                 await connection.OpenAsync();
@@ -47,13 +47,13 @@ namespace SamSmithNZ.Service.DataAccess.Base
 
         public async Task<T> GetItem(string query, DynamicParameters parameters = null)
         {
-            if (ConnectionString == null)
+            if (this.ConnectionString == null)
             {
                 throw new Exception("ConnectionString not set");
             }
 
             T result;
-            SqlConnection connection = new(ConnectionString);
+            SqlConnection connection = new(this.ConnectionString);
             try
             {
                 await connection.OpenAsync();
@@ -72,13 +72,13 @@ namespace SamSmithNZ.Service.DataAccess.Base
 
         public async Task<R> GetScalarItem<R>(string query, DynamicParameters parameters = null)
         {
-            if (ConnectionString == null)
+            if (this.ConnectionString == null)
             {
                 throw new Exception("ConnectionString not set");
             }
 
             R result;
-            SqlConnection connection = new(ConnectionString);
+            SqlConnection connection = new(this.ConnectionString);
             try
             {
                 await connection.OpenAsync();
@@ -98,13 +98,13 @@ namespace SamSmithNZ.Service.DataAccess.Base
 
         public async Task<bool> SaveItem(string query, DynamicParameters parameters = null, int timeOut = 15) //15 seconds is the default timeout
         {
-            if (ConnectionString == null)
+            if (this.ConnectionString == null)
             {
                 throw new Exception("ConnectionString not set");
             }
 
             bool result = false;
-            SqlConnection connection = new(ConnectionString);
+            SqlConnection connection = new(this.ConnectionString);
             try
             {
                 await connection.OpenAsync();

@@ -58,7 +58,7 @@ jobs:
 
     - name: Install .NET SDK
       if: matrix.language == 'csharp'
-      uses: actions/setup-dotnet@v4.0.1
+      uses: actions/setup-dotnet@v4.3.1
       with:
         dotnet-version: 9.0.x
     - name: Build web projects

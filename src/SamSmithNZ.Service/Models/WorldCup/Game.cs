@@ -107,7 +107,7 @@ namespace SamSmithNZ.Service.Models.WorldCup
             {
                 if (this.Team1PreGameEloRating != null && this.Team2PreGameEloRating != null)
                 {
-                    if (_team1ChanceToWin == -1 || _team2ChanceToWin == -1)
+                    if (Math.Round(_team1ChanceToWin, 0) == -1 || Math.Round(_team2ChanceToWin,0) == -1)
                     {
                         CalculateOdds();
                     }
@@ -126,7 +126,7 @@ namespace SamSmithNZ.Service.Models.WorldCup
             {
                 if (this.Team1PreGameEloRating != null && this.Team2PreGameEloRating != null)
                 {
-                    if (_team1ChanceToWin == -1 || _team2ChanceToWin == -1)
+                    if (Math.Round(_team1ChanceToWin, 0) == -1 || Math.Round(_team2ChanceToWin,0) == -1)
                     {
                         CalculateOdds();
                     }
@@ -155,7 +155,7 @@ namespace SamSmithNZ.Service.Models.WorldCup
             {
                 if (this.Team1PreGameEloRating != null && this.Team2PreGameEloRating != null)
                 {
-                    if (_team1ChanceToWin == -1 || _team2ChanceToWin == -1)
+                    if (Math.Round(_team1ChanceToWin, 0) == -1 || Math.Round(_team2ChanceToWin,0) == -1)
                     {
                         CalculateOdds();
                     }
@@ -221,7 +221,7 @@ namespace SamSmithNZ.Service.Models.WorldCup
         {
             get
             {
-                if (this.Team1ChanceToWin >= 50)
+                if (Math.Round(this.Team1ChanceToWin,0) >= 50)
                 {
                     if (this.Team1ResultWonGame == true)
                     {
@@ -419,7 +419,7 @@ namespace SamSmithNZ.Service.Models.WorldCup
         {
             get
             {
-                if (this.Team1ChanceToWin == -1)
+                if (Math.Round(this.Team1ChanceToWin,0) == -1)
                 {
                     return true;
                 }
@@ -434,7 +434,7 @@ namespace SamSmithNZ.Service.Models.WorldCup
         {
             get
             {
-                if (this.Team1ChanceToWin == -1)
+                if (Math.Round(this.Team1ChanceToWin,0) == -1)
                 {
                     return false;
                 }
@@ -456,7 +456,7 @@ namespace SamSmithNZ.Service.Models.WorldCup
         {
             get
             {
-                if (this.Team1ChanceToWin == -1)
+                if (Math.Round(this.Team1ChanceToWin,0) == -1)
                 {
                     return false;
                 }
@@ -478,7 +478,7 @@ namespace SamSmithNZ.Service.Models.WorldCup
         {
             get
             {
-                if (this.Team1ChanceToWin == -1)
+                if (Math.Round(this.Team1ChanceToWin,0) == -1)
                 {
                     return false;
                 }
@@ -500,7 +500,7 @@ namespace SamSmithNZ.Service.Models.WorldCup
         {
             get
             {
-                if (this.Team1ChanceToWin == -1)
+                if (Math.Round(this.Team1ChanceToWin,0) == -1)
                 {
                     return false;
                 }
@@ -522,7 +522,7 @@ namespace SamSmithNZ.Service.Models.WorldCup
         {
             get
             {
-                if (this.Team1ChanceToWin == -1)
+                if (Math.Round(this.Team1ChanceToWin,0) == -1)
                 {
                     return false;
                 }
@@ -544,7 +544,7 @@ namespace SamSmithNZ.Service.Models.WorldCup
         {
             get
             {
-                if (this.Team1ChanceToWin == -1)
+                if (Math.Round(this.Team1ChanceToWin,0) == -1)
                 {
                     return "";
                 }
@@ -581,7 +581,7 @@ namespace SamSmithNZ.Service.Models.WorldCup
         {
             get
             {
-                if (this.Team2ChanceToWin == -1)
+                if (Math.Round(this.Team2ChanceToWin,0) == -1)
                 {
                     return true;
                 }
@@ -596,7 +596,7 @@ namespace SamSmithNZ.Service.Models.WorldCup
         {
             get
             {
-                if (this.Team2ChanceToWin == -1)
+                if (Math.Round(this.Team2ChanceToWin,0) == -1)
                 {
                     return false;
                 }
@@ -618,7 +618,7 @@ namespace SamSmithNZ.Service.Models.WorldCup
         {
             get
             {
-                if (this.Team2ChanceToWin == -1)
+                if (Math.Round(this.Team2ChanceToWin,0) == -1)
                 {
                     return false;
                 }
@@ -640,7 +640,7 @@ namespace SamSmithNZ.Service.Models.WorldCup
         {
             get
             {
-                if (this.Team2ChanceToWin == -1)
+                if (Math.Round(this.Team2ChanceToWin, 0) == -1)
                 {
                     return false;
                 }
@@ -662,7 +662,7 @@ namespace SamSmithNZ.Service.Models.WorldCup
         {
             get
             {
-                if (this.Team2ChanceToWin == -1)
+                if (Math.Round(this.Team2ChanceToWin,0) == -1)
                 {
                     return false;
                 }
@@ -684,7 +684,7 @@ namespace SamSmithNZ.Service.Models.WorldCup
         {
             get
             {
-                if (this.Team2ChanceToWin == -1)
+                if (Math.Round(this.Team2ChanceToWin, 0) == -1)
                 {
                     return false;
                 }
@@ -706,7 +706,7 @@ namespace SamSmithNZ.Service.Models.WorldCup
         {
             get
             {
-                if (this.Team2ChanceToWin == -1)
+                if (Math.Round(this.Team2ChanceToWin,0) == -1)
                 {
                     return "";
                 }
