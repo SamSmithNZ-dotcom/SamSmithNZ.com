@@ -29,7 +29,7 @@ jobs:
         dotnet nuget add source "https://nuget.pkg.github.com/SamSmithNZ-dotcom/index.json" --name "githubfeed" --username "samsmithnz@gmail.com" --password "${{ secrets.PackagesReadPAT_Token }}" --store-password-in-clear-text
         dotnet restore src/SamSmithNZ.Service/SamSmithNZ.Service.csproj
         dotnet publish src/SamSmithNZ.Service/SamSmithNZ.Service.csproj --configuration ${{ env.dotNetConfiguration }} --output ${{ github.workspace }}/service #--runtime ${{env.runtimeTarget}} 
-   #dotnet publish src/SamSmithNZ.Web/SamSmithNZ.Web.csproj --configuration ${{ env.dotNetConfiguration }} --output ${{ github.workspace }}/web -p:Version='${{ steps.gitversion.outputs.SemVer }}' #--runtime ${{env.runtimeTarget}} 
+   #dotnet publish src/SamSmithNZ.Web/SamSmithNZ.Web.csproj --configuration ${{ env.dotNetConfiguration }} --output ${{ github.workspace }}/web -p:Version='${{ steps.gitversion.outputs.MajorMinorPatch }}' #--runtime ${{env.runtimeTarget}} 
    # - name: Build utility dotnet projects
    #   run: |
    #     dotnet build src/SamSmithNZ.WorldCupGoals.WPF/SamSmithNZ.WorldCupGoals.WPF.csproj --configuration Release --output ${{ github.workspace }} --runtime win-x64
@@ -46,7 +46,7 @@ jobs:
     name: Build website
     runs-on: windows-latest
     outputs: # https://stackoverflow.com/questions/59175332/using-output-from-a-previous-job-in-a-new-one-in-a-github-action
-      Version: ${{ steps.gitversion.outputs.SemVer }}
+      Version: ${{ steps.gitversion.outputs.MajorMinorPatch }}
       CommitsSinceVersionSource: ${{ steps.gitversion.outputs.CommitsSinceVersionSource }}  
     steps:
     - uses: actions/checkout@v4
@@ -54,15 +54,15 @@ jobs:
         fetch-depth: 0 #fetch-depth is needed for GitVersion   
     #Install and calculate the new version with GitVersion  
     - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v3.2.1
+      uses: gittools/actions/gitversion/setup@v4.0.1
       with:
-        versionSpec: 5.x
+        versionSpec: 6.x
     - name: Determine Version
-      uses: gittools/actions/gitversion/execute@v3.2.1
+      uses: gittools/actions/gitversion/execute@v4.0.1
       id: gitversion # step id used as reference for output values
     - name: Display GitVersion outputs
       run: |
-        echo "Version: ${{ steps.gitversion.outputs.SemVer }}"
+        echo "Version: ${{ steps.gitversion.outputs.MajorMinorPatch }}"
         echo "CommitsSinceVersionSource: ${{ steps.gitversion.outputs.CommitsSinceVersionSource }}"
     - name: Install .NET SDK
       uses: actions/setup-dotnet@v4.3.1
@@ -71,7 +71,7 @@ jobs:
     - name: Publish web projects
       run: |
         dotnet nuget add source "https://nuget.pkg.github.com/SamSmithNZ-dotcom/index.json" --name "githubfeed" --username "samsmithnz@gmail.com" --password "${{ secrets.PackagesReadPAT_Token }}" --store-password-in-clear-text
-        dotnet publish src/SamSmithNZ.Web/SamSmithNZ.Web.csproj --configuration ${{ env.dotNetConfiguration }} --output ${{ github.workspace }}/web -p:Version=${{ steps.gitversion.outputs.SemVer }}
+        dotnet publish src/SamSmithNZ.Web/SamSmithNZ.Web.csproj --configuration ${{ env.dotNetConfiguration }} --output ${{ github.workspace }}/web -p:Version=${{ steps.gitversion.outputs.MajorMinorPatch }}
     - name: Publish web Artifact
       uses: actions/upload-artifact@v4
       with:
