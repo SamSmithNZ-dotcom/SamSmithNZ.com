@@ -18,7 +18,7 @@ steps:
     expected_output_contains: "9.0"
     
   - name: "Configure GitHub NuGet source"
-    description: "Add GitHub packages as a NuGet source for private packages"
+    description: "Add GitHub packages as a NuGet source for private packages (required for MandMCounter.Core package)"
     command: "dotnet nuget add source \"https://nuget.pkg.github.com/SamSmithNZ-dotcom/index.json\" --name \"githubfeed\" --username \"your-github-username\" --password \"your-github-token\" --store-password-in-clear-text"
     note: "Replace 'your-github-username' and 'your-github-token' with your GitHub credentials. You'll need a Personal Access Token with package read permissions."
     
@@ -66,7 +66,9 @@ notes:
 troubleshooting:
   - issue: "NuGet restore fails with authentication errors"
     solution: "Ensure your GitHub Personal Access Token has 'read:packages' permission and is correctly configured"
-  - issue: "Build fails with missing SDK error"
-    solution: "Verify .NET 9 SDK is installed by running 'dotnet --list-sdks'"
+  - issue: "Build fails with missing SDK error or 'does not support targeting .NET 9.0'"
+    solution: "Verify .NET 9 SDK is installed by running 'dotnet --list-sdks'. If not present, download from https://aka.ms/dotnet/download"
   - issue: "Project not found errors"
     solution: "Ensure you're running commands from the repository root directory"
+  - issue: "MandMCounter.Core package not found"
+    solution: "This is a private package. Ensure GitHub NuGet source is configured with valid credentials"
