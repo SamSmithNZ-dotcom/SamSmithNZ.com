@@ -15,86 +15,86 @@ namespace SamSmithNZ.LegoDataMigration.Console
             //Create a new file we will write at the end
             StringBuilder newCSVFile = new StringBuilder();
 
-            //Open the file.
-            using (StreamReader reader = new StreamReader(path + @"\" + fileName))
-            {
-                System.Console.WriteLine("Reading clean CSV file '" + fileName + "'");
-                // Loop through line by line splitting by comma
-                int lineNumber = 0;
-                while (!reader.EndOfStream)
-                {
-                    lineNumber++;
-                    string line = await reader.ReadLineAsync();
-                    string[] values = SplitCSVStringWithQuotes(line);
-                    if (values.Length > numberOfColumns)
-                    {
-                        //there are extra columns, we need to do special processing to squash the line back together again
-                        System.Console.WriteLine(lineNumber.ToString() + ": Problem line: " + line);
+            ////Open the file.
+            //using (StreamReader reader = new StreamReader(path + @"\" + fileName))
+            //{
+            //    System.Console.WriteLine("Reading clean CSV file '" + fileName + "'");
+            //    // Loop through line by line splitting by comma
+            //    int lineNumber = 0;
+            //    while (!reader.EndOfStream)
+            //    {
+            //        lineNumber++;
+            //        string line = await reader.ReadLineAsync();
+            //        string[] values = SplitCSVStringWithQuotes(line);
+            //        if (values.Length > numberOfColumns)
+            //        {
+            //            //there are extra columns, we need to do special processing to squash the line back together again
+            //            System.Console.WriteLine(lineNumber.ToString() + ": Problem line: " + line);
 
-                        //Take extra columns and squash them.
-                        StringBuilder sbFix = new StringBuilder();
-                        for (int i = 0; i < values.Length; i++)
-                        {
-                            if (i == columnToSquash)
-                            {
-                                StringBuilder sbSquash = new StringBuilder(values[i]);
-                                while (++i < values.Length)
-                                {
-                                    sbSquash.Append(",").Append(values[i]);
-                                }
-                                values[columnToSquash] = sbSquash.ToString();
-                                break;
-                            }
-                        }
-                        {
-                            if (i >= columnToSquash && i <= values.Length - columnToSquash)
-                            {
-                                do
-                                {
-                                    sbFix.Append(values[i]);
-                                    sbFix.Append(",");
-                                    i++;
-                                } while (i < values.Length);
-                            }
-                            else
-                            {
-                                sbFix.Append(values[i]);
-                                sbFix.Append(",");
-                            }
-                        }
-                        //Split the comma delimited CSV file into an array
-                        values = SplitCSVStringWithQuotes(sbFix.ToString());
-                        if (values.Length > numberOfColumns)
-                        {
-                            Debug.WriteLine(lineNumber.ToString() + ": Problem still needs to be squashed: " + line);
-                        }
-                        else
-                        {
-                            newCSVFile.Append(ProcessValue(lineNumber, values, stringColumns, booleanColumns));
-                        }
-                    }
-                    else
-                    {
-                        newCSVFile.Append(ProcessValue(lineNumber, values, stringColumns, booleanColumns));
-                    }
-                }
-                reader.Close();
-            }
+            //            //Take extra columns and squash them.
+            //            StringBuilder sbFix = new StringBuilder();
+            //            for (int i = 0; i < values.Length; i++)
+            //            {
+            //                if (i == columnToSquash)
+            //                {
+            //                    StringBuilder sbSquash = new StringBuilder(values[i]);
+            //                    while (++i < values.Length)
+            //                    {
+            //                        sbSquash.Append(",").Append(values[i]);
+            //                    }
+            //                    values[columnToSquash] = sbSquash.ToString();
+            //                    break;
+            //                }
+            //            }
+            //            {
+            //                if (i >= columnToSquash && i <= values.Length - columnToSquash)
+            //                {
+            //                    do
+            //                    {
+            //                        sbFix.Append(values[i]);
+            //                        sbFix.Append(",");
+            //                        i++;
+            //                    } while (i < values.Length);
+            //                }
+            //                else
+            //                {
+            //                    sbFix.Append(values[i]);
+            //                    sbFix.Append(",");
+            //                }
+            //            }
+            //            //Split the comma delimited CSV file into an array
+            //            values = SplitCSVStringWithQuotes(sbFix.ToString());
+            //            if (values.Length > numberOfColumns)
+            //            {
+            //                Debug.WriteLine(lineNumber.ToString() + ": Problem still needs to be squashed: " + line);
+            //            }
+            //            else
+            //            {
+            //                newCSVFile.Append(ProcessValue(lineNumber, values, stringColumns, booleanColumns));
+            //            }
+            //        }
+            //        else
+            //        {
+            //            newCSVFile.Append(ProcessValue(lineNumber, values, stringColumns, booleanColumns));
+            //        }
+            //    }
+            //    reader.Close();
+            //}
 
-            if (newCSVFile.Length == 0)
-            {
-                throw new Exception("CSV file '" + fileName + "' was empty");
-            }
-            else
-            {
-                //Write the completed file back to the CSV file to overwrite the file we read earlier
-                using (StreamWriter writer = new StreamWriter(path + @"\" + fileName))
-                {
-                    System.Console.WriteLine("Writing clean CSV file '" + fileName + "'");
-                    writer.Write(newCSVFile);
-                    writer.Close();
-                }
-            }
+            //if (newCSVFile.Length == 0)
+            //{
+            //    throw new Exception("CSV file '" + fileName + "' was empty");
+            //}
+            //else
+            //{
+            //    //Write the completed file back to the CSV file to overwrite the file we read earlier
+            //    using (StreamWriter writer = new StreamWriter(path + @"\" + fileName))
+            //    {
+            //        System.Console.WriteLine("Writing clean CSV file '" + fileName + "'");
+            //        writer.Write(newCSVFile);
+            //        writer.Close();
+            //    }
+            //}
         }
 
         private string ProcessValue(int lineNumber, string[] values, List<int> stringColumns, List<int> booleanColumns)
