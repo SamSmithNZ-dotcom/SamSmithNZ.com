@@ -35,6 +35,18 @@ namespace SamSmithNZ.LegoDataMigration.Console
                         StringBuilder sbFix = new StringBuilder();
                         for (int i = 0; i < values.Length; i++)
                         {
+                            if (i == columnToSquash)
+                            {
+                                StringBuilder sbSquash = new StringBuilder(values[i]);
+                                while (++i < values.Length)
+                                {
+                                    sbSquash.Append(",").Append(values[i]);
+                                }
+                                values[columnToSquash] = sbSquash.ToString();
+                                break;
+                            }
+                        }
+                        {
                             if (i >= columnToSquash && i <= values.Length - columnToSquash)
                             {
                                 do
