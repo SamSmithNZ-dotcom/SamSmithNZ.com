@@ -107,6 +107,13 @@ namespace SamSmithNZ.LegoDataMigration.Console
                 //Add string quote
                 if (lineNumber > 1 && stringColumns.Contains(i + 1))
                 {
+                    values[i] = values[i].Replace("\"", "\"\"");
+                    if (values[i].StartsWith("\"") == false)
+                    {
+                        sb.Append("\"");
+                    }
+                }
+                {
                     if (values[i].StartsWith("\"") == false)
                     {
                         sb.Append("\"");
