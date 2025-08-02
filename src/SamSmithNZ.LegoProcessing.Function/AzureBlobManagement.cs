@@ -57,7 +57,8 @@ namespace SamSmithNZ.LegoProcessing.Function
                             Console.Write("\r");
 
                             //creating an empty file (blockBlob) for the actual file with the folder name (from the zip) and file name
-                            string destinationFile = fileName.Replace(".zip", "").Replace("parts_", "") + "/" + entry.FullName;
+                            string destinationFolder = Path.GetFileNameWithoutExtension(fileName).Replace("parts_", "");
+                            string destinationFile = Path.Combine(destinationFolder, entry.FullName);
                             CloudBlockBlob blob = cloudBlobDestinationContainer.GetBlockBlobReference(destinationFile);
                             using (Stream stream = entry.Open())
                             {
