@@ -19,8 +19,8 @@ steps:
     
   - name: "Configure GitHub NuGet source"
     description: "Add GitHub packages as a NuGet source for private packages (required for MandMCounter.Core package)"
-    command: "dotnet nuget add source \"https://nuget.pkg.github.com/SamSmithNZ-dotcom/index.json\" --name \"githubfeed\" --username \"your-github-username\" --password \"your-github-token\" --store-password-in-clear-text"
-    note: "Replace 'your-github-username' and 'your-github-token' with your GitHub credentials. You'll need a Personal Access Token with package read permissions."
+    command: "dotnet nuget add source \"https://nuget.pkg.github.com/SamSmithNZ-dotcom/index.json\" --name \"githubfeed\" --username \"samsmithnz@gmail.com\" --password \"${{ secrets.PackagesReadPAT_Token }}\" --store-password-in-clear-text"
+    note: "Uses GitHub secret for secure access to private packages. The PAT token needs package read permissions."
     
   - name: "Restore main web project"
     description: "Restore NuGet packages for the main web application"
