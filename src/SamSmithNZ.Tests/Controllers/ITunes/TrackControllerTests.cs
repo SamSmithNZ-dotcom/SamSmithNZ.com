@@ -27,7 +27,7 @@ namespace SamSmithNZ.Tests.Controllers.ITunes
         public void TrackController_Constructor_InitializesCorrectly()
         {
             // Arrange & Act
-            var controller = new TrackController(_mockRepo);
+            TrackController controller = new TrackController(_mockRepo);
 
             // Assert
             Assert.IsNotNull(controller);
@@ -39,7 +39,7 @@ namespace SamSmithNZ.Tests.Controllers.ITunes
             // Arrange
             int playlistCode = 1;
             bool showJustSummary = true;
-            var expectedResult = new List<Track>
+            List<Track> expectedResult = new List<Track>
             {
                 new Track 
                 { 
@@ -53,7 +53,7 @@ namespace SamSmithNZ.Tests.Controllers.ITunes
             _mockRepo.GetList(playlistCode, showJustSummary).Returns(expectedResult);
 
             // Act
-            var result = await _controller.GetTracks(playlistCode, showJustSummary);
+            List<Track> result = await _controller.GetTracks(playlistCode, showJustSummary);
 
             // Assert
             await _mockRepo.Received(1).GetList(playlistCode, showJustSummary);
@@ -68,7 +68,7 @@ namespace SamSmithNZ.Tests.Controllers.ITunes
             // Arrange
             int playlistCode = 5;
             bool showJustSummary = false;
-            var expectedResult = new List<Track>
+            List<Track> expectedResult = new List<Track>
             {
                 new Track 
                 { 
@@ -82,7 +82,7 @@ namespace SamSmithNZ.Tests.Controllers.ITunes
             _mockRepo.GetList(playlistCode, showJustSummary).Returns(expectedResult);
 
             // Act
-            var result = await _controller.GetTracks(playlistCode, showJustSummary);
+            List<Track> result = await _controller.GetTracks(playlistCode, showJustSummary);
 
             // Assert
             await _mockRepo.Received(1).GetList(playlistCode, showJustSummary);
@@ -97,11 +97,11 @@ namespace SamSmithNZ.Tests.Controllers.ITunes
             // Arrange
             int playlistCode = 1;
             bool showJustSummary = true;
-            var expectedResult = new List<Track>();
+            List<Track> expectedResult = new List<Track>();
             _mockRepo.GetList(playlistCode, showJustSummary).Returns(expectedResult);
 
             // Act
-            var result = await _controller.GetTracks(playlistCode, showJustSummary);
+            List<Track> result = await _controller.GetTracks(playlistCode, showJustSummary);
 
             // Assert
             await _mockRepo.Received(1).GetList(playlistCode, showJustSummary);
@@ -115,7 +115,7 @@ namespace SamSmithNZ.Tests.Controllers.ITunes
             // Arrange
             int playlistCode = 2;
             bool showJustSummary = false;
-            var expectedResult = new List<Track>
+            List<Track> expectedResult = new List<Track>
             {
                 new Track 
                 { 
@@ -135,7 +135,7 @@ namespace SamSmithNZ.Tests.Controllers.ITunes
             _mockRepo.GetList(playlistCode, showJustSummary).Returns(expectedResult);
 
             // Act
-            var result = await _controller.GetTracks(playlistCode, showJustSummary);
+            List<Track> result = await _controller.GetTracks(playlistCode, showJustSummary);
 
             // Assert
             await _mockRepo.Received(1).GetList(playlistCode, showJustSummary);

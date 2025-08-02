@@ -26,7 +26,7 @@ namespace SamSmithNZ.Tests.Controllers.ITunes
         public void TopArtistsController_Constructor_InitializesCorrectly()
         {
             // Arrange & Act
-            var controller = new TopArtistsController(_mockRepo);
+            TopArtistsController controller = new TopArtistsController(_mockRepo);
 
             // Assert
             Assert.IsNotNull(controller);
@@ -38,14 +38,14 @@ namespace SamSmithNZ.Tests.Controllers.ITunes
             // Arrange
             int playlistCode = 1;
             bool showJustSummary = true;
-            var expectedResult = new List<TopArtists>
+            List<TopArtists> expectedResult = new List<TopArtists>
             {
                 new TopArtists { ArtistName = "Test Artist", ArtistCount = 10 }
             };
             _mockRepo.GetList(playlistCode, showJustSummary).Returns(expectedResult);
 
             // Act
-            var result = await _controller.GetTopArtistsByPlaylist(playlistCode, showJustSummary);
+            List<TopArtists> result = await _controller.GetTopArtistsByPlaylist(playlistCode, showJustSummary);
 
             // Assert
             await _mockRepo.Received(1).GetList(playlistCode, showJustSummary);
@@ -58,14 +58,14 @@ namespace SamSmithNZ.Tests.Controllers.ITunes
             // Arrange
             int playlistCode = 5;
             bool showJustSummary = false;
-            var expectedResult = new List<TopArtists>
+            List<TopArtists> expectedResult = new List<TopArtists>
             {
                 new TopArtists { ArtistName = "Another Artist", ArtistCount = 25 }
             };
             _mockRepo.GetList(playlistCode, showJustSummary).Returns(expectedResult);
 
             // Act
-            var result = await _controller.GetTopArtistsByPlaylist(playlistCode, showJustSummary);
+            List<TopArtists> result = await _controller.GetTopArtistsByPlaylist(playlistCode, showJustSummary);
 
             // Assert
             await _mockRepo.Received(1).GetList(playlistCode, showJustSummary);
@@ -77,14 +77,14 @@ namespace SamSmithNZ.Tests.Controllers.ITunes
         {
             // Arrange
             bool showJustSummary = true;
-            var expectedResult = new List<TopArtists>
+            List<TopArtists> expectedResult = new List<TopArtists>
             {
                 new TopArtists { ArtistName = "Summary Artist", ArtistCount = 100 }
             };
             _mockRepo.GetList(showJustSummary).Returns(expectedResult);
 
             // Act
-            var result = await _controller.GetTopArtistsSummary(showJustSummary);
+            List<TopArtists> result = await _controller.GetTopArtistsSummary(showJustSummary);
 
             // Assert
             await _mockRepo.Received(1).GetList(showJustSummary);
@@ -96,14 +96,14 @@ namespace SamSmithNZ.Tests.Controllers.ITunes
         {
             // Arrange
             bool showJustSummary = false;
-            var expectedResult = new List<TopArtists>
+            List<TopArtists> expectedResult = new List<TopArtists>
             {
                 new TopArtists { ArtistName = "Full Artist", ArtistCount = 200 }
             };
             _mockRepo.GetList(showJustSummary).Returns(expectedResult);
 
             // Act
-            var result = await _controller.GetTopArtistsSummary(showJustSummary);
+            List<TopArtists> result = await _controller.GetTopArtistsSummary(showJustSummary);
 
             // Assert
             await _mockRepo.Received(1).GetList(showJustSummary);
@@ -116,11 +116,11 @@ namespace SamSmithNZ.Tests.Controllers.ITunes
             // Arrange
             int playlistCode = 1;
             bool showJustSummary = true;
-            var expectedResult = new List<TopArtists>();
+            List<TopArtists> expectedResult = new List<TopArtists>();
             _mockRepo.GetList(playlistCode, showJustSummary).Returns(expectedResult);
 
             // Act
-            var result = await _controller.GetTopArtistsByPlaylist(playlistCode, showJustSummary);
+            List<TopArtists> result = await _controller.GetTopArtistsByPlaylist(playlistCode, showJustSummary);
 
             // Assert
             await _mockRepo.Received(1).GetList(playlistCode, showJustSummary);
@@ -133,11 +133,11 @@ namespace SamSmithNZ.Tests.Controllers.ITunes
         {
             // Arrange
             bool showJustSummary = true;
-            var expectedResult = new List<TopArtists>();
+            List<TopArtists> expectedResult = new List<TopArtists>();
             _mockRepo.GetList(showJustSummary).Returns(expectedResult);
 
             // Act
-            var result = await _controller.GetTopArtistsSummary(showJustSummary);
+            List<TopArtists> result = await _controller.GetTopArtistsSummary(showJustSummary);
 
             // Assert
             await _mockRepo.Received(1).GetList(showJustSummary);

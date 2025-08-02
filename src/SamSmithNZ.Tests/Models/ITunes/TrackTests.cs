@@ -12,7 +12,7 @@ namespace SamSmithNZ.Tests.Models.ITunes
         public void Track_DefaultConstructor_CreatesInstance()
         {
             // Act
-            var track = new Track();
+            Track track = new Track();
 
             // Assert
             Assert.IsNotNull(track);
@@ -33,7 +33,7 @@ namespace SamSmithNZ.Tests.Models.ITunes
         public void Track_SetAllProperties_ReturnsAllValues()
         {
             // Arrange
-            var track = new Track();
+            Track track = new Track();
             var expectedPlaylistCode = 1;
             var expectedTrackName = "Bohemian Rhapsody";
             var expectedAlbumName = "A Night at the Opera";
@@ -90,7 +90,7 @@ namespace SamSmithNZ.Tests.Models.ITunes
             var expectedRecordId = Guid.NewGuid();
 
             // Act
-            var track = new Track
+            Track track = new Track
             {
                 PlaylistCode = expectedPlaylistCode,
                 TrackName = expectedTrackName,

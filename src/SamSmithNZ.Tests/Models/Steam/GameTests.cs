@@ -11,7 +11,7 @@ namespace SamSmithNZ.Tests.Models.Steam
         public void Game_SetAndGetAppID_ReturnsCorrectValue()
         {
             // Arrange
-            var game = new Game();
+            Game game = new Game();
             var expectedAppID = "200510";
 
             // Act
@@ -25,7 +25,7 @@ namespace SamSmithNZ.Tests.Models.Steam
         public void Game_SetAndGetGameName_ReturnsCorrectValue()
         {
             // Arrange
-            var game = new Game();
+            Game game = new Game();
             var expectedGameName = "XCOM: Enemy Unknown";
 
             // Act
@@ -39,7 +39,7 @@ namespace SamSmithNZ.Tests.Models.Steam
         public void Game_SetAndGetTotalMinutesPlayed_ReturnsCorrectValue()
         {
             // Arrange
-            var game = new Game();
+            Game game = new Game();
             long expectedMinutes = 1234;
 
             // Act
@@ -53,7 +53,7 @@ namespace SamSmithNZ.Tests.Models.Steam
         public void Game_SetAndGetTotalTimeString_ReturnsCorrectValue()
         {
             // Arrange
-            var game = new Game();
+            Game game = new Game();
             var expectedTimeString = "20.6 hrs";
 
             // Act
@@ -67,7 +67,7 @@ namespace SamSmithNZ.Tests.Models.Steam
         public void Game_SetAndGetIconURL_ReturnsCorrectValue()
         {
             // Arrange
-            var game = new Game();
+            Game game = new Game();
             var expectedIconURL = "cd8f7a795e34e16449f7ad8d8190dce521967917";
 
             // Act
@@ -81,7 +81,7 @@ namespace SamSmithNZ.Tests.Models.Steam
         public void Game_SetAndGetLogoURL_ReturnsCorrectValue()
         {
             // Arrange
-            var game = new Game();
+            Game game = new Game();
             var expectedLogoURL = "5450218e6f8ea246272cddcb2ab9a453b0ca7ef5";
 
             // Act
@@ -95,7 +95,7 @@ namespace SamSmithNZ.Tests.Models.Steam
         public void Game_SetAndGetCommunityIsVisible_ReturnsCorrectValue()
         {
             // Arrange
-            var game = new Game();
+            Game game = new Game();
 
             // Act & Assert - Test true
             game.CommunityIsVisible = true;
@@ -110,7 +110,7 @@ namespace SamSmithNZ.Tests.Models.Steam
         public void Game_DefaultConstructor_CreatesInstance()
         {
             // Act
-            var game = new Game();
+            Game game = new Game();
 
             // Assert
             Assert.IsNotNull(game);
@@ -136,7 +136,7 @@ namespace SamSmithNZ.Tests.Models.Steam
             var expectedCommunityIsVisible = true;
 
             // Act
-            var game = new Game
+            Game game = new Game
             {
                 AppID = expectedAppID,
                 GameName = expectedGameName,

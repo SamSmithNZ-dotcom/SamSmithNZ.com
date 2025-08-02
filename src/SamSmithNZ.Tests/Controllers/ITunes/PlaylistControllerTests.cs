@@ -27,7 +27,7 @@ namespace SamSmithNZ.Tests.Controllers.ITunes
         public void PlaylistController_Constructor_InitializesCorrectly()
         {
             // Arrange & Act
-            var controller = new PlaylistController(_mockRepo);
+            PlaylistController controller = new PlaylistController(_mockRepo);
 
             // Assert
             Assert.IsNotNull(controller);
@@ -37,7 +37,7 @@ namespace SamSmithNZ.Tests.Controllers.ITunes
         public async Task GetPlaylists_CallsDataAccess_ReturnsPlaylistList()
         {
             // Arrange
-            var expectedResult = new List<Playlist>
+            List<Playlist> expectedResult = new List<Playlist>
             {
                 new Playlist { PlaylistCode = 1, PlaylistDate = new DateTime(2023, 1, 1) },
                 new Playlist { PlaylistCode = 2, PlaylistDate = new DateTime(2023, 2, 1) }
@@ -45,7 +45,7 @@ namespace SamSmithNZ.Tests.Controllers.ITunes
             _mockRepo.GetList().Returns(expectedResult);
 
             // Act
-            var result = await _controller.GetPlaylists();
+            List<Playlist> result = await _controller.GetPlaylists();
 
             // Assert
             await _mockRepo.Received(1).GetList();
@@ -57,11 +57,11 @@ namespace SamSmithNZ.Tests.Controllers.ITunes
         public async Task GetPlaylists_EmptyResult_ReturnsEmptyList()
         {
             // Arrange
-            var expectedResult = new List<Playlist>();
+            List<Playlist> expectedResult = new List<Playlist>();
             _mockRepo.GetList().Returns(expectedResult);
 
             // Act
-            var result = await _controller.GetPlaylists();
+            List<Playlist> result = await _controller.GetPlaylists();
 
             // Assert
             await _mockRepo.Received(1).GetList();
@@ -74,11 +74,11 @@ namespace SamSmithNZ.Tests.Controllers.ITunes
         {
             // Arrange
             int playlistCode = 123;
-            var expectedResult = new Playlist { PlaylistCode = playlistCode, PlaylistDate = new DateTime(2023, 5, 15) };
+            Playlist expectedResult = new Playlist { PlaylistCode = playlistCode, PlaylistDate = new DateTime(2023, 5, 15) };
             _mockRepo.GetItem(playlistCode).Returns(expectedResult);
 
             // Act
-            var result = await _controller.GetPlaylist(playlistCode);
+            Playlist result = await _controller.GetPlaylist(playlistCode);
 
             // Assert
             await _mockRepo.Received(1).GetItem(playlistCode);
@@ -91,11 +91,11 @@ namespace SamSmithNZ.Tests.Controllers.ITunes
         {
             // Arrange
             int playlistCode = 456;
-            var expectedResult = new Playlist { PlaylistCode = playlistCode, PlaylistDate = new DateTime(2023, 10, 20) };
+            Playlist expectedResult = new Playlist { PlaylistCode = playlistCode, PlaylistDate = new DateTime(2023, 10, 20) };
             _mockRepo.GetItem(playlistCode).Returns(expectedResult);
 
             // Act
-            var result = await _controller.GetPlaylist(playlistCode);
+            Playlist result = await _controller.GetPlaylist(playlistCode);
 
             // Assert
             await _mockRepo.Received(1).GetItem(playlistCode);
@@ -112,7 +112,7 @@ namespace SamSmithNZ.Tests.Controllers.ITunes
             _mockRepo.GetItem(playlistCode).Returns(expectedResult);
 
             // Act
-            var result = await _controller.GetPlaylist(playlistCode);
+            Playlist result = await _controller.GetPlaylist(playlistCode);
 
             // Assert
             await _mockRepo.Received(1).GetItem(playlistCode);

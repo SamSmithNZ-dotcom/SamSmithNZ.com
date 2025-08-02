@@ -12,7 +12,7 @@ namespace SamSmithNZ.Tests.Models.ITunes
         public void Playlist_DefaultConstructor_CreatesInstance()
         {
             // Act
-            var playlist = new Playlist();
+            Playlist playlist = new Playlist();
 
             // Assert
             Assert.IsNotNull(playlist);
@@ -24,7 +24,7 @@ namespace SamSmithNZ.Tests.Models.ITunes
         public void Playlist_SetAndGetPlaylistCode_ReturnsCorrectValue()
         {
             // Arrange
-            var playlist = new Playlist();
+            Playlist playlist = new Playlist();
             var expectedPlaylistCode = 123;
 
             // Act
@@ -38,7 +38,7 @@ namespace SamSmithNZ.Tests.Models.ITunes
         public void Playlist_SetAndGetPlaylistDate_ReturnsCorrectValue()
         {
             // Arrange
-            var playlist = new Playlist();
+            Playlist playlist = new Playlist();
             var expectedPlaylistDate = new DateTime(2023, 12, 25);
 
             // Act
@@ -56,7 +56,7 @@ namespace SamSmithNZ.Tests.Models.ITunes
             var expectedPlaylistDate = new DateTime(2024, 1, 1);
 
             // Act
-            var playlist = new Playlist
+            Playlist playlist = new Playlist
             {
                 PlaylistCode = expectedPlaylistCode,
                 PlaylistDate = expectedPlaylistDate

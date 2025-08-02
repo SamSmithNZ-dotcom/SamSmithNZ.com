@@ -11,7 +11,7 @@ namespace SamSmithNZ.Tests.Models.Steam
         public void Friend_DefaultConstructor_CreatesInstance()
         {
             // Act
-            var friend = new Friend();
+            Friend friend = new Friend();
 
             // Assert
             Assert.IsNotNull(friend);
@@ -30,7 +30,7 @@ namespace SamSmithNZ.Tests.Models.Steam
         public void Friend_SetAllProperties_ReturnsAllValues()
         {
             // Arrange
-            var friend = new Friend();
+            Friend friend = new Friend();
             var expectedSteamId = "76561198059077520";
             var expectedName = "TestFriend";
             var expectedLastLogoff = 1234567890L;
@@ -79,7 +79,7 @@ namespace SamSmithNZ.Tests.Models.Steam
             var expectedFriendSince = 3333333333L;
 
             // Act
-            var friend = new Friend
+            Friend friend = new Friend
             {
                 SteamId = expectedSteamId,
                 Name = expectedName,

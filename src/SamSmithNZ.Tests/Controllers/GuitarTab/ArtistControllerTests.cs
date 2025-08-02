@@ -26,7 +26,7 @@ namespace SamSmithNZ.Tests.Controllers.GuitarTab
         public void ArtistController_Constructor_InitializesCorrectly()
         {
             // Arrange & Act
-            var controller = new ArtistController(_mockRepo);
+            ArtistController controller = new ArtistController(_mockRepo);
 
             // Assert
             Assert.IsNotNull(controller);
@@ -38,14 +38,14 @@ namespace SamSmithNZ.Tests.Controllers.GuitarTab
             // Arrange
             bool includeAllItems = false;
             bool isAdmin = false;
-            var expectedResult = new List<Artist>
+            List<Artist> expectedResult = new List<Artist>
             {
                 new Artist { ArtistName = "Test Artist", ArtistNameTrimed = "TestArtist" }
             };
             _mockRepo.GetList(includeAllItems, isAdmin).Returns(expectedResult);
 
             // Act
-            var result = await _controller.GetArtists();
+            List<Artist> result = await _controller.GetArtists();
 
             // Assert
             await _mockRepo.Received(1).GetList(includeAllItems, isAdmin);
@@ -58,7 +58,7 @@ namespace SamSmithNZ.Tests.Controllers.GuitarTab
             // Arrange
             bool includeAllItems = true;
             bool isAdmin = false;
-            var expectedResult = new List<Artist>
+            List<Artist> expectedResult = new List<Artist>
             {
                 new Artist { ArtistName = "All Items Artist", ArtistNameTrimed = "AllItemsArtist" }
             };
@@ -78,7 +78,7 @@ namespace SamSmithNZ.Tests.Controllers.GuitarTab
             // Arrange
             bool includeAllItems = false;
             bool isAdmin = true;
-            var expectedResult = new List<Artist>
+            List<Artist> expectedResult = new List<Artist>
             {
                 new Artist { ArtistName = "Admin Artist", ArtistNameTrimed = "AdminArtist" }
             };
@@ -98,7 +98,7 @@ namespace SamSmithNZ.Tests.Controllers.GuitarTab
             // Arrange
             bool includeAllItems = true;
             bool isAdmin = true;
-            var expectedResult = new List<Artist>
+            List<Artist> expectedResult = new List<Artist>
             {
                 new Artist { ArtistName = "Full Access Artist", ArtistNameTrimed = "FullAccessArtist" }
             };
@@ -118,11 +118,11 @@ namespace SamSmithNZ.Tests.Controllers.GuitarTab
             // Arrange
             bool includeAllItems = false;
             bool isAdmin = false;
-            var expectedResult = new List<Artist>();
+            List<Artist> expectedResult = new List<Artist>();
             _mockRepo.GetList(includeAllItems, isAdmin).Returns(expectedResult);
 
             // Act
-            var result = await _controller.GetArtists();
+            List<Artist> result = await _controller.GetArtists();
 
             // Assert
             await _mockRepo.Received(1).GetList(includeAllItems, isAdmin);

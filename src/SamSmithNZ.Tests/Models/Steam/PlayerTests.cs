@@ -11,7 +11,7 @@ namespace SamSmithNZ.Tests.Models.Steam
         public void Player_SetAndGetSteamID_ReturnsCorrectValue()
         {
             // Arrange
-            var player = new Player();
+            Player player = new Player();
             var expectedSteamID = "76561198059077520";
 
             // Act
@@ -25,7 +25,7 @@ namespace SamSmithNZ.Tests.Models.Steam
         public void Player_SetAndGetPlayerName_ReturnsCorrectValue()
         {
             // Arrange
-            var player = new Player();
+            Player player = new Player();
             var expectedPlayerName = "TestPlayer";
 
             // Act
@@ -39,7 +39,7 @@ namespace SamSmithNZ.Tests.Models.Steam
         public void Player_SetAndGetIsPublic_ReturnsCorrectValue()
         {
             // Arrange
-            var player = new Player();
+            Player player = new Player();
 
             // Act & Assert - Test true
             player.IsPublic = true;
@@ -54,7 +54,7 @@ namespace SamSmithNZ.Tests.Models.Steam
         public void Player_DefaultConstructor_CreatesInstance()
         {
             // Act
-            var player = new Player();
+            Player player = new Player();
 
             // Assert
             Assert.IsNotNull(player);
@@ -72,7 +72,7 @@ namespace SamSmithNZ.Tests.Models.Steam
             var expectedIsPublic = true;
 
             // Act
-            var player = new Player
+            Player player = new Player
             {
                 SteamID = expectedSteamID,
                 PlayerName = expectedPlayerName,

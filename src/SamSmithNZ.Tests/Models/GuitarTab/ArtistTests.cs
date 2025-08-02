@@ -11,7 +11,7 @@ namespace SamSmithNZ.Tests.Models.GuitarTab
         public void Artist_SetAndGetArtistName_ReturnsCorrectValue()
         {
             // Arrange
-            var artist = new Artist();
+            Artist artist = new Artist();
             var expectedArtistName = "Metallica";
 
             // Act
@@ -25,7 +25,7 @@ namespace SamSmithNZ.Tests.Models.GuitarTab
         public void Artist_SetAndGetArtistNameTrimed_ReturnsCorrectValue()
         {
             // Arrange
-            var artist = new Artist();
+            Artist artist = new Artist();
             var expectedArtistNameTrimed = "metallica";
 
             // Act
@@ -39,7 +39,7 @@ namespace SamSmithNZ.Tests.Models.GuitarTab
         public void Artist_DefaultConstructor_CreatesInstance()
         {
             // Act
-            var artist = new Artist();
+            Artist artist = new Artist();
 
             // Assert
             Assert.IsNotNull(artist);
@@ -55,7 +55,7 @@ namespace SamSmithNZ.Tests.Models.GuitarTab
             var expectedArtistNameTrimed = "ironmaiden";
 
             // Act
-            var artist = new Artist
+            Artist artist = new Artist
             {
                 ArtistName = expectedArtistName,
                 ArtistNameTrimed = expectedArtistNameTrimed

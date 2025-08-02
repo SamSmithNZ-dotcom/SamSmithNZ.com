@@ -11,7 +11,7 @@ namespace SamSmithNZ.Tests.Models.GuitarTab
         public void Album_DefaultConstructor_CreatesInstance()
         {
             // Act
-            var album = new Album();
+            Album album = new Album();
 
             // Assert
             Assert.IsNotNull(album);
@@ -34,7 +34,7 @@ namespace SamSmithNZ.Tests.Models.GuitarTab
         public void Album_SetAllProperties_ReturnsAllValues()
         {
             // Arrange
-            var album = new Album();
+            Album album = new Album();
             var expectedAlbumCode = 123;
             var expectedArtistName = "Metallica";
             var expectedArtistNameTrimed = "metallica";
@@ -99,7 +99,7 @@ namespace SamSmithNZ.Tests.Models.GuitarTab
             var expectedAverageRating = 4.9m;
 
             // Act
-            var album = new Album
+            Album album = new Album
             {
                 AlbumCode = expectedAlbumCode,
                 ArtistName = expectedArtistName,

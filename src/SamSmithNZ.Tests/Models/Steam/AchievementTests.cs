@@ -11,7 +11,7 @@ namespace SamSmithNZ.Tests.Models.Steam
         public void Achievement_DefaultConstructor_CreatesInstance()
         {
             // Act
-            var achievement = new Achievement();
+            Achievement achievement = new Achievement();
 
             // Assert
             Assert.IsNotNull(achievement);
@@ -30,7 +30,7 @@ namespace SamSmithNZ.Tests.Models.Steam
         public void Achievement_SetAllProperties_ReturnsAllValues()
         {
             // Arrange
-            var achievement = new Achievement();
+            Achievement achievement = new Achievement();
             var expectedApiName = "ACHIEVEMENT_1";
             var expectedAchieved = true;
             var expectedName = "First Blood";
@@ -79,7 +79,7 @@ namespace SamSmithNZ.Tests.Models.Steam
             var expectedIsVisible = true;
 
             // Act
-            var achievement = new Achievement
+            Achievement achievement = new Achievement
             {
                 ApiName = expectedApiName,
                 Achieved = expectedAchieved,
