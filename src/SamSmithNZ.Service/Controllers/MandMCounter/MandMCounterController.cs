@@ -1,4 +1,4 @@
-﻿using MandMCounter.Core;
+﻿//using MandMCounter.Core;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SamSmithNZ.Service.Controllers.MandMCounter
@@ -7,6 +7,7 @@ namespace SamSmithNZ.Service.Controllers.MandMCounter
     [Route("api/MandMCounter")]
     public class MandMCounterController : Controller
     {
+        /*
         [HttpGet("GetDataForUnit")]
         public float GetDataForUnit(string unit, float quantity)
         {
@@ -24,5 +25,6 @@ namespace SamSmithNZ.Service.Controllers.MandMCounter
         {
             return Calculator.CountMandMs(unit, height, radius);
         }
+        */
     }
 }
