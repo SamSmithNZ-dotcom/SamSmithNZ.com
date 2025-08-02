@@ -24,6 +24,11 @@ namespace SamSmithNZ.LegoProcessing.Function
             string storageConnectionString = Environment.GetEnvironmentVariable("storageConnectionString");
             string sourceContainerName = Environment.GetEnvironmentVariable("sourceContainer");
             string destinationContainerName = Environment.GetEnvironmentVariable("destinationContainer");
+            if (string.IsNullOrEmpty(destinationContainerName))
+            {
+                log.LogError("The destination container name is not set in the environment variables.");
+                return;
+            }
 
             //Start the timer
             System.Diagnostics.Stopwatch watch = System.Diagnostics.Stopwatch.StartNew();
