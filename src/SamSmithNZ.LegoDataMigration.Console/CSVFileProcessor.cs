@@ -103,7 +103,7 @@ namespace SamSmithNZ.LegoDataMigration.Console
                 //Process Boolean values 
                 if (lineNumber > 1 && booleanColumns.Contains(i + 1))
                 {
-                    if (values[i] == "t")
+                    if (values[i].Equals("t", StringComparison.OrdinalIgnoreCase) || values[i].Equals("true", StringComparison.OrdinalIgnoreCase))
                     {
                         sb.Append("TRUE");
                     }
