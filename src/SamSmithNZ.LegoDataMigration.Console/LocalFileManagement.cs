@@ -46,7 +46,7 @@ namespace SamSmithNZ.LegoDataMigration.Console
                         byte[] fileBytes = await DownloadFile(fileToDownload);
                         string downloadedFile = tempFolderLocation + @"\" + file;
                         if (fileBytes != null) File.WriteAllBytes(downloadedFile, fileBytes);
-                        FileInfo fileInfo = new FileInfo(downloadedFile);
+                        break;
                         break;
                     }
                     catch (Exception)
