@@ -1,74 +1,33 @@
-# GitHub Copilot Setup Steps for SamSmithNZ.com
-# This file helps developers set up their development environment for .NET 9
+name: "Copilot Setup Steps"
 
-name: "Setup .NET 9 Development Environment"
-description: "Install and configure .NET 9 SDK for SamSmithNZ.com development"
+# Automatically run the setup steps when they are changed to allow for easy validation, and
+# allow manual testing through the repository's "Actions" tab
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+  pull_request:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
 
-steps:
-  - name: "Install .NET 9 SDK"
-    description: "Download and install the latest .NET 9 SDK"
-    action: "install-dotnet"
-    with:
-      version: "9.0.x"
-      include-prerelease: false
-    
-  - name: "Verify .NET installation"
-    description: "Confirm .NET 9 is properly installed"
-    command: "dotnet --version"
-    expected_output_contains: "9.0"
-    
-  - name: "Configure GitHub NuGet source"
-    description: "Add GitHub packages as a NuGet source for private packages (required for MandMCounter.Core package)"
-    command: "dotnet nuget add source \"https://nuget.pkg.github.com/SamSmithNZ-dotcom/index.json\" --name \"githubfeed\" --username \"samsmithnz@gmail.com\" --password \"${{ secrets.PackagesReadPAT_Token }}\" --store-password-in-clear-text"
-    note: "Uses GitHub secret for secure access to private packages. The PAT token needs package read permissions."
-    
-  - name: "Restore main web project"
-    description: "Restore NuGet packages for the main web application"
-    command: "dotnet restore src/SamSmithNZ.Web/SamSmithNZ.Web.csproj"
-    working_directory: "."
-    
-  - name: "Restore service project"
-    description: "Restore NuGet packages for the web service"
-    command: "dotnet restore src/SamSmithNZ.Service/SamSmithNZ.Service.csproj"
-    working_directory: "."
-    
-  - name: "Build main projects"
-    description: "Build the core projects to verify setup"
-    commands:
-      - "dotnet build src/SamSmithNZ.Web/SamSmithNZ.Web.csproj --configuration Debug"
-      - "dotnet build src/SamSmithNZ.Service/SamSmithNZ.Service.csproj --configuration Debug"
-    working_directory: "."
-    
-  - name: "Run tests"
-    description: "Execute unit tests to ensure everything is working"
-    command: "dotnet test src/SamSmithNZ.Tests/SamSmithNZ.Tests.csproj --configuration Debug"
-    working_directory: "."
-    optional: true
+jobs:
+  # The job MUST be called `copilot-setup-steps` or it will not be picked up by Copilot.
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
 
-requirements:
-  - "Git (for cloning the repository)"
-  - ".NET 9 SDK (will be installed in step 1)"
-  - "GitHub Personal Access Token with package read permissions"
-  - "Visual Studio 2022 17.8+ or Visual Studio Code (recommended IDEs)"
+    # Set the permissions to the lowest permissions possible needed for your steps.
+    # Copilot will be given its own token for its operations.
+    permissions:
+      # If you want to clone the repository as part of your setup steps, for example to install dependencies, you'll need the `contents: read` permission. If you don't clone the repository in your setup steps, Copilot will do this for you automatically after the steps complete.
+      contents: read
 
-environment_variables:
-  - name: "DOTNET_CLI_TELEMETRY_OPTOUT"
-    value: "1"
-    description: "Disable .NET CLI telemetry (optional)"
-
-notes:
-  - "This project targets .NET 9.0 and requires the latest .NET 9 SDK"
-  - "Some projects require access to private GitHub packages"
-  - "The application uses ASP.NET Core and Entity Framework"
-  - "For database development, you may need SQL Server or SQL Server Express"
-  - "Azure tools may be required for deployment scenarios"
-
-troubleshooting:
-  - issue: "NuGet restore fails with authentication errors"
-    solution: "Ensure your GitHub Personal Access Token has 'read:packages' permission and is correctly configured"
-  - issue: "Build fails with missing SDK error or 'does not support targeting .NET 9.0'"
-    solution: "Verify .NET 9 SDK is installed by running 'dotnet --list-sdks'. If not present, download from https://aka.ms/dotnet/download"
-  - issue: "Project not found errors"
-    solution: "Ensure you're running commands from the repository root directory"
-  - issue: "MandMCounter.Core package not found"
-    solution: "This is a private package. Ensure GitHub NuGet source is configured with valid credentials"
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install .NET SDK
+      uses: actions/setup-dotnet@v4.3.1
+      with:
+        dotnet-version: 9.0.x
+    - name: Setup connection to GitHub packages
+      run: |
+        dotnet nuget add source "https://nuget.pkg.github.com/SamSmithNZ-dotcom/index.json" --name "githubfeed" --username "samsmithnz@gmail.com" --password "${{ secrets.PackagesReadPAT_Token }}" --store-password-in-clear-text     
