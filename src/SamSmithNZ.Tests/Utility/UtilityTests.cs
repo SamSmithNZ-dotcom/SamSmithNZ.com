@@ -4,7 +4,7 @@ using SamSmithNZ.Service;
 namespace SamSmithNZ.Tests.Utility
 {
     [TestClass]
-    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+    [TestCategory("L0")]
     public class UtilityTests
     {
         [TestMethod]
