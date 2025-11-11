@@ -8,7 +8,7 @@ on:
   merge_group:
   workflow_dispatch:
 env:
-  dotNetVersion: net9.0
+  dotNetVersion: net10.0
   dotNetConfiguration: Release
   runtimeTarget: win-x64
 permissions:
@@ -23,7 +23,7 @@ jobs:
     - name: Install .NET SDK
       uses: actions/setup-dotnet@v4.3.1
       with:
-        dotnet-version: 9.0.x
+        dotnet-version: 10.0.x
     - name: Publish web projects
       run: |
         dotnet nuget add source "https://nuget.pkg.github.com/SamSmithNZ-dotcom/index.json" --name "githubfeed" --username "samsmithnz@gmail.com" --password "${{ secrets.PackagesReadPAT_Token }}" --store-password-in-clear-text
@@ -54,11 +54,11 @@ jobs:
         fetch-depth: 0 #fetch-depth is needed for GitVersion   
     #Install and calculate the new version with GitVersion  
     - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v4.0.1
+      uses: gittools/actions/gitversion/setup@v4.1.0
       with:
         versionSpec: 6.x
     - name: Determine Version
-      uses: gittools/actions/gitversion/execute@v4.0.1
+      uses: gittools/actions/gitversion/execute@v4.1.0
       id: gitversion # step id used as reference for output values
     - name: Display GitVersion outputs
       run: |
@@ -67,7 +67,7 @@ jobs:
     - name: Install .NET SDK
       uses: actions/setup-dotnet@v4.3.1
       with:
-        dotnet-version: 9.0.x
+        dotnet-version: 10.0.x
     - name: Publish web projects
       run: |
         dotnet nuget add source "https://nuget.pkg.github.com/SamSmithNZ-dotcom/index.json" --name "githubfeed" --username "samsmithnz@gmail.com" --password "${{ secrets.PackagesReadPAT_Token }}" --store-password-in-clear-text
@@ -87,13 +87,13 @@ jobs:
     - name: Install .NET SDK
       uses: actions/setup-dotnet@v4.3.1
       with:
-        dotnet-version: 9.0.x
+        dotnet-version: 10.0.x
     - name: Publish functional tests project
       run: |
         dotnet nuget add source "https://nuget.pkg.github.com/SamSmithNZ-dotcom/index.json" --name "githubfeed" --username "samsmithnz@gmail.com" --password "${{ secrets.PackagesReadPAT_Token }}" --store-password-in-clear-text
         dotnet publish src/SamSmithNZ.FunctionalTests/SamSmithNZ.FunctionalTests.csproj --configuration Release --output ${{ github.workspace }}/FunctionalTests --runtime win-x64 --no-self-contained
     - name: 'Copy Selenium Files to artifacts folder'
-      run: Copy 'src/SamSmithNZ.FunctionalTests/bin/Release/net9.0/*chromedriver.exe*' '${{ github.workspace }}/FunctionalTests/SamSmithNZ.FunctionalTests'
+      run: Copy 'src/SamSmithNZ.FunctionalTests/bin/Release/net10.0/*chromedriver.exe*' '${{ github.workspace }}/FunctionalTests/SamSmithNZ.FunctionalTests'
     - name: Publish web Artifact
       uses: actions/upload-artifact@v4
       with:
@@ -137,7 +137,7 @@ jobs:
     - name: Install .NET SDK
       uses: actions/setup-dotnet@v4.3.1
       with:
-        dotnet-version: 9.0.x
+        dotnet-version: 10.0.x
     - name: Variable Substitution appsettings file for tests
       uses: microsoft/variable-substitution@v1
       with:
@@ -155,7 +155,7 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         path-to-lcov: src/SamSmithNZ.Tests/TestResults/coverage.info  
-    - uses: samsmithnz/DotNetTestResults@0.1.13 
+    - uses: samsmithnz/DotNetTestResults@0.2.0
       if: false
       with:
         fileName: ${{ github.workspace }}/TestOutput.xml
@@ -177,7 +177,7 @@ jobs:
     - name: Install .NET SDK
       uses: actions/setup-dotnet@v4.3.1
       with:
-        dotnet-version: 9.0.x
+        dotnet-version: 10.0.x
     - name: Cache SonarCloud packages
       uses: actions/cache@v4
       with:
@@ -321,7 +321,7 @@ jobs:
     - name: Install .NET SDK
       uses: actions/setup-dotnet@v4.3.1
       with:
-        dotnet-version: 9.0.x
+        dotnet-version: 10.0.x
     - name: Run functional smoke tests on website and web service
       run: |
         $vsTestConsoleExe = "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\Common7\\IDE\\Extensions\\TestPlatform\\vstest.console.exe"
@@ -349,11 +349,11 @@ jobs:
       with:
         creds: ${{ secrets.ORG_AZURE_SP }}
     - name: 'Swap Slots: web service'
-      uses: Azure/cli@v2.1.0
+      uses: Azure/cli@v2.2.0
       with:
         inlineScript: az webapp deployment slot swap --resource-group SamSmithNZ.com --name ssnz-prod-eu-service --slot staging --target-slot production
     - name: 'Swap Slots: web'
-      uses: Azure/cli@v2.1.0
+      uses: Azure/cli@v2.2.0
       with:
         inlineScript: az webapp deployment slot swap --resource-group SamSmithNZ.com --name ssnz-prod-eu-web --slot staging --target-slot production
                     
