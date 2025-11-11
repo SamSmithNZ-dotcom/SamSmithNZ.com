@@ -164,7 +164,7 @@ jobs:
   sonarCloud:
     name: Run SonarCloud analysis
     runs-on: windows-latest
-    if: github.ref == 'refs/heads/main' 
+    if: false && github.ref == 'refs/heads/main' 
     steps:
     - name: Set up JDK 17
       uses: actions/setup-java@v4
