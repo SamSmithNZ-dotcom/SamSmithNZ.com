@@ -19,7 +19,7 @@ jobs:
     name: Build web service
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Install .NET SDK
       uses: actions/setup-dotnet@v5.0.0
       with:
@@ -49,7 +49,7 @@ jobs:
       Version: ${{ steps.gitversion.outputs.MajorMinorPatch }}
       CommitsSinceVersionSource: ${{ steps.gitversion.outputs.CommitsSinceVersionSource }}  
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         fetch-depth: 0 #fetch-depth is needed for GitVersion   
     #Install and calculate the new version with GitVersion  
@@ -83,7 +83,7 @@ jobs:
     name: Build functional tests
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Install .NET SDK
       uses: actions/setup-dotnet@v5.0.0
       with:
@@ -105,7 +105,7 @@ jobs:
     name: Build database
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Download the build artifacts
       uses: actions/download-artifact@v4
     - name: Add msbuild to PATH
@@ -131,7 +131,7 @@ jobs:
     name: Run automated tests
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
     - name: Install .NET SDK
@@ -171,7 +171,7 @@ jobs:
       with:
         java-version: 17
         distribution: 'zulu' # Alternative distribution options are available.
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
     - name: Install .NET SDK
@@ -228,7 +228,7 @@ jobs:
     #- sonarCloud
     if: github.ref == 'refs/heads/main'
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Azure Login
       uses: azure/login@v2
       with:
@@ -282,7 +282,7 @@ jobs:
     #- sonarCloud
     if: github.ref == 'refs/heads/main'
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Download the build artifacts
       uses: actions/download-artifact@v4
     - name: Azure Login
@@ -312,7 +312,7 @@ jobs:
     - deploySQLDB
     if: github.ref == 'refs/heads/main'
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Download the build artifacts
       uses: actions/download-artifact@v4
       with:
@@ -343,7 +343,7 @@ jobs:
     needs:
     - runSmokeTests
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Azure Login
       uses: azure/login@v2
       with:
