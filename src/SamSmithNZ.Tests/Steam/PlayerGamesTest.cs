@@ -92,7 +92,7 @@ namespace SamSmithNZ.Tests.Steam
 
             //Assert
             Assert.IsTrue(results != null);
-            Assert.AreEqual(0, results.Count);
+            Assert.AreEqual(2, results.Count);
 
         }
         
