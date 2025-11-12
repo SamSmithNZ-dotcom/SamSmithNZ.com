@@ -36,7 +36,7 @@ jobs:
    #     dotnet build src/SamSmithNZ.FFLSetlistScraper.WinForms/SamSmithNZ.FFLSetlistScraper.WinForms.csproj --configuration Release --output ${{ github.workspace }} --runtime win-x64
     #Publish all artifacts
     - name: Publish webapi Artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: service
         path: ${{ github.workspace }}/service
@@ -73,7 +73,7 @@ jobs:
         dotnet nuget add source "https://nuget.pkg.github.com/SamSmithNZ-dotcom/index.json" --name "githubfeed" --username "samsmithnz@gmail.com" --password "${{ secrets.PackagesReadPAT_Token }}" --store-password-in-clear-text
         dotnet publish src/SamSmithNZ.Web/SamSmithNZ.Web.csproj --configuration ${{ env.dotNetConfiguration }} --output ${{ github.workspace }}/web -p:Version=${{ steps.gitversion.outputs.MajorMinorPatch }}
     - name: Publish web Artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: web
         path: ${{ github.workspace }}/web
@@ -95,7 +95,7 @@ jobs:
     - name: 'Copy Selenium Files to artifacts folder'
       run: Copy 'src/SamSmithNZ.FunctionalTests/bin/Release/net10.0/*chromedriver.exe*' '${{ github.workspace }}/FunctionalTests/SamSmithNZ.FunctionalTests'
     - name: Publish web Artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: functionalTests
         path: ${{ github.workspace }}/FunctionalTests
@@ -121,7 +121,7 @@ jobs:
     - name: check directory
       run: dir "${{ github.workspace }}/Database"
     - name: Publish database objects
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: database
         path: ${{ github.workspace }}/Database
