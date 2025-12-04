@@ -112,7 +112,6 @@ namespace SamSmithNZ.Tests.GuitarTab
             }
             item.AlbumName = albumName;
             item.ArtistName = artistName;
-            item.IsBassTab = item.IsBassTab;
             item.IsLeadArtist = item.IsLeadArtist;
             await controller.SaveAlbum(item);
 
