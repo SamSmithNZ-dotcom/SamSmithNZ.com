@@ -59,7 +59,7 @@ namespace SamSmithNZ.WorldCupGoals.WPF
             //We are adding a new goal to the game
             if (penaltyCode == 0)
             {
-
+                // No action required when adding a new shootout goal; form fields are already initialized above.
             }
             else //it's an existing goal, load and populate the form
             {
