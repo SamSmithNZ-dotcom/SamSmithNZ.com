@@ -54,11 +54,11 @@ jobs:
         fetch-depth: 0 #fetch-depth is needed for GitVersion   
     #Install and calculate the new version with GitVersion  
     - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v4.1.0
+      uses: gittools/actions/gitversion/setup@v4.2.0
       with:
         versionSpec: 6.x
     - name: Determine Version
-      uses: gittools/actions/gitversion/execute@v4.1.0
+      uses: gittools/actions/gitversion/execute@v4.2.0
       id: gitversion # step id used as reference for output values
     - name: Display GitVersion outputs
       run: |
@@ -155,7 +155,7 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         path-to-lcov: src/SamSmithNZ.Tests/TestResults/coverage.info  
-    - uses: samsmithnz/DotNetTestResults@0.2.0
+    - uses: samsmithnz/DotNetTestResults@0.2.1
       if: false
       with:
         fileName: ${{ github.workspace }}/TestOutput.xml
