@@ -26,7 +26,7 @@ BEGIN
 		CASE WHEN gs.played < 0 THEN 1 ELSE 0 END AS TeamWithdrew
 	FROM wc_group_stage gs
 	JOIN wc_team t ON gs.team_code = t.team_code
-	JOIN wc_tournament_team_entry e ON gs.tournament_code = e.tournament_code AND gs.team_code = e.team_code
+	LEFT JOIN wc_tournament_team_entry e ON gs.tournament_code = e.tournament_code AND gs.team_code = e.team_code
 	WHERE gs.tournament_code = @TournamentCode
 	AND gs.round_number = @RoundNumber
 	AND (gs.round_code = @RoundCode OR @RoundCode IS NULL)
@@ -60,4 +60,3 @@ BEGIN
 
 	ORDER BY group_ranking
 END
-
