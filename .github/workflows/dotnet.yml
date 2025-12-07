@@ -21,7 +21,7 @@ jobs:
     steps:
     - uses: actions/checkout@v5
     - name: Install .NET SDK
-      uses: actions/setup-dotnet@v5.0.0
+      uses: actions/setup-dotnet@v5.0.1
       with:
         dotnet-version: 10.0.x
     - name: Publish web projects
@@ -65,7 +65,7 @@ jobs:
         echo "Version: ${{ steps.gitversion.outputs.MajorMinorPatch }}"
         echo "CommitsSinceVersionSource: ${{ steps.gitversion.outputs.CommitsSinceVersionSource }}"
     - name: Install .NET SDK
-      uses: actions/setup-dotnet@v5.0.0
+      uses: actions/setup-dotnet@v5.0.1
       with:
         dotnet-version: 10.0.x
     - name: Publish web projects
@@ -85,7 +85,7 @@ jobs:
     steps:
     - uses: actions/checkout@v5
     - name: Install .NET SDK
-      uses: actions/setup-dotnet@v5.0.0
+      uses: actions/setup-dotnet@v5.0.1
       with:
         dotnet-version: 10.0.x
     - name: Publish functional tests project
@@ -135,7 +135,7 @@ jobs:
       with:
         fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
     - name: Install .NET SDK
-      uses: actions/setup-dotnet@v5.0.0
+      uses: actions/setup-dotnet@v5.0.1
       with:
         dotnet-version: 10.0.x
     - name: Variable Substitution appsettings file for tests
@@ -175,7 +175,7 @@ jobs:
       with:
         fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
     - name: Install .NET SDK
-      uses: actions/setup-dotnet@v5.0.0
+      uses: actions/setup-dotnet@v5.0.1
       with:
         dotnet-version: 10.0.x
     - name: Cache SonarCloud packages
@@ -319,7 +319,7 @@ jobs:
         name: functionalTests
         path: ${{ github.workspace }}
     - name: Install .NET SDK
-      uses: actions/setup-dotnet@v5.0.0
+      uses: actions/setup-dotnet@v5.0.1
       with:
         dotnet-version: 10.0.x
     - name: Run functional smoke tests on website and web service
