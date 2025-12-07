@@ -43,7 +43,7 @@ namespace SamSmithNZ.WorldCupGoals.WPF
                 cboTournament.DataContext = tournaments;
                 cboTournament.DisplayMemberPath = "TournamentName";
                 cboTournament.SelectedValuePath = "TournamentCode";
-                cboTournament.SelectedIndex = 1;
+                cboTournament.SelectedIndex = 0;
 
                 btnTournamentGames.IsEnabled = true;
                 //btnSetupTournamentGroups.IsEnabled = true;

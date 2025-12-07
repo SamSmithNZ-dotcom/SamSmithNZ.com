@@ -8,7 +8,7 @@ on:
   merge_group:
   workflow_dispatch:
 env:
-  dotNetVersion: net9.0
+  dotNetVersion: net10.0
   dotNetConfiguration: Release
   runtimeTarget: win-x64
 permissions:
@@ -21,9 +21,9 @@ jobs:
     steps:
     - uses: actions/checkout@v5
     - name: Install .NET SDK
-      uses: actions/setup-dotnet@v5.0.0
+      uses: actions/setup-dotnet@v5.0.1
       with:
-        dotnet-version: 9.0.x
+        dotnet-version: 10.0.x
     - name: Publish web projects
       run: |
         dotnet nuget add source "https://nuget.pkg.github.com/SamSmithNZ-dotcom/index.json" --name "githubfeed" --username "samsmithnz@gmail.com" --password "${{ secrets.PackagesReadPAT_Token }}" --store-password-in-clear-text
@@ -54,20 +54,20 @@ jobs:
         fetch-depth: 0 #fetch-depth is needed for GitVersion   
     #Install and calculate the new version with GitVersion  
     - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v4.1.0
+      uses: gittools/actions/gitversion/setup@v4.2.0
       with:
         versionSpec: 6.x
     - name: Determine Version
-      uses: gittools/actions/gitversion/execute@v4.1.0
+      uses: gittools/actions/gitversion/execute@v4.2.0
       id: gitversion # step id used as reference for output values
     - name: Display GitVersion outputs
       run: |
         echo "Version: ${{ steps.gitversion.outputs.MajorMinorPatch }}"
         echo "CommitsSinceVersionSource: ${{ steps.gitversion.outputs.CommitsSinceVersionSource }}"
     - name: Install .NET SDK
-      uses: actions/setup-dotnet@v5.0.0
+      uses: actions/setup-dotnet@v5.0.1
       with:
-        dotnet-version: 9.0.x
+        dotnet-version: 10.0.x
     - name: Publish web projects
       run: |
         dotnet nuget add source "https://nuget.pkg.github.com/SamSmithNZ-dotcom/index.json" --name "githubfeed" --username "samsmithnz@gmail.com" --password "${{ secrets.PackagesReadPAT_Token }}" --store-password-in-clear-text
@@ -85,15 +85,15 @@ jobs:
     steps:
     - uses: actions/checkout@v5
     - name: Install .NET SDK
-      uses: actions/setup-dotnet@v5.0.0
+      uses: actions/setup-dotnet@v5.0.1
       with:
-        dotnet-version: 9.0.x
+        dotnet-version: 10.0.x
     - name: Publish functional tests project
       run: |
         dotnet nuget add source "https://nuget.pkg.github.com/SamSmithNZ-dotcom/index.json" --name "githubfeed" --username "samsmithnz@gmail.com" --password "${{ secrets.PackagesReadPAT_Token }}" --store-password-in-clear-text
         dotnet publish src/SamSmithNZ.FunctionalTests/SamSmithNZ.FunctionalTests.csproj --configuration Release --output ${{ github.workspace }}/FunctionalTests --runtime win-x64 --no-self-contained
     - name: 'Copy Selenium Files to artifacts folder'
-      run: Copy 'src/SamSmithNZ.FunctionalTests/bin/Release/net9.0/*chromedriver.exe*' '${{ github.workspace }}/FunctionalTests/SamSmithNZ.FunctionalTests'
+      run: Copy 'src/SamSmithNZ.FunctionalTests/bin/Release/net10.0/*chromedriver.exe*' '${{ github.workspace }}/FunctionalTests/SamSmithNZ.FunctionalTests'
     - name: Publish web Artifact
       uses: actions/upload-artifact@v5
       with:
@@ -135,9 +135,9 @@ jobs:
       with:
         fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
     - name: Install .NET SDK
-      uses: actions/setup-dotnet@v5.0.0
+      uses: actions/setup-dotnet@v5.0.1
       with:
-        dotnet-version: 9.0.x
+        dotnet-version: 10.0.x
     - name: Variable Substitution appsettings file for tests
       uses: microsoft/variable-substitution@v1
       with:
@@ -155,7 +155,7 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         path-to-lcov: src/SamSmithNZ.Tests/TestResults/coverage.info  
-    - uses: samsmithnz/DotNetTestResults@0.2.0
+    - uses: samsmithnz/DotNetTestResults@0.2.1
       if: false
       with:
         fileName: ${{ github.workspace }}/TestOutput.xml
@@ -175,9 +175,9 @@ jobs:
       with:
         fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
     - name: Install .NET SDK
-      uses: actions/setup-dotnet@v5.0.0
+      uses: actions/setup-dotnet@v5.0.1
       with:
-        dotnet-version: 9.0.x
+        dotnet-version: 10.0.x
     - name: Cache SonarCloud packages
       uses: actions/cache@v4
       with:
@@ -319,9 +319,9 @@ jobs:
         name: functionalTests
         path: ${{ github.workspace }}
     - name: Install .NET SDK
-      uses: actions/setup-dotnet@v5.0.0
+      uses: actions/setup-dotnet@v5.0.1
       with:
-        dotnet-version: 9.0.x
+        dotnet-version: 10.0.x
     - name: Run functional smoke tests on website and web service
       run: |
         $vsTestConsoleExe = "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\Common7\\IDE\\Extensions\\TestPlatform\\vstest.console.exe"

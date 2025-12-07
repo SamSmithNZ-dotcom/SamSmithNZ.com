@@ -112,7 +112,6 @@ namespace SamSmithNZ.Tests.GuitarTab
             }
             item.AlbumName = albumName;
             item.ArtistName = artistName;
-            item.IsBassTab = item.IsBassTab;
             await controller.SaveAlbum(item);
 
             //reload
