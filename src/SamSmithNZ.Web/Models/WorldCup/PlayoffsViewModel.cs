@@ -1,5 +1,6 @@
 ﻿using SamSmithNZ.Service.Models.WorldCup;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SamSmithNZ.Web.Models.WorldCup
 {
@@ -42,6 +43,9 @@ namespace SamSmithNZ.Web.Models.WorldCup
                         firstRow3 = true;
                     }
                 }
+
+                // Determine if Round of 32 exists
+                Show32s = games.Any(g => g.RoundCode == "32");
 
                 //Calaculate what sections to show in the playoffs graph
                 Show16s = true;
@@ -90,6 +94,7 @@ namespace SamSmithNZ.Web.Models.WorldCup
             }
         }
 
+        public bool Show32s { get; set; }
         public bool Show16s { get; set; }
         public bool ShowQuarters { get; set; }
         public bool ShowSemis { get; set; }

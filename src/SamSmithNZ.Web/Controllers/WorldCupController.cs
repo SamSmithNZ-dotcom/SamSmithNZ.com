@@ -159,6 +159,28 @@ namespace SamSmithNZ.Web.Controllers
                 Games = games
             };
 
+            if (games.Count == 32)
+            {
+                // Redirect to another action (same controller)
+                return RedirectToAction("Playoffs32Teams", "WorldCup", new { tournamentCode = tournamentCode, roundNumber = roundNumber });
+            }
+            else
+            {
+                return View(playoffsViewModel);
+            }
+        }
+
+        public async Task<IActionResult> Playoffs32Teams(int tournamentCode, int roundNumber)
+        {
+            List<Playoff> playoffs = await _ServiceApiClient.GetPlayoffSetup(tournamentCode);
+            List<Game> games = await _ServiceApiClient.GetPlayoffGames(tournamentCode, roundNumber, true);
+
+            PlayoffsViewModel playoffsViewModel = new()
+            {
+                Playoffs = playoffs,
+                Games = games
+            };
+
             return View(playoffsViewModel);
         }
 
@@ -407,7 +429,7 @@ namespace SamSmithNZ.Web.Controllers
         {
             return RedirectToAction("About", "Home");
         }
-        
+
         public async Task<IActionResult> Insights()
         {
             List<GoalInsight> regularTimeGoalInsights = await _ServiceApiClient.GetGoalInsights(false);
