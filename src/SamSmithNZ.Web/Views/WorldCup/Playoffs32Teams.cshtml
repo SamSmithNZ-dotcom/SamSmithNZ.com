@@ -180,25 +180,25 @@
                 @if (Model.Show32s == true)
                 {
                     <td id="top32" class="tdAlignTop">
-                        @await Html.PartialAsync("~/Views/WorldCup/_Playoff32sPartial.cshtml", new PlayoffSectionViewModel(Model.Games, Model.Playoffs, new() { "32" }, showDebugElements))
+                        @await Html.PartialAsync("~/Views/WorldCup/_Playoff32sPartial.cshtml", new PlayoffSectionViewModel(Model.Games, Model.Playoffs, new() { "32" }, showDebugElements, Model.Show32s, Model.Show16s, Model.ShowQuarters, Model.ShowSemis, Model.ShowFinals, Model.Show3rdPlace))
                     </td>
                 }
                 @if (Model.Show16s == true)
                 {
                     <td id="top16" class="tdAlignTop">
-                        @await Html.PartialAsync("~/Views/WorldCup/_Playoff16sPartial.cshtml", new PlayoffSectionViewModel(Model.Games, Model.Playoffs, new() { "16" }, showDebugElements))
+                        @await Html.PartialAsync("~/Views/WorldCup/_Playoff16sPartial.cshtml", new PlayoffSectionViewModel(Model.Games, Model.Playoffs, new() { "16" }, showDebugElements, Model.Show32s, Model.Show16s, Model.ShowQuarters, Model.ShowSemis, Model.ShowFinals, Model.Show3rdPlace))
                     </td>
                 }
                 @if (Model.ShowQuarters == true)
                 {
                     <td id="qfs" class="tdAlignTop">
-                        @await Html.PartialAsync("~/Views/WorldCup/_PlayoffQFsPartial.cshtml", new PlayoffSectionViewModel(Model.Games, Model.Playoffs, new() { "QF" }, showDebugElements))
+                        @await Html.PartialAsync("~/Views/WorldCup/_PlayoffQFsPartial.cshtml", new PlayoffSectionViewModel(Model.Games, Model.Playoffs, new() { "QF" }, showDebugElements, Model.Show32s, Model.Show16s, Model.ShowQuarters, Model.ShowSemis, Model.ShowFinals, Model.Show3rdPlace))
                     </td>
                 }
                 @if (Model.ShowSemis == true)
                 {
                     <td id="sfs" class="tdAlignTop">
-                        @await Html.PartialAsync("~/Views/WorldCup/_PlayoffSFsPartial.cshtml", new PlayoffSectionViewModel(Model.Games, Model.Playoffs, new() { "SF" }, showDebugElements))
+                        @await Html.PartialAsync("~/Views/WorldCup/_PlayoffSFsPartial.cshtml", new PlayoffSectionViewModel(Model.Games, Model.Playoffs, new() { "SF" }, showDebugElements, Model.Show32s, Model.Show16s, Model.ShowQuarters, Model.ShowSemis, Model.ShowFinals, Model.Show3rdPlace))
                     </td>
                 }
                 @if (Model.ShowFinals == true || Model.Show3rdPlace == true)
@@ -213,7 +213,7 @@
                         rounds.Add("FF");
                     }
                     <td id="finals" class="tdAlignTop">
-                        @await Html.PartialAsync("~/Views/WorldCup/_PlayoffFinalsPartial.cshtml", new PlayoffSectionViewModel(Model.Games, Model.Playoffs, rounds, showDebugElements))
+                        @await Html.PartialAsync("~/Views/WorldCup/_PlayoffFinalsPartial.cshtml", new PlayoffSectionViewModel(Model.Games, Model.Playoffs, rounds, showDebugElements, Model.Show32s, Model.Show16s, Model.ShowQuarters, Model.ShowSemis, Model.ShowFinals, Model.Show3rdPlace))
                     </td>
                 }
             </tr>
