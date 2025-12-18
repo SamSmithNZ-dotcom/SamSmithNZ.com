@@ -37,6 +37,5 @@ namespace SamSmithNZ.Service.DataAccess.WorldCup
             await base.SaveItem("FB_SaveMigratePlayoffsGames", parameters);
             return true;
         }
-
     }
 }

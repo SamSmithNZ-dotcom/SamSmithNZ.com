@@ -419,7 +419,7 @@ namespace SamSmithNZ.Service.Models.WorldCup
         {
             get
             {
-                if (Math.Round(this.Team1ChanceToWin,0) == -1)
+                if (Team1NormalTimeScore == null || Math.Round(this.Team1ChanceToWin,0) == -1)
                 {
                     return true;
                 }
@@ -581,7 +581,7 @@ namespace SamSmithNZ.Service.Models.WorldCup
         {
             get
             {
-                if (Math.Round(this.Team2ChanceToWin,0) == -1)
+                if (Team2NormalTimeScore == null || Math.Round(this.Team2ChanceToWin,0) == -1)
                 {
                     return true;
                 }

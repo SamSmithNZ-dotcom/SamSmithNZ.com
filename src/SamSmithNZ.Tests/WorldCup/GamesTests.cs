@@ -506,7 +506,7 @@ namespace SamSmithNZ.Tests.WorldCup
             Assert.IsTrue(results != null);
             Assert.IsTrue(results.Count > 0);
             int totalGamesCheck = (gamesExpectedWon + gamesExpectedLoss + gamesUnexpectedWin + gamesUnexpectedLoss + gamesUnexpectedDraw + gamesUnknown);
-            Assert.IsTrue(totalGamesCheck == results.Count);
+            Assert.AreEqual(totalGamesCheck, results.Count);
             Assert.IsTrue(gamesUnexpectedDraw >= 3);
         }
 

@@ -4,6 +4,7 @@ using SamSmithNZ.Service.Models.WorldCup;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -93,9 +94,11 @@ namespace SamSmithNZ.WorldCupGoals.WPF
             {
                 GroupDataAccess da3 = new(_configuration);
                 await da3.SaveItemAsync(_tournamentCode, 1, _groupCode, (int)teamCode);
+
+
                 await LoadGrid();
             }
-        }
+        }     
 
         private async void btnRemoveTeam_Click(object sender, RoutedEventArgs e)
         {

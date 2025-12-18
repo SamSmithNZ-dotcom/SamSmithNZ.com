@@ -15,11 +15,11 @@ namespace SamSmithNZ.Service.DataAccess.WorldCup
             base.SetupConnectionString(configuration);
         }
 
-        public async Task<List<ThirdPlaceMatch>> GetList(int tournamentCode, int combinationCode)
+        public async Task<List<ThirdPlaceMatch>> GetList(int tournamentCode, string groupsInTop8)
         {
             DynamicParameters parameters = new();
-            parameters.Add("@TouramentCode", tournamentCode, DbType.Int32);
-            parameters.Add("@GroupsInTop8", combinationCode, DbType.String);
+            parameters.Add("@TournamentCode", tournamentCode, DbType.Int32);
+            parameters.Add("@GroupsInTop8", groupsInTop8, DbType.String);
 
             return await base.GetList("FB_GetTournamentThirdPlacedMatchups", parameters);
         }
