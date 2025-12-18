@@ -68,6 +68,8 @@
     <Folder Include="dbo\Stored Procedures\" />
     <Folder Include="Security\" />
     <Folder Include="dbo\Stored Procedures\Old" />
+    <Folder Include="dbo\Scripts" />
+    <Folder Include="Docs" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\webpages_UsersInRoles.sql" />
@@ -282,10 +284,18 @@
     <Build Include="dbo\Stored Procedures\FB_GetGameELORatings.sql" />
     <Build Include="dbo\Stored Procedures\FB_GetNextGame.sql" />
     <Build Include="dbo\Stored Procedures\FB_GetStatsBiggestUpset.sql" />
+    <None Include="dbo\Scripts\Populate_ThirdPlaceMatchups.sql" />
+    <None Include="dbo\Scripts\Populate_ThirdPlaceMatchups_Full.sql" />
+    <Build Include="dbo\Tables\wc_tournament_third_place_matchups.sql" />
+    <Build Include="dbo\Stored Procedures\FB_GetTournamentThirdPlacedMatchups.sql" />
+    <None Include="dbo\Scripts\MovingFromGroupToPlayoffs.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StaticCodeAnalysis.SuppressMessages.xml" />
-    <None Include="dbo\Stored Procedures\MovingFromGroupToPlayoffs.sql" />
+    <None Include="Docs\WC2026_3rdPlacePlayoffs.csv" />
+    <None Include="Docs\ThirdPlaceMatchups_README.md" />
+    <None Include="SQL71006_Error_Resolution.md" />
+    <None Include="Table_Removal_Analysis.md" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SamSmithNZ.Database.refactorlog" />
