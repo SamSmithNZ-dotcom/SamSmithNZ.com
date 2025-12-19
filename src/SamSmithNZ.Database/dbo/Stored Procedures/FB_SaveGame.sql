@@ -1,5 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[FB_SaveGame] 
 	@GameCode INT,
+	@Team1Code INT,
+	@Team2Code INT,
 	@Team1NormalTimeScore INT, 
 	@Team1ExtraTimeScore INT, 
 	@Team1PenaltiesScore INT,
@@ -15,7 +17,9 @@ BEGIN
 	SET NOCOUNT ON
 
 	UPDATE g
-	SET g.team_1_normal_time_score = @Team1NormalTimeScore,
+	SET g.team_1_code = @Team1Code,
+		g.team_2_code = @Team2Code,
+		g.team_1_normal_time_score = @Team1NormalTimeScore,
 		g.team_1_extra_time_score = @Team1ExtraTimeScore,
 		g.team_1_penalties_score = @Team1PenaltiesScore,
 		g.team_2_normal_time_score = @Team2NormalTimeScore,
