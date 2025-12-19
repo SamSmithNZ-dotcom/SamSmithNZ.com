@@ -95,7 +95,6 @@ namespace SamSmithNZ.WorldCupGoals.WPF
                 GroupDataAccess da3 = new(_configuration);
                 await da3.SaveItemAsync(_tournamentCode, 1, _groupCode, (int)teamCode);
 
-
                 await LoadGrid();
             }
         }     
