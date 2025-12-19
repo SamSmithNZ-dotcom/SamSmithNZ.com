@@ -5,10 +5,12 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Group = SamSmithNZ.Service.Models.WorldCup.Group;
 
 namespace SamSmithNZ.WorldCupGoals.WPF
 {
@@ -130,15 +132,15 @@ namespace SamSmithNZ.WorldCupGoals.WPF
                     //Save the game
                     await da.SaveItem(_game);
 
-                    if (_game.RoundNumber == 1)
-                    {
+                    //if (_game.RoundNumber == 1)
+                    //{
 
-                        //Now update the playoff games, if needed.
-                        //Pull from wc_group_stage_third_placed_teams
-                        //Use the match combinations in [FB_GetTournamentThirdPlacedMatchups]
-                        lblStatus.Content = "Updating playoff matchups...";
-                        await SetupPlayoffs(_game.TournamentCode);
-                    }
+                    //    //Now update the playoff games, if needed.
+                    //    //Pull from wc_group_stage_third_placed_teams
+                    //    //Use the match combinations in [FB_GetTournamentThirdPlacedMatchups]
+                    //    lblStatus.Content = "Updating playoff matchups...";
+                    //    await SetupPlayoffs(_game.TournamentCode);
+                    //}
 
                     lblStatus.Content = "Updating ELO ratings...";
                     EloRatingDataAccess daELO = new(_configuration);
@@ -218,18 +220,13 @@ namespace SamSmithNZ.WorldCupGoals.WPF
             // - wc_group_stage_third_placed_teams: The position of the 3rd placed teams from the groups.
             // - wc_tournament_third_place_matchups: has the 3rd place playoff info, what 8 teams who finished 3rd in groups go into which playoff game
 
-            // Based on these tables, we can determine which teams go into which playoff games.
-            // 1. using the wc_tournament_format_playoff_setup, find the relevant teams
-            // 2. teams in wc_group_stage that finished 1st and 2nd are the easiest
-            // 3. Teams in wc_group_stage_third_placed_teams are next, and need the wc_tournament_third_place_matchups data to get the right team for each game
-
             //Get all of the data we need
             GroupDataAccess da = new(_configuration);
             List<Group> groups = await da.GetList(tournamentCode, 1);
             List<Group> thirdPlacedTeams = await da.GetList(tournamentCode, 1, "3rd");
 
             PlayoffDataAccess da2 = new(_configuration);
-            List<Playoff> playoffSetups = await da2.GetList(tournamentCode);
+            List<Playoff> playoffs = await da2.GetList(tournamentCode);
 
             ThirdPlaceMatchDataAccess da3 = new(_configuration);
             StringBuilder groupsInTop8 = new();
@@ -249,8 +246,100 @@ namespace SamSmithNZ.WorldCupGoals.WPF
             }
             List<ThirdPlaceMatch> thirdPlacedMatches = await da3.GetList(tournamentCode, groupsInTop8.ToString());
 
+            GameDataAccess da4 = new(_configuration);
+            List<Game> playoffGames = await da4.GetListByPlayoff(tournamentCode, 2, false);
+
+            // Based on this data, we can determine which teams go into which playoff games.
+            // 1. using the playoffSetups, find the teams we need from each group, using the "groups" list to find teams that finished 1st and 2nd first
+            // 2. Teams in thirdPlacedMatches are next, to get the last 8 team for each playoffs
+            foreach (Playoff playoff in playoffs)
+            {
+                //Get the playoff game
+                Game playoffGame = GetPlayoffGame(playoffGames, playoff.GameNumber);
+
+                //Get the ancestors
+                string team1Prereq = playoff.Team1Prereq.Replace("Group ", "").Replace(" place finisher", "");
+                string[] team1Ancestor = team1Prereq.Split(' ');
+                string team2Prereq = playoff.Team2Prereq.Replace("Group ", "").Replace(" place finisher", "");
+                string[] team2Ancestor = team2Prereq.Split(' ');
+
+                //Find the team codes
+                int team1Code = 0;
+                if (team1Ancestor[1] == "3")
+                {
+                    team1Code = GetThirdPlacedTeamCode(team1Ancestor[1], team1Ancestor[0], thirdPlacedTeams, thirdPlacedMatches);
+                }
+                else
+                {
+                    team1Code = GetGroupTeamCode(team1Ancestor[1], team1Ancestor[0], groups);
+                }
+                int team2Code = 0;
+                if (team2Ancestor[1] == "3")
+                {
+                    team2Code = GetThirdPlacedTeamCode(team2Ancestor[1], team2Ancestor[0], thirdPlacedTeams, thirdPlacedMatches);
+                }
+                else
+                {
+                    team2Code = GetGroupTeamCode(team2Ancestor[1], team2Ancestor[0], groups);
+                }
+                bool updateGame = false;
+                if (team1Code > 0 && playoffGame.Team1Code != team1Code)
+                {
+                    playoffGame.Team1Code = team1Code;
+                    updateGame = true;
+                }
+                if (team2Code > 0 && playoffGame.Team2Code != team2Code)
+                {
+                    playoffGame.Team2Code = team2Code;
+                    updateGame = true;
+                }
+                //if (updateGame )
+                //{
+                //    //save the game
+                //    await da4.SaveItem(playoffGame);
+                //}
+
+            }
 
             return true;
+        }
+
+        private Game GetPlayoffGame(List<Game> playoffGames, int gameNumber)
+        {
+            foreach (Game game in playoffGames)
+            {
+                if (game.GameNumber == gameNumber)
+                {
+                    return game;
+                }
+            }
+            return null;
+        }
+
+        private int GetGroupTeamCode(string groupCode, string groupOrder, List<Group> groups)
+        {
+            int groupRanking = int.Parse(groupOrder);
+            foreach (Group group in groups)
+            {
+                if (group.RoundCode == groupCode && group.GroupRanking == groupRanking)
+                {
+                    return group.TeamCode;
+                }
+            }
+            return 0;
+        }
+
+        private int GetThirdPlacedTeamCode(string groupCode, string groupOrder, List<Group> groups, List<ThirdPlaceMatch> thirdPlacedMatches)
+        {
+            foreach (ThirdPlaceMatch thirdPlaceMatch in thirdPlacedMatches)
+            {
+                if (thirdPlaceMatch.WinnerMatchCode == groupOrder + groupCode)
+                {
+                    string thirdPlaceGroup = thirdPlaceMatch.ThirdPlaceGroup;
+                    return GetGroupTeamCode(thirdPlaceGroup, groupOrder, groups);
+                }
+            }
+            return 0;
         }
 
     }

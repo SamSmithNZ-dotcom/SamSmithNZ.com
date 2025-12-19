@@ -29,7 +29,7 @@ BEGIN
 	LEFT JOIN wc_tournament_team_entry e ON gs.tournament_code = e.tournament_code AND gs.team_code = e.team_code
 	WHERE gs.tournament_code = @TournamentCode
 	AND gs.round_number = @RoundNumber
-	AND ((gs.round_code = @RoundCode OR @RoundCode IS NULL) AND @RoundCode <> '3rd')
+	AND ((gs.round_code = @RoundCode AND @RoundCode <> '3rd') OR @RoundCode IS NULL)
 
 	UNION
 	SELECT t.team_name AS TeamName, 
@@ -60,3 +60,4 @@ BEGIN
 
 	ORDER BY group_ranking
 END
+GO
