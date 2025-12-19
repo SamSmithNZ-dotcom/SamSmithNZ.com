@@ -116,6 +116,8 @@ namespace SamSmithNZ.Service.DataAccess.WorldCup
         {
             DynamicParameters parameters = new();
             parameters.Add("@GameCode", game.GameCode, DbType.Int32);
+            parameters.Add("@Team1Code", game.Team1Code, DbType.Int32);
+            parameters.Add("@Team2Code", game.Team2Code, DbType.Int32);
             parameters.Add("@Team1NormalTimeScore", game.Team1NormalTimeScore, DbType.Int32);
             parameters.Add("@Team1ExtraTimeScore", game.Team1ExtraTimeScore, DbType.Int32);
             parameters.Add("@Team1PenaltiesScore", game.Team1PenaltiesScore, DbType.Int32);

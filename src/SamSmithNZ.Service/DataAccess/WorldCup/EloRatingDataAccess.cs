@@ -106,13 +106,13 @@ namespace SamSmithNZ.Service.DataAccess.WorldCup
             //3. Save the new ELO ratings to the database
             TournamentTeamDataAccess da3 = new(_configuration);
             TournamentTeam tournamentTeam1 = await da3.GetTournamentTeamAsync(tournamentCode, game.Team1Code);
-            if (tournamentTeam1.CurrentEloRating != (int)game.Team1PostGameEloRating)
+            if (tournamentTeam1 != null && tournamentTeam1.CurrentEloRating != (int)game.Team1PostGameEloRating)
             {
                 tournamentTeam1.CurrentEloRating = (int)game.Team1PostGameEloRating;
                 await da3.SaveELOItem(tournamentTeam1);
             }
             TournamentTeam tournamentTeam2 = await da3.GetTournamentTeamAsync(tournamentCode, game.Team2Code);
-            if (tournamentTeam2.CurrentEloRating != (int)game.Team2PostGameEloRating)
+            if (tournamentTeam2 != null && tournamentTeam2.CurrentEloRating != (int)game.Team2PostGameEloRating)
             {
                 tournamentTeam2.CurrentEloRating = (int)game.Team2PostGameEloRating;
                 await da3.SaveELOItem(tournamentTeam2);

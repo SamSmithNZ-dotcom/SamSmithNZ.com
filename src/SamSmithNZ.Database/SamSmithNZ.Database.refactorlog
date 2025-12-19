@@ -1,4 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
-
+  <Operation Name="Rename Refactor" Key="73277915-7d94-4824-b544-c947fa7dbdfa" ChangeDateTime="12/15/2025 02:05:23">
+    <Property Name="ElementName" Value="[dbo].[wc_tournament_third_place_combinations].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[wc_tournament_third_place_combinations]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="tournament_code" />
+  </Operation>
 </Operations>
