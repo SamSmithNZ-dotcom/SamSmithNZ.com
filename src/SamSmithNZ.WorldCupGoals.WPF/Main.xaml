@@ -14,7 +14,7 @@
                 <Button Content="3. Migrate players from Wikipedia" Height="25" HorizontalAlignment="Left" Margin="20,10,0,0" x:Name="btnMigratePlayers" VerticalAlignment="Top" Width="210" Click="MigratePlayers_Click" />
                 <Button Content="4. Migrate games from Wikipedia" Height="25" HorizontalAlignment="Left" Margin="20,10,0,0" x:Name="btnMigrateGames" VerticalAlignment="Top" Width="210" Click="MigrateGames_Click" />
                 <Button Content="5. Migrate Tournament playoffs" Height="25" HorizontalAlignment="Left" Margin="20,10,0,0" x:Name="btnMigrateTournamentPlayoffs" VerticalAlignment="Top" Width="210" Click="MigrateTournamentPlayoffs_Click" />
-                <Button Content="z. Reset Tournament" Height="25" HorizontalAlignment="Left" Margin="20,10,0,0" x:Name="btnResetTournament" Width="210" Click="ResetTournament_Click" />
+                <Button Content="z. DELETE Tournament" Height="25" HorizontalAlignment="Left" Margin="20,10,0,0" x:Name="btnResetTournament" Width="210" Click="ResetTournament_Click" />
             </StackPanel>
         </GroupBox>
     </Grid>
