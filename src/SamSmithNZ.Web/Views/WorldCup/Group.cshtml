@@ -167,7 +167,7 @@
                                                 <a href="/WorldCup/Team?TeamCode=@item.Team1Code">@item.Team1Name</a>
                                                 <img src="~/WorldCup/Teams/@item.Team1FlagName" Class="TeamImage" />
                                             </div>
-                                            @if (item.Team1NormalTimeScore == null)
+                                            @if (item.Team1NormalTimeScore == null && item.Team1ChanceToWin >= 0)
                                             {
                                                 @* <br />  we don't need this BR - even though the team 2 has it - it adds an EXTRA new line*@
                                                 <span style="font-size:12px;">@item.Team1ChanceToWin.ToString("0")% to win</span>
@@ -217,7 +217,7 @@
                                     {
                                         <div>
                                             <a href="/WorldCup/Matchup?Team1Code=@item.Team1Code&Team2Code=@item.Team2Code" style="white-space: nowrap;"><img src="~/WorldCup/office-glass-magnify.svg" style="width:12px;"> matchup</a>
-                                            @if (item.Team1NormalTimeScore == null && item.GameCanEndInADraw == true)
+                                            @if (item.GameCanEndInADraw && item.TeamChanceToDraw >= 0)
                                             {
                                                 <br />
                                                 <span style="font-size:12px;">@item.TeamChanceToDraw.ToString("0")% to draw</span>
@@ -233,7 +233,7 @@
                                                 <img src="~/WorldCup/Teams/@item.Team2FlagName" Class="TeamImage" />
                                                 <a href="/WorldCup/Team?TeamCode=@item.Team2Code">@item.Team2Name</a>
                                             </span>
-                                            @if (item.Team2NormalTimeScore == null)
+                                            @if (item.Team2NormalTimeScore == null && item.Team2ChanceToWin >= 0)
                                             {
                                                 <br />
                                                 <span style="font-size:12px;">@item.Team2ChanceToWin.ToString("0")% to win</span>

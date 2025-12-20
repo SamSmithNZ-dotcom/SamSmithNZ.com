@@ -30,7 +30,7 @@
         @* Game 0 *@
         <tr id="3" class="trHeight">
             <td colspan="2" class="PlayoffTimeLocation" id="tdCol_A3">
-                @if (showDebugElements == true)
+                @if (showDebugElements)
                 {
                     <span style="color: red; font-weight: bold;">Game @Model.Playoffs[0].GameNumber</span>
                 }
@@ -55,7 +55,7 @@
         @* Game 1 *@
         <tr id="9" class="trHeight">
             <td colspan="2" class="PlayoffTimeLocation" id="tdCol_A6">
-                @if (showDebugElements == true)
+                @if (showDebugElements)
                 {
                     <span style="color: red; font-weight: bold;">Game @Model.Playoffs[1].GameNumber</span>
                 }
@@ -78,7 +78,7 @@
         @* Game 2 *@
         <tr id="15" class="trHeight">
             <td colspan="2" class="PlayoffTimeLocation" id="tdCol_A9">
-                @if (showDebugElements == true)
+                @if (showDebugElements)
                 {
                     <span style="color: red; font-weight: bold;">Game @Model.Playoffs[2].GameNumber</span>
                 }
@@ -103,7 +103,7 @@
         @* Game 3 *@
         <tr id="21" class="trHeight">
             <td colspan="2" class="PlayoffTimeLocation" id="tdCol_A12">
-                @if (showDebugElements == true)
+                @if (showDebugElements)
                 {
                     <span style="color: red; font-weight: bold;">Game @Model.Playoffs[3].GameNumber</span>
                 }
@@ -126,7 +126,7 @@
         @* Game 4 *@
         <tr id="27" class="trHeight">
             <td colspan="2" class="PlayoffTimeLocation" id="tdCol_A15">
-                @if (showDebugElements == true)
+                @if (showDebugElements)
                 {
                     <span style="color: red; font-weight: bold;">Game @Model.Playoffs[4].GameNumber</span>
                 }
@@ -151,7 +151,7 @@
         @* Game 5 *@
         <tr id="33" class="trHeight">
             <td colspan="2" class="PlayoffTimeLocation" id="tdCol_A18">
-                @if (showDebugElements == true)
+                @if (showDebugElements)
                 {
                     <span style="color: red; font-weight: bold;">Game @Model.Playoffs[5].GameNumber</span>
                 }
@@ -174,7 +174,7 @@
         @* Game 6 *@
         <tr id="39" class="trHeight">
             <td colspan="2" class="PlayoffTimeLocation" id="tdCol_A21">
-                @if (showDebugElements == true)
+                @if (showDebugElements)
                 {
                     <span style="color: red; font-weight: bold;">Game @Model.Playoffs[6].GameNumber</span>
                 }
@@ -199,7 +199,7 @@
         @* Game 7 *@
         <tr id="45" class="trHeight">
             <td colspan="2" class="PlayoffTimeLocation" id="tdCol_A24">
-                @if (showDebugElements == true)
+                @if (showDebugElements)
                 {
                     <span style="color: red; font-weight: bold;">Game @Model.Playoffs[7].GameNumber</span>
                 }
@@ -222,7 +222,7 @@
         @* Game 8 *@
         <tr id="51" class="trHeight">
             <td colspan="2" class="PlayoffTimeLocation" id="tdCol_A27">
-                @if (showDebugElements == true)
+                @if (showDebugElements)
                 {
                     <span style="color: red; font-weight: bold;">Game @Model.Playoffs[8].GameNumber</span>
                 }
@@ -247,7 +247,7 @@
         @* Game 9 *@
         <tr id="57" class="trHeight">
             <td colspan="2" class="PlayoffTimeLocation" id="tdCol_A30">
-                @if (showDebugElements == true)
+                @if (showDebugElements)
                 {
                     <span style="color: red; font-weight: bold;">Game @Model.Playoffs[9].GameNumber</span>
                 }
@@ -270,7 +270,7 @@
         @* Game 10 *@
         <tr id="63" class="trHeight">
             <td colspan="2" class="PlayoffTimeLocation" id="tdCol_A33">
-                @if (showDebugElements == true)
+                @if (showDebugElements)
                 {
                     <span style="color: red; font-weight: bold;">Game @Model.Playoffs[10].GameNumber</span>
                 }
@@ -295,7 +295,7 @@
         @* Game 11 *@
         <tr id="69" class="trHeight">
             <td colspan="2" class="PlayoffTimeLocation" id="tdCol_A36">
-                @if (showDebugElements == true)
+                @if (showDebugElements)
                 {
                     <span style="color: red; font-weight: bold;">Game @Model.Playoffs[11].GameNumber</span>
                 }
@@ -318,7 +318,7 @@
         @* Game 12 *@
         <tr id="75" class="trHeight">
             <td colspan="2" class="PlayoffTimeLocation" id="tdCol_A39">
-                @if (showDebugElements == true)
+                @if (showDebugElements)
                 {
                     <span style="color: red; font-weight: bold;">Game @Model.Playoffs[12].GameNumber</span>
                 }
@@ -343,7 +343,7 @@
         @* Game 13 *@
         <tr id="81" class="trHeight">
             <td colspan="2" class="PlayoffTimeLocation" id="tdCol_A42">
-                @if (showDebugElements == true)
+                @if (showDebugElements)
                 {
                     <span style="color: red; font-weight: bold;">Game @Model.Playoffs[13].GameNumber</span>
                 }
@@ -366,7 +366,7 @@
         @* Game 14 *@
         <tr id="87" class="trHeight">
             <td colspan="2" class="PlayoffTimeLocation" id="tdCol_A45">
-                @if (showDebugElements == true)
+                @if (showDebugElements)
                 {
                     <span style="color: red; font-weight: bold;">Game @Model.Playoffs[14].GameNumber</span>
                 }
@@ -378,7 +378,7 @@
         <tr id="89" class="trHeight"></tr>
         <tr id="90" class="trHeight">
             @await Html.PartialAsync("~/Views/WorldCup/_PlayoffGamePartial.cshtml", new PlayoffGameViewModel(Model.Games, Model.Playoffs, Model.Playoffs[14].GameNumber, showDebugElements, false, "tdCol_A47", "tdCol_B31"))
-            <td rowspan="3" class="Border3 Col_C" id="tdCol_C17">
+            <td rowspan="6" class="Border3 Col_C" id="tdCol_C17">
                 &nbsp;
             </td>
         </tr>
@@ -391,12 +391,12 @@
         @* Game 15 *@
         <tr id="93" class="trHeight">
             <td colspan="2" class="PlayoffTimeLocation" id="tdCol_A48">
-                @if (showDebugElements == true)
+                @if (showDebugElements)
                 {
                     <span style="color: red; font-weight: bold;">Game @Model.Playoffs[15].GameNumber</span>
                 }
             </td>
-            <td class="BorderTop Col_C"></td>
+            <td rowspan="3" class="BorderTop Col_C"></td>
         </tr>
         <tr id="94" class="trHeight">
             @await Html.PartialAsync("~/Views/WorldCup/_PlayoffGamePartial.cshtml", new PlayoffGameViewModel(Model.Games, Model.Playoffs, Model.Playoffs[15].GameNumber, showDebugElements, true, "tdCol_A49", "tdCol_B32"))

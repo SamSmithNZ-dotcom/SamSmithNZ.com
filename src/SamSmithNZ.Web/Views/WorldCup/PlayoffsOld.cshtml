@@ -8,15 +8,15 @@
 }
 
 <div>
-    @if (showDebugElements == true)
+    @if (showDebugElements)
     {
-            <div>
-                show16s: @Model.Show16s<br />
-                showQuarters: @Model.ShowQuarters<br />
-                showSemis: @Model.ShowSemis<br />
-                show3rdPlace: @Model.Show3rdPlace<br />
-                showFinals: @Model.ShowFinals<br />
-            </div>
+        <div>
+            show16s: @Model.Show16s<br />
+            showQuarters: @Model.ShowQuarters<br />
+            showSemis: @Model.ShowSemis<br />
+            show3rdPlace: @Model.Show3rdPlace<br />
+            showFinals: @Model.ShowFinals<br />
+        </div>
     }
 
     <style type="text/css">
@@ -152,11 +152,11 @@
         }
 
         .Border5 {
-            border-top: darkgray 2px solid;            
+            border-top: darkgray 2px solid;
         }
 
         .Border6 {
-            border-right: darkgray 2px solid;            
+            border-right: darkgray 2px solid;
         }
     </style>
 
@@ -168,30 +168,30 @@
                 <td height="5" class="Col_A"></td>
                 @if (Model.Show16s == true)
                 {
-                        <td colspan="2" class="PlayoffHeader" id="tdCol_B1">
-                            Round of 16
-                        </td>
-                        <td colspan="2" class="Col_D" id="tdCol_D1"></td>
+                    <td colspan="2" class="PlayoffHeader" id="tdCol_B1">
+                        Round of 16
+                    </td>
+                    <td colspan="2" class="Col_D" id="tdCol_D1"></td>
                 }
                 @if (Model.ShowQuarters == true)
                 {
-                        <td colspan="2" class="PlayoffHeader" id="tdCol_F1">
-                            Quarter-finals
-                        </td>
-                        <td colspan="2" class="Col_H" id="tdCol_H1"></td>
+                    <td colspan="2" class="PlayoffHeader" id="tdCol_F1">
+                        Quarter-finals
+                    </td>
+                    <td colspan="2" class="Col_H" id="tdCol_H1"></td>
                 }
                 @if (Model.ShowSemis == true)
                 {
-                        <td colspan="2" class="PlayoffHeader" id="tdCol_J1">
-                            Semi-finals
-                        </td>
-                        <td colspan="2" class="Col_L" id="tdCol_L1"></td>
+                    <td colspan="2" class="PlayoffHeader" id="tdCol_J1">
+                        Semi-finals
+                    </td>
+                    <td colspan="2" class="Col_L" id="tdCol_L1"></td>
                 }
                 @if (Model.Show3rdPlace == true || Model.ShowFinals == true)
                 {
-                        <td colspan="2" class="PlayoffHeader" id="tdCol_N1">
-                            Final
-                        </td>
+                    <td colspan="2" class="PlayoffHeader" id="tdCol_N1">
+                        Final
+                    </td>
                 }
             </tr>
             <tr>
@@ -199,102 +199,102 @@
                 <!-- Top 16 -->
                 @if (Model.Show16s == true)
                 {
-                        <td width="175" class="Col_B" id="tdCol_B2">
-                            &nbsp;
-                        </td>
-                        <td width="50" class="Col_C" id="tdCol_C1">
-                            &nbsp;
-                        </td>
-                        <td width="15" class="Col_D" id="tdCol_D2">
-                            &nbsp;
-                        </td>
-                        <td width="20" class="Col_E" id="tdCol_E1">
-                            &nbsp;
-                        </td>
+                    <td width="175" class="Col_B" id="tdCol_B2">
+                        &nbsp;
+                    </td>
+                    <td width="50" class="Col_C" id="tdCol_C1">
+                        &nbsp;
+                    </td>
+                    <td width="15" class="Col_D" id="tdCol_D2">
+                        &nbsp;
+                    </td>
+                    <td width="20" class="Col_E" id="tdCol_E1">
+                        &nbsp;
+                    </td>
                 }
                 @if (Model.ShowQuarters == true)
                 {
-                        <!-- Quarters -->
-                        <td width="175" class="Col_F" id="tdCol_F2">
-                            &nbsp;
-                        </td>
-                        <td width="50" class="Col_G" id="tdCol_G1">
-                            &nbsp;
-                        </td>
-                        <td width="15" class="Col_H" id="tdCol_H2">
-                            &nbsp;
-                        </td>
-                        <td width="20" class="Col_I" id="tdCol_I1">
-                            &nbsp;
-                        </td>
+                    <!-- Quarters -->
+                    <td width="175" class="Col_F" id="tdCol_F2">
+                        &nbsp;
+                    </td>
+                    <td width="50" class="Col_G" id="tdCol_G1">
+                        &nbsp;
+                    </td>
+                    <td width="15" class="Col_H" id="tdCol_H2">
+                        &nbsp;
+                    </td>
+                    <td width="20" class="Col_I" id="tdCol_I1">
+                        &nbsp;
+                    </td>
                 }
                 <!-- Semis -->
                 @if (Model.ShowSemis == true)
                 {
-                        <td width="175" class="Col_J" id="tdCol_J2">
-                            &nbsp;
-                        </td>
-                        <td width="50" class="Col_K" id="tdCol_K1">
-                            &nbsp;
-                        </td>
-                        <td width="15" class="Col_L" id="tdCol_L2">
-                            &nbsp;
-                        </td>
-                        <td width="20" class="Col_M" id="tdCol_M1">
-                            &nbsp;
-                        </td>
+                    <td width="175" class="Col_J" id="tdCol_J2">
+                        &nbsp;
+                    </td>
+                    <td width="50" class="Col_K" id="tdCol_K1">
+                        &nbsp;
+                    </td>
+                    <td width="15" class="Col_L" id="tdCol_L2">
+                        &nbsp;
+                    </td>
+                    <td width="20" class="Col_M" id="tdCol_M1">
+                        &nbsp;
+                    </td>
                 }
                 <!-- Final -->
                 @if (Model.Show3rdPlace == true || Model.ShowFinals == true)
                 {
-                        <td width="175" class="Col_N" id="tdCol_N2">
-                            &nbsp;
-                        </td>
-                        <td width="50" class="Col_O" id="tdCol_O1">
-                            &nbsp;
-                        </td>
+                    <td width="175" class="Col_N" id="tdCol_N2">
+                        &nbsp;
+                    </td>
+                    <td width="50" class="Col_O" id="tdCol_O1">
+                        &nbsp;
+                    </td>
                 }
             </tr>
             <tr>
                 <td height="5" class="Col_A"></td>
                 @if (Model.Show16s == true)
                 {
-                        <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_B3">
-                        @if (showDebugElements == true)
+                    <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_B3">
+                        @if (showDebugElements)
                         {
-                                    <span style="color: red; font-weight: bold;">Game 49</span>
+                            <span style="color: red; font-weight: bold;">Game 49</span>
                         }
-                        </td>
-                        <td rowspan="4" class="Border1 Col_D" id="tdCol_D3">
-                            &nbsp;
-                        </td>
-                        <td rowspan="7" class="Border1 Col_E" id="tdCol_E2">
-                            &nbsp;
-                        </td>
+                    </td>
+                    <td rowspan="4" class="Border1 Col_D" id="tdCol_D3">
+                        &nbsp;
+                    </td>
+                    <td rowspan="7" class="Border1 Col_E" id="tdCol_E2">
+                        &nbsp;
+                    </td>
                 }
                 @if (Model.ShowQuarters == true)
                 {
-                        <td colspan="2" rowspan="3" class="Col_F" id="tdCol_F3"></td>
-                        <td rowspan="7" class="Border1 Col_H" id="tdCol_H3">
-                            &nbsp;
-                        </td>
-                        <td rowspan="13" class="Border1 Col_I" id="tdCol_I2">
-                            &nbsp;
-                        </td>
+                    <td colspan="2" rowspan="3" class="Col_F" id="tdCol_F3"></td>
+                    <td rowspan="7" class="Border1 Col_H" id="tdCol_H3">
+                        &nbsp;
+                    </td>
+                    <td rowspan="13" class="Border1 Col_I" id="tdCol_I2">
+                        &nbsp;
+                    </td>
                 }
                 @if (Model.ShowSemis == true)
                 {
-                        <td colspan="2" rowspan="9" class="Col_J" id="tdCol_J3"></td>
-                        <td rowspan="13" class="Border1 Col_L" id="tdCol_L3">
-                            &nbsp;
-                        </td>
-                        <td rowspan="25" class="Border1 Col_M" id="tdCol_M2">
-                            &nbsp;
-                        </td>
+                    <td colspan="2" rowspan="9" class="Col_J" id="tdCol_J3"></td>
+                    <td rowspan="13" class="Border1 Col_L" id="tdCol_L3">
+                        &nbsp;
+                    </td>
+                    <td rowspan="25" class="Border1 Col_M" id="tdCol_M2">
+                        &nbsp;
+                    </td>
                 }
                 @if (Model.Show3rdPlace == true || Model.ShowFinals == true)
                 {
-                        <td colspan="2" rowspan="21" class="Col_N" id="tdCol_N3"></td>
+                    <td colspan="2" rowspan="21" class="Col_N" id="tdCol_N3"></td>
                 }
             </tr>
             <tr>
@@ -311,12 +311,12 @@
                 <td height="5" class="Col_A"></td>
                 @if (Model.ShowQuarters == true)
                 {
-                        <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_F4">
-                        @if (showDebugElements == true)
+                    <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_F4">
+                        @if (showDebugElements)
                         {
-                                    <span style="color: red; font-weight: bold;">Game 57</span>
+                            <span style="color: red; font-weight: bold;">Game 57</span>
                         }
-                        </td>
+                    </td>
                 }
             </tr>
             <tr>
@@ -324,9 +324,9 @@
                 @if (Model.Show16s == true)
                 {
                     @await Html.PartialAsync("~/Views/WorldCup/_PlayoffGamePartial.cshtml", new PlayoffGameViewModel(Model.Games, Model.Playoffs, 49, showDebugElements, false, "tdCol_B5", "tdCol_C3"))
-                        <td rowspan="6" class="Border3 Col_D" id="tdCol_D4">
-                            &nbsp;
-                        </td>
+                    <td rowspan="6" class="Border3 Col_D" id="tdCol_D4">
+                        &nbsp;
+                    </td>
                 }
             </tr>
             <tr>
@@ -340,28 +340,28 @@
                 <td height="5" class="Col_A"></td>
                 @if (Model.Show16s == true)
                 {
-                        <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_B6">
-                        @if (showDebugElements == true)
+                    <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_B6">
+                        @if (showDebugElements)
                         {
-                                    <span style="color: red; font-weight: bold;">Game 50</span>
+                            <span style="color: red; font-weight: bold;">Game 50</span>
                         }
-                        </td>
+                    </td>
                 }
             </tr>
             <tr>
                 <td height="5" class="Col_A"></td>
                 @if (Model.Show16s == true)
                 {
-                        <td rowspan="12" class="Border2 Col_E" id="tdCol_E3">
-                            &nbsp;
-                        </td>
+                    <td rowspan="12" class="Border2 Col_E" id="tdCol_E3">
+                        &nbsp;
+                    </td>
                 }
                 @if (Model.ShowQuarters == true)
                 {
                     @await Html.PartialAsync("~/Views/WorldCup/_PlayoffGamePartial.cshtml", new PlayoffGameViewModel(Model.Games, Model.Playoffs, 57, showDebugElements, false, "tdCol_F6", "tdCol_G3"))
-                        <td rowspan="12" class="Border3 Col_D" id="tdCol_H4">
-                            &nbsp;
-                        </td>
+                    <td rowspan="12" class="Border3 Col_D" id="tdCol_H4">
+                        &nbsp;
+                    </td>
                 }
             </tr>
             <tr>
@@ -375,16 +375,16 @@
                 <td height="5" class="Col_A"></td>
                 @if (Model.ShowQuarters == true)
                 {
-                        <td colspan="2" rowspan="6" class="Col_F" id="tdCol_F7"></td>
+                    <td colspan="2" rowspan="6" class="Col_F" id="tdCol_F7"></td>
                 }
                 @if (Model.ShowSemis == true)
                 {
-                        <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_J4">
-                        @if (showDebugElements == true)
+                    <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_J4">
+                        @if (showDebugElements)
                         {
-                                    <span style="color: red; font-weight: bold;">Game 61</span>
+                            <span style="color: red; font-weight: bold;">Game 61</span>
                         }
-                        </td>
+                    </td>
                 }
             </tr>
             <tr>
@@ -392,9 +392,9 @@
                 @if (Model.Show16s == true)
                 {
                     @await Html.PartialAsync("~/Views/WorldCup/_PlayoffGamePartial.cshtml", new PlayoffGameViewModel(Model.Games, Model.Playoffs, 50, showDebugElements, false, "tdCol_B8", "tdCol_C5"))
-                        <td rowspan="6" class="Border2 Col_D" id="tdCol_D5">
-                            &nbsp;
-                        </td>
+                    <td rowspan="6" class="Border2 Col_D" id="tdCol_D5">
+                        &nbsp;
+                    </td>
                 }
             </tr>
             <tr>
@@ -408,28 +408,28 @@
                 <td height="5" class="Col_A"></td>
                 @if (Model.Show16s == true)
                 {
-                        <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_B9">
-                        @if (showDebugElements == true)
+                    <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_B9">
+                        @if (showDebugElements)
                         {
-                                    <span style="color: red; font-weight: bold;">Game 53</span>
+                            <span style="color: red; font-weight: bold;">Game 53</span>
                         }
-                        </td>
+                    </td>
                 }
             </tr>
             <tr>
                 <td height="5" class="Col_A"></td>
                 @if (Model.ShowQuarters == true)
                 {
-                        <td rowspan="24" class="Border2 Col_I" id="tdCol_I3">
-                            &nbsp;
-                        </td>
+                    <td rowspan="24" class="Border2 Col_I" id="tdCol_I3">
+                        &nbsp;
+                    </td>
                 }
                 @if (Model.ShowSemis == true)
                 {
                     @await Html.PartialAsync("~/Views/WorldCup/_PlayoffGamePartial.cshtml", new PlayoffGameViewModel(Model.Games, Model.Playoffs, 61, showDebugElements, false, "tdCol_J6", "tdCol_K3"))
-                        <td rowspan="24" class="Border3 Col_L" id="tdCol_L4">
-                            &nbsp;
-                        </td>
+                    <td rowspan="24" class="Border3 Col_L" id="tdCol_L4">
+                        &nbsp;
+                    </td>
                 }
             </tr>
             <tr>
@@ -443,16 +443,16 @@
                 <td height="5" class="Col_A"></td>
                 @if (Model.ShowQuarters == true)
                 {
-                        <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_F8">
-                        @if (showDebugElements == true)
+                    <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_F8">
+                        @if (showDebugElements)
                         {
-                                    <span style="color: red; font-weight: bold;">Game 58</span>
+                            <span style="color: red; font-weight: bold;">Game 58</span>
                         }
-                        </td>
+                    </td>
                 }
                 @if (Model.ShowSemis == true)
                 {
-                        <td colspan="2" rowspan="18" class="Col_J" id="tdCol_J7"></td>
+                    <td colspan="2" rowspan="18" class="Col_J" id="tdCol_J7"></td>
                 }
             </tr>
             <tr>
@@ -460,9 +460,9 @@
                 @if (Model.Show16s == true)
                 {
                     @await Html.PartialAsync("~/Views/WorldCup/_PlayoffGamePartial.cshtml", new PlayoffGameViewModel(Model.Games, Model.Playoffs, 53, showDebugElements, false, "tdCol_B11", "tdCol_C7"))
-                        <td rowspan="6" class="Border3 Col_D" id="tdCol_D6">
-                            &nbsp;
-                        </td>
+                    <td rowspan="6" class="Border3 Col_D" id="tdCol_D6">
+                        &nbsp;
+                    </td>
                 }
             </tr>
             <tr>
@@ -476,28 +476,28 @@
                 <td height="5" class="Col_A"></td>
                 @if (Model.Show16s == true)
                 {
-                        <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_B12">
-                        @if (showDebugElements == true)
+                    <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_B12">
+                        @if (showDebugElements)
                         {
-                                    <span style="color: red; font-weight: bold;">Game 54</span>
+                            <span style="color: red; font-weight: bold;">Game 54</span>
                         }
-                        </td>
+                    </td>
                 }
             </tr>
             <tr>
                 <td height="5" class="Col_A"></td>
                 @if (Model.Show16s == true)
                 {
-                        <td rowspan="12" class="Border2 Col_E" id="tdCol_E4">
-                            &nbsp;
-                        </td>
+                    <td rowspan="12" class="Border2 Col_E" id="tdCol_E4">
+                        &nbsp;
+                    </td>
                 }
                 @if (Model.ShowQuarters == true)
                 {
                     @await Html.PartialAsync("~/Views/WorldCup/_PlayoffGamePartial.cshtml", new PlayoffGameViewModel(Model.Games, Model.Playoffs, 58, showDebugElements, false, "tdCol_F10", "tdCol_G5"))
-                        <td rowspan="12" class="Border2 Col_H" id="tdCol_H5">
-                            &nbsp;
-                        </td>
+                    <td rowspan="12" class="Border2 Col_H" id="tdCol_H5">
+                        &nbsp;
+                    </td>
                 }
             </tr>
             <tr>
@@ -511,16 +511,16 @@
                 <td height="5" class="Col_A"></td>
                 @if (Model.ShowQuarters == true)
                 {
-                        <td colspan="2" rowspan="6" class="Col_F" id="tdCol_F11"></td>
+                    <td colspan="2" rowspan="6" class="Col_F" id="tdCol_F11"></td>
                 }
                 @if (Model.Show3rdPlace == true || Model.ShowFinals == true)
                 {
-                        <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_N4">
-                        @if (showDebugElements == true)
+                    <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_N4">
+                        @if (showDebugElements)
                         {
-                                    <span style="color: red; font-weight: bold;">Game 64</span>
+                            <span style="color: red; font-weight: bold;">Game 64</span>
                         }
-                        </td>
+                    </td>
                 }
             </tr>
             <tr>
@@ -528,9 +528,9 @@
                 @if (Model.Show16s == true)
                 {
                     @await Html.PartialAsync("~/Views/WorldCup/_PlayoffGamePartial.cshtml", new PlayoffGameViewModel(Model.Games, Model.Playoffs, 54, showDebugElements, false, "tdCol_B14", "tdCol_C9"))
-                        <td rowspan="6" class="Border2 Col_D" id="tdCol_D7">
-                            &nbsp;
-                        </td>
+                    <td rowspan="6" class="Border2 Col_D" id="tdCol_D7">
+                        &nbsp;
+                    </td>
                 }
             </tr>
             <tr>
@@ -542,21 +542,21 @@
                 <td height="5" class="Col_A"></td>
                 @if (Model.Show16s == true)
                 {
-                        <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_B15">
-                        @if (showDebugElements == true)
+                    <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_B15">
+                        @if (showDebugElements)
                         {
-                                    <span style="color: red; font-weight: bold;">Game 51</span>
+                            <span style="color: red; font-weight: bold;">Game 51</span>
                         }
-                        </td>
+                    </td>
                 }
             </tr>
             <tr>
                 <td height="5" class="Col_A"></td>
                 @if (Model.ShowSemis == true)
                 {
-                        <td rowspan="23" class="Border5 Col_M" id="tdCol_M3">
-                            &nbsp;
-                        </td>
+                    <td rowspan="23" class="Border5 Col_M" id="tdCol_M3">
+                        &nbsp;
+                    </td>
                 }
                 @await Html.PartialAsync("~/Views/WorldCup/_PlayoffGamePartial.cshtml", new PlayoffGameViewModel(Model.Games, Model.Playoffs, 64, showDebugElements, false, "tdCol_N6", "tdCol_O3"))
 
@@ -572,16 +572,16 @@
                 <td height="5" class="Col_A"></td>
                 @if (Model.ShowQuarters == true)
                 {
-                        <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_F12">
-                        @if (showDebugElements == true)
+                    <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_F12">
+                        @if (showDebugElements)
                         {
-                                    <span style="color: red; font-weight: bold;">Game 59</span>
+                            <span style="color: red; font-weight: bold;">Game 59</span>
                         }
-                        </td>
+                    </td>
                 }
                 @if (Model.Show3rdPlace == true || Model.ShowFinals == true)
                 {
-                        <td colspan="2" rowspan="10" class="Col_N" id="tdCol_N7"></td>
+                    <td colspan="2" rowspan="10" class="Col_N" id="tdCol_N7"></td>
                 }
             </tr>
             <tr>
@@ -589,9 +589,9 @@
                 @if (Model.Show16s == true)
                 {
                     @await Html.PartialAsync("~/Views/WorldCup/_PlayoffGamePartial.cshtml", new PlayoffGameViewModel(Model.Games, Model.Playoffs, 52, showDebugElements, false, "tdCol_B17", "tdCol_C11"))
-                        <td rowspan="6" class="Border3 Col_D" id="tdCol_D8">
-                            &nbsp;
-                        </td>
+                    <td rowspan="6" class="Border3 Col_D" id="tdCol_D8">
+                        &nbsp;
+                    </td>
                 }
             </tr>
             <tr>
@@ -605,28 +605,28 @@
                 <td height="5" class="Col_A"></td>
                 @if (Model.Show16s == true)
                 {
-                        <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_B18">
-                        @if (showDebugElements == true)
+                    <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_B18">
+                        @if (showDebugElements)
                         {
-                                    <span style="color: red; font-weight: bold;">Game 52</span>
+                            <span style="color: red; font-weight: bold;">Game 52</span>
                         }
-                        </td>
+                    </td>
                 }
             </tr>
             <tr>
                 <td height="5" class="Col_A"></td>
                 @if (Model.Show16s == true)
                 {
-                        <td rowspan="12" class="Border2 Col_E" id="tdCol_E5">
-                            &nbsp;
-                        </td>
+                    <td rowspan="12" class="Border2 Col_E" id="tdCol_E5">
+                        &nbsp;
+                    </td>
                 }
                 @if (Model.ShowQuarters == true)
                 {
                     @await Html.PartialAsync("~/Views/WorldCup/_PlayoffGamePartial.cshtml", new PlayoffGameViewModel(Model.Games, Model.Playoffs, 59, showDebugElements, false, "tdCol_F14", "tdCol_G7"))
-                        <td rowspan="12" class="Border3 Col_H" id="tdCol_H6">
-                            &nbsp;
-                        </td>
+                    <td rowspan="12" class="Border3 Col_H" id="tdCol_H6">
+                        &nbsp;
+                    </td>
                 }
             </tr>
             <tr>
@@ -640,16 +640,16 @@
                 <td height="5" class="Col_A"></td>
                 @if (Model.ShowQuarters == true)
                 {
-                        <td colspan="2" rowspan="6" class="Col_F" id="tdCol_F15"></td>
+                    <td colspan="2" rowspan="6" class="Col_F" id="tdCol_F15"></td>
                 }
                 @if (Model.ShowSemis == true)
                 {
-                        <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_J8">
-                        @if (showDebugElements == true)
+                    <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_J8">
+                        @if (showDebugElements)
                         {
-                                    <span style="color: red; font-weight: bold;">Game 62</span>
+                            <span style="color: red; font-weight: bold;">Game 62</span>
                         }
-                        </td>
+                    </td>
                 }
             </tr>
             <tr>
@@ -657,9 +657,9 @@
                 @if (Model.Show16s == true)
                 {
                     @await Html.PartialAsync("~/Views/WorldCup/_PlayoffGamePartial.cshtml", new PlayoffGameViewModel(Model.Games, Model.Playoffs, 51, showDebugElements, false, "tdCol_B20", "tdCol_C13"))
-                        <td rowspan="6" class="Border2 Col_D" id="tdCol_D9">
-                            &nbsp;
-                        </td>
+                    <td rowspan="6" class="Border2 Col_D" id="tdCol_D9">
+                        &nbsp;
+                    </td>
                 }
             </tr>
             <tr>
@@ -673,34 +673,34 @@
                 <td height="5" class="Col_A"></td>
                 @if (Model.Show16s == true)
                 {
-                        <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_B21">
-                        @if (showDebugElements == true)
+                    <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_B21">
+                        @if (showDebugElements)
                         {
-                                    <span style="color: red; font-weight: bold;">Game 55</span>
+                            <span style="color: red; font-weight: bold;">Game 55</span>
                         }
-                        </td>
+                    </td>
                 }
             </tr>
             <tr>
                 <td height="5" class="Col_A"></td>
                 @if (Model.ShowQuarters == true)
                 {
-                        <td rowspan="11" class="Border5 Col_I" id="tdCol_I4">
-                            &nbsp;
-                        </td>
+                    <td rowspan="11" class="Border5 Col_I" id="tdCol_I4">
+                        &nbsp;
+                    </td>
                 }
                 @if (Model.ShowSemis == true)
                 {
                     @await Html.PartialAsync("~/Views/WorldCup/_PlayoffGamePartial.cshtml", new PlayoffGameViewModel(Model.Games, Model.Playoffs, 62, showDebugElements, false, "tdCol_J10", "tdCol_K5"))
-                        <td rowspan="11" class="Border4 Col_L" id="tdCol_L5">
-                            &nbsp;
-                        </td>
+                    <td rowspan="11" class="Border4 Col_L" id="tdCol_L5">
+                        &nbsp;
+                    </td>
                 }
                 @if (Model.Show3rdPlace == true)
                 {
-                        <td colspan="2" rowspan="2" class="PlayoffHeader" id="tdCol_N8">
-                            Third place
-                        </td>
+                    <td colspan="2" rowspan="2" class="PlayoffHeader" id="tdCol_N8">
+                        Third place
+                    </td>
                 }
             </tr>
             <tr>
@@ -714,25 +714,25 @@
                 <td height="5" class="Col_A"></td>
                 @if (Model.ShowQuarters == true)
                 {
-                        <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_F16">
-                        @if (showDebugElements == true)
+                    <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_F16">
+                        @if (showDebugElements)
                         {
-                                    <span style="color: red; font-weight: bold;">Game 60</span>
+                            <span style="color: red; font-weight: bold;">Game 60</span>
                         }
-                        </td>
+                    </td>
                 }
                 @if (Model.ShowSemis == true)
                 {
-                        <td colspan="2" rowspan="9" class="Col_J" id="tdCol_J11"></td>
+                    <td colspan="2" rowspan="9" class="Col_J" id="tdCol_J11"></td>
                 }
                 @if (Model.Show3rdPlace == true)
                 {
-                        <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_N9">
-                        @if (showDebugElements == true)
+                    <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_N9">
+                        @if (showDebugElements)
                         {
-                                    <span style="color: red; font-weight: bold;">Game 63</span>
+                            <span style="color: red; font-weight: bold;">Game 63</span>
                         }
-                        </td>
+                    </td>
                 }
             </tr>
             <tr>
@@ -740,9 +740,9 @@
                 @if (Model.Show16s == true)
                 {
                     @await Html.PartialAsync("~/Views/WorldCup/_PlayoffGamePartial.cshtml", new PlayoffGameViewModel(Model.Games, Model.Playoffs, 55, showDebugElements, false, "tdCol_B23", "tdCol_C15"))
-                        <td rowspan="6" class="Border3 Col_D" id="tdCol_D10">
-                            &nbsp;
-                        </td>
+                    <td rowspan="6" class="Border3 Col_D" id="tdCol_D10">
+                        &nbsp;
+                    </td>
                 }
             </tr>
             <tr>
@@ -760,28 +760,28 @@
                 <td height="5" class="Col_A"></td>
                 @if (Model.Show16s == true)
                 {
-                        <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_B24">
-                        @if (showDebugElements == true)
+                    <td colspan="2" rowspan="2" class="PlayoffTimeLocation" id="tdCol_B24">
+                        @if (showDebugElements)
                         {
-                                    <span style="color: red; font-weight: bold;">Game 56</span>
+                            <span style="color: red; font-weight: bold;">Game 56</span>
                         }
-                        </td>
+                    </td>
                 }
             </tr>
             <tr>
                 <td height="5" class="Col_A"></td>
                 @if (Model.Show16s == true)
                 {
-                        <td rowspan="5" class="Border5 Col_E" id="tdCol_E6">
-                            &nbsp;
-                        </td>
+                    <td rowspan="5" class="Border5 Col_E" id="tdCol_E6">
+                        &nbsp;
+                    </td>
                 }
                 @if (Model.ShowQuarters == true)
                 {
                     @await Html.PartialAsync("~/Views/WorldCup/_PlayoffGamePartial.cshtml", new PlayoffGameViewModel(Model.Games, Model.Playoffs, 60, showDebugElements, false, "tdCol_F18", "tdCol_G9"))
-                        <td rowspan="5" class="Border5 Col_H" id="tdCol_H7">
-                            &nbsp;
-                        </td>
+                    <td rowspan="5" class="Border5 Col_H" id="tdCol_H7">
+                        &nbsp;
+                    </td>
                 }
                 @if (Model.Show3rdPlace == true)
                 {
@@ -799,11 +799,11 @@
                 <td height="5" class="Col_A"></td>
                 @if (Model.ShowQuarters == true)
                 {
-                        <td colspan="2" rowspan="3" class="Col_F" id="tdCol_F19"></td>
+                    <td colspan="2" rowspan="3" class="Col_F" id="tdCol_F19"></td>
                 }
                 @if (Model.Show3rdPlace == true || Model.ShowFinals == true)
                 {
-                        <td colspan="2" rowspan="3" class="Col_N" id="tdCol_N12"></td>
+                    <td colspan="2" rowspan="3" class="Col_N" id="tdCol_N12"></td>
                 }
             </tr>
             <tr>
@@ -811,9 +811,9 @@
                 @if (Model.Show16s == true)
                 {
                     @await Html.PartialAsync("~/Views/WorldCup/_PlayoffGamePartial.cshtml", new PlayoffGameViewModel(Model.Games, Model.Playoffs, 56, showDebugElements, false, "tdCol_B26", "tdCol_C17"))
-                        <td rowspan="2" class="Border5 Col_D" id="tdCol_D11">
-                            &nbsp;
-                        </td>
+                    <td rowspan="2" class="Border5 Col_D" id="tdCol_D11">
+                        &nbsp;
+                    </td>
                 }
             </tr>
             <tr>
@@ -846,41 +846,41 @@
                 </tr>
                 @foreach (Game item in Model.Games)
                 {
-                        <tr style="background-color: @Model.GetGameRowStyle(item.GameCode);">
-                            <td>
+                    <tr style="background-color: @Model.GetGameRowStyle(item.GameCode);">
+                        <td>
                             @if (item.RowType == 1)
                             {
-                                        <div>@item.GameNumber</div>
+                                <div>@item.GameNumber</div>
                             }
-                            </td>
-                            <td>
+                        </td>
+                        <td>
                             @if (item.RowType == 1)
                             {
-                                        <div>@item.GameTimeString()</div>
+                                <div>@item.GameTimeString()</div>
                             }
-                            </td>
-                            <td>
+                        </td>
+                        <td>
                             @if (item.RowType == 1)
                             {
-                                        <div>@item.RoundName</div>
+                                <div>@item.RoundName</div>
                             }
-                            </td>
-                            <td style="text-align: right;">
+                        </td>
+                        <td style="text-align: right;">
                             @if (item.RowType == 1 && item.Team1Code > 0)
                             {
                                 <div style="overflow: hidden; white-space: nowrap;">
-                                            <a href="/WorldCup/Team?TeamCode=@item.Team1Code">@item.Team1Name</a>
-                                            <img src="~/WorldCup/Teams/@item.Team1FlagName" Class="TeamImage" />
-                                        </div>
+                                    <a href="/WorldCup/Team?TeamCode=@item.Team1Code">@item.Team1Name</a>
+                                    <img src="~/WorldCup/Teams/@item.Team1FlagName" Class="TeamImage" />
+                                </div>
                             }
                             else if (item.RowType >= 2)
                             {
-                                        <div>
+                                <div>
                                     @if (item.RowType == 2 && item.Team1NormalTimeScore != null)
                                     {
-                                                    <div>
+                                        <div>
                                             @item.Team1Name
-                                                        <img src="~/WorldCup/Soccerball_svg.png" /> @item.Team1NormalTimeScore'
+                                            <img src="~/WorldCup/Soccerball_svg.png" /> @item.Team1NormalTimeScore'
                                             @if (item.Team1ExtraTimeScore > 0)
                                             {
                                                 <span>+@item.Team1ExtraTimeScore'</span>
@@ -893,11 +893,11 @@
                                             {
                                                 <span> (og)</span>
                                             }
-                                                    </div>
+                                        </div>
                                     }
                                     @if (item.RowType == 3 && item.Team1PenaltiesScore >= 0)
                                     {
-                                                    <div>
+                                        <div>
                                             @item.Team1Name @if (item.Team1PenaltiesScore == 1)
                                             {
                                                 <img src="~/WorldCup/Soccerball_svg.png" />
@@ -906,58 +906,58 @@
                                             {
                                                 <img src="~/WorldCup/Soccerball_Miss_svg.png" />
                                             }
-                                                    </div>
-                                    }
                                         </div>
+                                    }
+                                </div>
                             }
-                            </td>
-                            <td style="text-align: center;">
+                        </td>
+                        <td style="text-align: center;">
                             @if (item.Team1NormalTimeScore >= 0 && item.RowType == 1)
                             {
-                                        <div>
+                                <div>
                                     @if (item.Team1PenaltiesScore == null && item.Team1NormalTimeScore != null)
                                     {
-                                                    <span>
+                                        <span>
                                             @item.Team1ResultRegulationTimeScore - @item.Team2ResultRegulationTimeScore @item.Team1ResultInformation@item.Team2ResultInformation
-                                                    </span>
+                                        </span>
                                     }
                                     else if (item.Team1PenaltiesScore != null && item.Team1PenaltiesScore >= 0)
                                     {
-                                                    <div>
-                                                        <span>@item.Team1ResultRegulationTimeScore - @item.Team2ResultRegulationTimeScore (aet)</span>
-                                                        <br />
+                                        <div>
+                                            <span>@item.Team1ResultRegulationTimeScore - @item.Team2ResultRegulationTimeScore (aet)</span>
+                                            <br />
                                             @item.Team1PenaltiesScore - @item.Team2PenaltiesScore @item.Team1ResultInformation@item.Team2ResultInformation
-                                                    </div>
-                                    }
                                         </div>
+                                    }
+                                </div>
                             }
                             @if (item.Team1NormalTimeScore == null && item.RowType == 1 && item.Team1ChanceToWin >= 0 && item.Team2ChanceToWin > 0)
                             {
-                                        <div>
-                                                                     @item.Team1ChanceToWin.ToString("0")% to win
-                                        </div>
+                                <div>
+                                    @item.Team1ChanceToWin.ToString("0")% to win
+                                </div>
                             }
                             @if (item.RowType == 3 && item.ShowPenaltyShootOutLabel == true)
                             {
-                                        <div>
-                                            <u>Penalty Shootout</u>
-                                        </div>
+                                <div>
+                                    <u>Penalty Shootout</u>
+                                </div>
                             }
-                            </td>
-                            <td style="text-align: left;">
+                        </td>
+                        <td style="text-align: left;">
                             @if (item.RowType == 1 && item.Team2Code > 0)
                             {
                                 <div style="overflow: hidden; white-space: nowrap;">
-                                            <img src="~/WorldCup/Teams/@item.Team2FlagName" Class="TeamImage" />
-                                            <a href="/WorldCup/Team?TeamCode=@item.Team2Code">@item.Team2Name</a>
-                                        </div>
+                                    <img src="~/WorldCup/Teams/@item.Team2FlagName" Class="TeamImage" />
+                                    <a href="/WorldCup/Team?TeamCode=@item.Team2Code">@item.Team2Name</a>
+                                </div>
                             }
                             else if (item.RowType >= 2)
                             {
-                                        <div>
+                                <div>
                                     @if (item.RowType == 2 && item.Team2NormalTimeScore != null)
                                     {
-                                                    <div>
+                                        <div>
                                             @item.Team2Name <img src="~/WorldCup/Soccerball_svg.png" /> @item.Team2NormalTimeScore'
                                             @if (item.IsPenalty == true)
                                             {
@@ -967,11 +967,11 @@
                                             {
                                                 <span> (og)</span>
                                             }
-                                                    </div>
+                                        </div>
                                     }
                                     @if (item.RowType == 3 && item.Team2PenaltiesScore >= 0)
                                     {
-                                                    <div>
+                                        <div>
                                             @item.Team2Name @if (item.Team2PenaltiesScore == 1)
                                             {
                                                 <img src="~/WorldCup/Soccerball_svg.png" />
@@ -980,18 +980,18 @@
                                             {
                                                 <img src="~/WorldCup/Soccerball_Miss_svg.png" />
                                             }
-                                                    </div>
-                                    }
                                         </div>
+                                    }
+                                </div>
                             }
-                            </td>
-                            <td>
+                        </td>
+                        <td>
                             @if (item.RowType == 1)
                             {
-                                        <div>@item.Location</div>
+                                <div>@item.Location</div>
                             }
-                            </td>
-                        </tr>
+                        </td>
+                    </tr>
                 }
             </table>
         </div>

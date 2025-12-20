@@ -289,6 +289,7 @@
     <Build Include="dbo\Tables\wc_tournament_third_place_matchups.sql" />
     <Build Include="dbo\Stored Procedures\FB_GetTournamentThirdPlacedMatchups.sql" />
     <None Include="dbo\Scripts\MovingFromGroupToPlayoffs.sql" />
+    <Build Include="dbo\Stored Procedures\FB_ResetTournamentToStart.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StaticCodeAnalysis.SuppressMessages.xml" />

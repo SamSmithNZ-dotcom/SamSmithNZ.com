@@ -6,7 +6,7 @@
     @*<asp:CheckBox ID="chkShowGoals" runat="server" Text="Show Goal Details" AutoPostBack="true" />*@
     <table class="tableborders">
         <tr style="height: 30px;">
-            @if (Model.ShowDebugElements == true)
+            @if (Model.ShowDebugElements)
             {
                 <th class="headerborders" style="width: 75px;">Game #</th>
             }
@@ -35,7 +35,7 @@
         {
             GameResult result = GameViewModel.GetGameResult(item);
             <tr>
-                @if (Model.ShowDebugElements == true)
+                @if (Model.ShowDebugElements)
                 {
                     <td class="cellborders">@item.GameNumber</td>
                 }

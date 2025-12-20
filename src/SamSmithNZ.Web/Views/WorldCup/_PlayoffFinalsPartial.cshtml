@@ -18,7 +18,34 @@
             &nbsp;
         </td>
     </tr>
-    @if (Model.Playoffs.Count > 0)
+    @if (Model.Top32)
+    {
+        <tr id="2a" class="trHeight"></tr>
+        <tr id="2b" class="trHeight"></tr>
+        <tr id="2c" class="trHeight"></tr>
+        <tr id="2a" class="trHeight"></tr>
+        <tr id="2b" class="trHeight"></tr>
+        <tr id="2c" class="trHeight"></tr>
+        <tr id="2a" class="trHeight"></tr>
+        <tr id="2b" class="trHeight"></tr>
+        <tr id="2c" class="trHeight"></tr>
+        <tr id="2a" class="trHeight"></tr>
+        <tr id="2b" class="trHeight"></tr>
+        <tr id="2c" class="trHeight"></tr>
+        <tr id="2a" class="trHeight"></tr>
+        <tr id="2b" class="trHeight"></tr>
+        <tr id="2c" class="trHeight"></tr>
+        <tr id="2a" class="trHeight"></tr>
+        <tr id="2b" class="trHeight"></tr>
+        <tr id="2c" class="trHeight"></tr>
+        <tr id="2a" class="trHeight"></tr>
+        <tr id="2b" class="trHeight"></tr>
+        <tr id="2c" class="trHeight"></tr>
+        <tr id="2a" class="trHeight"></tr>
+        <tr id="2b" class="trHeight"></tr>
+        <tr id="2c" class="trHeight"></tr>
+    }
+    @if (Model.Finals)
     {
         <tr id="3" class="trHeight"></tr>
         <tr id="4" class="trHeight"></tr>
@@ -43,7 +70,7 @@
         <tr id="23" class="trHeight"></tr>
         <tr id="24" class="trHeight">
             <td colspan="2" class="PlayoffTimeLocation" id="tdCol_N4">
-                @if (showDebugElements == true)
+                @if (showDebugElements)
                 {
                     <span style="color: red; font-weight: bold;">Game @Model.Playoffs[0].GameNumber</span>
                 }
@@ -79,7 +106,7 @@
         <tr id="41" class="trHeight"></tr>
         <tr id="42" class="trHeight">
             <td colspan="2" class="PlayoffTimeLocation" id="tdCol_N9">
-                @if (showDebugElements == true)
+                @if (showDebugElements)
                 {
                     if (Model.Playoffs.Count > 1)
                     {

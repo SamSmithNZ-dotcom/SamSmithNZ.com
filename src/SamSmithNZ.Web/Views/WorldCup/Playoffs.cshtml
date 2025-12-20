@@ -8,7 +8,7 @@
 }
 
 <div>
-    @*    @if (showDebugElements == true)
+    @*    @if (showDebugElements)
     {
     <div>
     show16s: @Model.Show16s<br />
@@ -176,7 +176,7 @@
     <div id="divPlayoffTable2">
         <table border="0" cellpadding="0" cellspacing="0" class="PlayoffTable" style="border-collapse: separate;">
             <tr>
-                @*                @if (showDebugElements == true)
+                @*                @if (showDebugElements)
                 {
                 <td id="debugRows" class="tdAlignTop">
                 @await Html.PartialAsync("~/Views/WorldCup/_PlayoffDebugRowsPartial.cshtml", new PlayoffSectionViewModel(Model.Games, Model.Playoffs, new(){"16"}, showDebugElements))

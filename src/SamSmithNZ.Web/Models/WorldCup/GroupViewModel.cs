@@ -42,7 +42,7 @@ namespace SamSmithNZ.Web.Models.WorldCup
                         trStyle = "silver";
                         break;
                     case 3:
-                        trStyle = "#A67D3D";
+                        trStyle = "#A67D3D"; //Bronze
                         break;
                 }
             }
@@ -50,11 +50,11 @@ namespace SamSmithNZ.Web.Models.WorldCup
             {
                 if (hasQualifiedForNextRound == true)
                 {
-                    trStyle = "#CCFF99";
+                    trStyle = "#CCFF99"; // (light green) = Qualified/Advanced
                 }
                 else if (teamWithdrew == true)
                 {
-                    trStyle = "#ffcccc";
+                    trStyle = "#ffcccc"; // (light red/pink) for teams that withdrew - indicating a negative status
                 }
             }
             return trStyle;
@@ -65,7 +65,7 @@ namespace SamSmithNZ.Web.Models.WorldCup
             string trStyle = "white";
             if ((gameCode % 2) == 1)
             {
-                trStyle = "#f9f9f9";
+                trStyle = "#f9f9f9"; //very light gray
             }
             return trStyle;
         }
