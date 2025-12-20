@@ -378,7 +378,7 @@
         <tr id="89" class="trHeight"></tr>
         <tr id="90" class="trHeight">
             @await Html.PartialAsync("~/Views/WorldCup/_PlayoffGamePartial.cshtml", new PlayoffGameViewModel(Model.Games, Model.Playoffs, Model.Playoffs[14].GameNumber, showDebugElements, false, "tdCol_A47", "tdCol_B31"))
-            <td rowspan="3" class="Border3 Col_C" id="tdCol_C17">
+            <td rowspan="6" class="Border3 Col_C" id="tdCol_C17">
                 &nbsp;
             </td>
         </tr>
@@ -396,7 +396,7 @@
                     <span style="color: red; font-weight: bold;">Game @Model.Playoffs[15].GameNumber</span>
                 }
             </td>
-            <td class="BorderTop Col_C"></td>
+            <td rowspan="3" class="BorderTop Col_C"></td>
         </tr>
         <tr id="94" class="trHeight">
             @await Html.PartialAsync("~/Views/WorldCup/_PlayoffGamePartial.cshtml", new PlayoffGameViewModel(Model.Games, Model.Playoffs, Model.Playoffs[15].GameNumber, showDebugElements, true, "tdCol_A49", "tdCol_B32"))
