@@ -6,7 +6,7 @@ SELECT DISTINCT t.tournament_code,
 	CONVERT(decimal(6,2),CASE WHEN t.competition_code = 1 AND t.tournament_code <= 21 THEN 1 
 							  WHEN t.competition_code = 3 AND t.tournament_code <= 316 THEN 1
 							  WHEN t.competition_code = 1 AND t.tournament_code >= 22 THEN CONVERT(decimal(6,2),p.player_count) / CONVERT(decimal(6,2),((tf.total_number_of_teams * 26)-2)) -- 2 teams only had 25 players, not 26
-							  WHEN t.competition_code = 3 AND t.tournament_code = 317 THEN CONVERT(decimal(6,2),p.player_count) / CONVERT(decimal(6,2),(tf.total_number_of_teams * 26)-1) -- 1 team had only 25 players
+							  WHEN t.competition_code = 3 AND t.tournament_code = 317 THEN CONVERT(decimal(6,2),p.player_count) / CONVERT(decimal(6,2),((tf.total_number_of_teams * 26)-1)) -- 1 team had only 25 players
 							  ELSE p.player_count / tf.total_number_of_teams * 23 
 							  END) AS player_percent,
 	CASE WHEN tg.total_goals = 0 THEN 0 ELSE CONVERT(decimal(6,2),pg.player_goal_count) / CONVERT(decimal(6,2),tg.total_goals) END AS goals_percent,
