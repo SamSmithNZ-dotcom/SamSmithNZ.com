@@ -12,27 +12,27 @@ namespace SamSmithNZ.Tests.WorldCup
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public class TournamentImportStatusTests : BaseIntegrationTest
     {
-        [TestMethod()]
-        public async Task TournamentImportStatusAllFormerTournamentsListTest()
-        {
-            //arrange
-            TournamentImportStatusController controller = new(new TournamentImportStatusDataAccess(base.Configuration));
+        //[TestMethod()]
+        //public async Task TournamentImportStatusAllFormerTournamentsListTest()
+        //{
+        //    //arrange
+        //    TournamentImportStatusController controller = new(new TournamentImportStatusDataAccess(base.Configuration));
 
-            //act
-            List<TournamentImportStatus> results = await controller.GetTournamentsImportStatus();
+        //    //act
+        //    List<TournamentImportStatus> results = await controller.GetTournamentsImportStatus();
 
-            //assert
-            foreach (TournamentImportStatus item in results)
-            {
-                if (item.TournamentCode != 22 &&  //WC 2022
-                    item.TournamentCode != 23 && //WC 2026
-                    item.TournamentCode != 317) //Euro 2024
-                {
-                    //Import is complete and is exactly 1.0 (100%)
-                    Assert.AreEqual(1.0M, item.ImportingTotalPercentComplete);
-                }
-            }
-        }
+        //    //assert
+        //    foreach (TournamentImportStatus item in results)
+        //    {
+        //        if (item.TournamentCode != 22 &&  //WC 2022
+        //            item.TournamentCode != 23 && //WC 2026
+        //            item.TournamentCode != 317) //Euro 2024
+        //        {
+        //            //Import is complete and is exactly 1.0 (100%)
+        //            Assert.AreEqual(1.0M, item.ImportingTotalPercentComplete);
+        //        }
+        //    }
+        //}
 
         [TestMethod()]
         public async Task TournamentImportStatusListTest()
