@@ -217,7 +217,7 @@
                                     {
                                         <div>
                                             <a href="/WorldCup/Matchup?Team1Code=@item.Team1Code&Team2Code=@item.Team2Code" style="white-space: nowrap;"><img src="~/WorldCup/office-glass-magnify.svg" style="width:12px;"> matchup</a>
-                                            @if (item.Team1NormalTimeScore == null && item.GameCanEndInADraw == true && item.TeamChanceToDraw >= 0)
+                                            @if (item.GameCanEndInADraw && item.TeamChanceToDraw >= 0)
                                             {
                                                 <br />
                                                 <span style="font-size:12px;">@item.TeamChanceToDraw.ToString("0")% to draw</span>
