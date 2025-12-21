@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -29,20 +29,11 @@ namespace SamSmithNZ.Service.DataAccess.Base
             }
 
             IEnumerable<T> results;
-            SqlConnection connection = new(this.ConnectionString);
-            try
-            {
-                await connection.OpenAsync();
-                results = await connection.QueryAsync<T>(query, parameters, commandType: CommandType.StoredProcedure, commandTimeout: timeOut);
-            }
-            finally
-            {
-                if (connection != null && connection.State == ConnectionState.Open)
-                {
-                    await connection.CloseAsync();
-                }
-            }
-            return results.ToList<T>();
+            await using SqlConnection connection = new(this.ConnectionString);
+            await connection.OpenAsync();
+            results = await connection.QueryAsync<T>(query, parameters, commandType: CommandType.StoredProcedure, commandTimeout: timeOut);
+            // Connection automatically disposed
+            return results.ToList();
         }
 
         public async Task<T> GetItem(string query, DynamicParameters parameters = null)
