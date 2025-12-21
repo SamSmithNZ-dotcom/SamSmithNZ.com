@@ -1,3 +1,14 @@
+// AUTO-GENERATED FILE - FOR REFERENCE ONLY
+// This file was automatically decompiled from the original ARM template.
+// The production-ready modular Bicep files are:
+//   - main.bicep (orchestration)
+//   - modules/monitoring.bicep
+//   - modules/appServices.bicep
+//   - modules/keyVault.bicep
+//   - modules/storage.bicep
+// 
+// Use the modular files for deployments, not this auto-generated file.
+
 param sites_ssnz_prod_eu_web_name string = 'ssnz-prod-eu-web'
 param sites_ssnz_prod_eu_service_name string = 'ssnz-prod-eu-service'
 param sites_mandm_prod_eu_service_name string = 'mandm-prod-eu-service'

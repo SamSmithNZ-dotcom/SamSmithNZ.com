@@ -1,3 +1,10 @@
+// AUTO-GENERATED FILE - FOR REFERENCE ONLY
+// This file was automatically decompiled from the original ARM template.
+// The production-ready modular database file is:
+//   - modules/database.bicep
+// 
+// Use the modular file for deployments, not this auto-generated file.
+
 param servers_ssnzdbserver_name string = 'ssnzdbserver'
 
 resource servers_ssnzdbserver_name_resource 'Microsoft.Sql/servers@2021-02-01-preview' = {

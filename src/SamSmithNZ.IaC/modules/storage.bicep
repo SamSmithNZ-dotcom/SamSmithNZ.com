@@ -19,7 +19,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-04-01' = {
       ipRules: []
       defaultAction: 'Allow'
     }
-    supportsHttpsTrafficOnly: false
+    supportsHttpsTrafficOnly: true
     encryption: {
       services: {
         file: {

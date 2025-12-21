@@ -118,7 +118,7 @@ module appServices './modules/appServices.bicep' = {
   name: 'appservices-deployment'
   params: {
     appServicePlanName: 'ssnzwinserviceplan'
-    location: 'East US'
+    location: location
     webAppName: 'ssnz-prod-eu-web'
     serviceAppName: 'ssnz-prod-eu-service'
     mandmServiceAppName: 'mandm-prod-eu-service'
