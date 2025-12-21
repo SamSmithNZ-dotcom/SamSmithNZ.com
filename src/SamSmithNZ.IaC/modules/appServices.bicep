@@ -140,7 +140,7 @@ resource serviceApp 'Microsoft.Web/sites@2021-01-15' = {
     containerSize: 0
     dailyMemoryTimeQuota: 0
     keyVaultReferenceIdentity: 'SystemAssigned'
-    httpsOnly: false
+    httpsOnly: true
     redundancyMode: 'None'
     storageAccountRequired: false
   }
@@ -186,7 +186,7 @@ resource mandmServiceApp 'Microsoft.Web/sites@2021-01-15' = {
     containerSize: 0
     dailyMemoryTimeQuota: 0
     keyVaultReferenceIdentity: 'SystemAssigned'
-    httpsOnly: false
+    httpsOnly: true
     redundancyMode: 'None'
     storageAccountRequired: false
   }
@@ -259,8 +259,8 @@ resource webAppConfig 'Microsoft.Web/sites/config@2021-01-15' = {
     scmIpSecurityRestrictionsUseMain: false
     http20Enabled: false
     minTlsVersion: '1.2'
-    scmMinTlsVersion: '1.0'
-    ftpsState: 'AllAllowed'
+    scmMinTlsVersion: '1.2'
+    ftpsState: 'FtpsOnly'
     preWarmedInstanceCount: 0
     functionAppScaleLimit: 0
     functionsRuntimeScaleMonitoringEnabled: false
@@ -335,8 +335,8 @@ resource serviceAppConfig 'Microsoft.Web/sites/config@2021-01-15' = {
     scmIpSecurityRestrictionsUseMain: false
     http20Enabled: false
     minTlsVersion: '1.2'
-    scmMinTlsVersion: '1.0'
-    ftpsState: 'AllAllowed'
+    scmMinTlsVersion: '1.2'
+    ftpsState: 'FtpsOnly'
     preWarmedInstanceCount: 0
     functionAppScaleLimit: 0
     functionsRuntimeScaleMonitoringEnabled: false
@@ -411,8 +411,8 @@ resource mandmServiceAppConfig 'Microsoft.Web/sites/config@2021-01-15' = {
     scmIpSecurityRestrictionsUseMain: false
     http20Enabled: false
     minTlsVersion: '1.2'
-    scmMinTlsVersion: '1.0'
-    ftpsState: 'AllAllowed'
+    scmMinTlsVersion: '1.2'
+    ftpsState: 'FtpsOnly'
     preWarmedInstanceCount: 0
     functionAppScaleLimit: 0
     functionsRuntimeScaleMonitoringEnabled: false
