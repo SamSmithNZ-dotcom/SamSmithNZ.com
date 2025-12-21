@@ -5,7 +5,7 @@ param appInsightsName string = 'ssnzapplicationinsights'
 @description('Location for the Application Insights instance')
 param location string = 'eastus'
 
-resource appInsights 'microsoft.insights/components@2020-02-02' = {
+resource appInsights 'microsoft.insights/components@2020-02-02-preview' = {
   name: appInsightsName
   location: location
   kind: 'web'

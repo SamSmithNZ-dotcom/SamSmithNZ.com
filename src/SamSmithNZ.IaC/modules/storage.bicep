@@ -5,7 +5,7 @@ param storageAccountName string = 'ssnzdbserverlogstorage'
 @description('Location for the Storage Account')
 param location string = 'eastus'
 
-resource storageAccount 'Microsoft.Storage/storageAccounts@2021-04-01' = {
+resource storageAccount 'Microsoft.Storage/storageAccounts@2023-05-01' = {
   name: storageAccountName
   location: location
   sku: {
@@ -37,7 +37,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-04-01' = {
   }
 }
 
-resource blobService 'Microsoft.Storage/storageAccounts/blobServices@2021-04-01' = {
+resource blobService 'Microsoft.Storage/storageAccounts/blobServices@2023-05-01' = {
   parent: storageAccount
   name: 'default'
   properties: {
@@ -50,7 +50,7 @@ resource blobService 'Microsoft.Storage/storageAccounts/blobServices@2021-04-01'
   }
 }
 
-resource queueService 'Microsoft.Storage/storageAccounts/queueServices@2021-04-01' = {
+resource queueService 'Microsoft.Storage/storageAccounts/queueServices@2023-05-01' = {
   parent: storageAccount
   name: 'default'
   properties: {
@@ -60,7 +60,7 @@ resource queueService 'Microsoft.Storage/storageAccounts/queueServices@2021-04-0
   }
 }
 
-resource tableService 'Microsoft.Storage/storageAccounts/tableServices@2021-04-01' = {
+resource tableService 'Microsoft.Storage/storageAccounts/tableServices@2023-05-01' = {
   parent: storageAccount
   name: 'default'
   properties: {
@@ -70,7 +70,7 @@ resource tableService 'Microsoft.Storage/storageAccounts/tableServices@2021-04-0
   }
 }
 
-resource azureJobsHostOutputContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-04-01' = {
+resource azureJobsHostOutputContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-05-01' = {
   parent: blobService
   name: 'azure-jobs-host-output'
   properties: {
@@ -80,7 +80,7 @@ resource azureJobsHostOutputContainer 'Microsoft.Storage/storageAccounts/blobSer
   }
 }
 
-resource azureWebjobsHostsContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-04-01' = {
+resource azureWebjobsHostsContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-05-01' = {
   parent: blobService
   name: 'azure-webjobs-hosts'
   properties: {
@@ -90,7 +90,7 @@ resource azureWebjobsHostsContainer 'Microsoft.Storage/storageAccounts/blobServi
   }
 }
 
-resource letsencryptContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-04-01' = {
+resource letsencryptContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-05-01' = {
   parent: blobService
   name: 'letsencrypt'
   properties: {
@@ -100,7 +100,7 @@ resource letsencryptContainer 'Microsoft.Storage/storageAccounts/blobServices/co
   }
 }
 
-resource sqldbauditlogsContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-04-01' = {
+resource sqldbauditlogsContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-05-01' = {
   parent: blobService
   name: 'sqldbauditlogs'
   properties: {

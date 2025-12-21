@@ -11,7 +11,7 @@ param tenantId string
 @description('Access policies for the Key Vault')
 param accessPolicies array = []
 
-resource keyVault 'Microsoft.KeyVault/vaults@2021-04-01-preview' = {
+resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' = {
   name: keyVaultName
   location: location
   properties: {

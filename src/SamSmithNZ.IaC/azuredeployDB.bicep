@@ -7,7 +7,7 @@
 
 param servers_ssnzdbserver_name string = 'ssnzdbserver'
 
-resource servers_ssnzdbserver_name_resource 'Microsoft.Sql/servers@2021-02-01-preview' = {
+resource servers_ssnzdbserver_name_resource 'Microsoft.Sql/servers@2023-08-01-preview' = {
   name: servers_ssnzdbserver_name
   location: 'eastus'
   kind: 'v12.0'
@@ -19,7 +19,7 @@ resource servers_ssnzdbserver_name_resource 'Microsoft.Sql/servers@2021-02-01-pr
   }
 }
 
-resource servers_ssnzdbserver_name_SSNZDB 'Microsoft.Sql/servers/databases@2021-02-01-preview' = {
+resource servers_ssnzdbserver_name_SSNZDB 'Microsoft.Sql/servers/databases@2023-08-01-preview' = {
   parent: servers_ssnzdbserver_name_resource
   name: 'SSNZDB'
   location: 'eastus'
@@ -41,7 +41,7 @@ resource servers_ssnzdbserver_name_SSNZDB 'Microsoft.Sql/servers/databases@2021-
   }
 }
 
-resource servers_ssnzdbserver_name_150SouthPoint 'Microsoft.Sql/servers/firewallRules@2021-02-01-preview' = {
+resource servers_ssnzdbserver_name_150SouthPoint 'Microsoft.Sql/servers/firewallRules@2023-08-01-preview' = {
   parent: servers_ssnzdbserver_name_resource
   name: '150SouthPoint'
   properties: {
@@ -50,7 +50,7 @@ resource servers_ssnzdbserver_name_150SouthPoint 'Microsoft.Sql/servers/firewall
   }
 }
 
-resource servers_ssnzdbserver_name_58RedSpringRd 'Microsoft.Sql/servers/firewallRules@2021-02-01-preview' = {
+resource servers_ssnzdbserver_name_58RedSpringRd 'Microsoft.Sql/servers/firewallRules@2023-08-01-preview' = {
   parent: servers_ssnzdbserver_name_resource
   name: '58RedSpringRd'
   properties: {
@@ -59,7 +59,7 @@ resource servers_ssnzdbserver_name_58RedSpringRd 'Microsoft.Sql/servers/firewall
   }
 }
 
-resource servers_ssnzdbserver_name_AllowAllWindowsAzureIps 'Microsoft.Sql/servers/firewallRules@2021-02-01-preview' = {
+resource servers_ssnzdbserver_name_AllowAllWindowsAzureIps 'Microsoft.Sql/servers/firewallRules@2023-08-01-preview' = {
   parent: servers_ssnzdbserver_name_resource
   name: 'AllowAllWindowsAzureIps'
   properties: {
@@ -68,7 +68,7 @@ resource servers_ssnzdbserver_name_AllowAllWindowsAzureIps 'Microsoft.Sql/server
   }
 }
 
-resource servers_ssnzdbserver_name_ClientIPAddress_2018_10_31_16_29_9 'Microsoft.Sql/servers/firewallRules@2021-02-01-preview' = {
+resource servers_ssnzdbserver_name_ClientIPAddress_2018_10_31_16_29_9 'Microsoft.Sql/servers/firewallRules@2023-08-01-preview' = {
   parent: servers_ssnzdbserver_name_resource
   name: 'ClientIPAddress_2018-10-31_16-29-9'
   properties: {
@@ -77,7 +77,7 @@ resource servers_ssnzdbserver_name_ClientIPAddress_2018_10_31_16_29_9 'Microsoft
   }
 }
 
-resource servers_ssnzdbserver_name_ClientIPAddress_2018_11_13_12_14_35 'Microsoft.Sql/servers/firewallRules@2021-02-01-preview' = {
+resource servers_ssnzdbserver_name_ClientIPAddress_2018_11_13_12_14_35 'Microsoft.Sql/servers/firewallRules@2023-08-01-preview' = {
   parent: servers_ssnzdbserver_name_resource
   name: 'ClientIPAddress_2018-11-13_12:14:35'
   properties: {
@@ -86,7 +86,7 @@ resource servers_ssnzdbserver_name_ClientIPAddress_2018_11_13_12_14_35 'Microsof
   }
 }
 
-resource servers_ssnzdbserver_name_ClientIPAddress_2018_11_13_8_19_31 'Microsoft.Sql/servers/firewallRules@2021-02-01-preview' = {
+resource servers_ssnzdbserver_name_ClientIPAddress_2018_11_13_8_19_31 'Microsoft.Sql/servers/firewallRules@2023-08-01-preview' = {
   parent: servers_ssnzdbserver_name_resource
   name: 'ClientIPAddress_2018-11-13_8-19-31'
   properties: {
@@ -95,7 +95,7 @@ resource servers_ssnzdbserver_name_ClientIPAddress_2018_11_13_8_19_31 'Microsoft
   }
 }
 
-resource servers_ssnzdbserver_name_ClientIPAddress_2018_11_14_03_33_19 'Microsoft.Sql/servers/firewallRules@2021-02-01-preview' = {
+resource servers_ssnzdbserver_name_ClientIPAddress_2018_11_14_03_33_19 'Microsoft.Sql/servers/firewallRules@2023-08-01-preview' = {
   parent: servers_ssnzdbserver_name_resource
   name: 'ClientIPAddress_2018-11-14_03:33:19'
   properties: {
@@ -104,7 +104,7 @@ resource servers_ssnzdbserver_name_ClientIPAddress_2018_11_14_03_33_19 'Microsof
   }
 }
 
-resource servers_ssnzdbserver_name_ClientIPAddress_2018_11_21_01_38_44 'Microsoft.Sql/servers/firewallRules@2021-02-01-preview' = {
+resource servers_ssnzdbserver_name_ClientIPAddress_2018_11_21_01_38_44 'Microsoft.Sql/servers/firewallRules@2023-08-01-preview' = {
   parent: servers_ssnzdbserver_name_resource
   name: 'ClientIPAddress_2018-11-21_01:38:44'
   properties: {
@@ -113,7 +113,7 @@ resource servers_ssnzdbserver_name_ClientIPAddress_2018_11_21_01_38_44 'Microsof
   }
 }
 
-resource servers_ssnzdbserver_name_ClientIPAddress_2018_11_21_01_46_56 'Microsoft.Sql/servers/firewallRules@2021-02-01-preview' = {
+resource servers_ssnzdbserver_name_ClientIPAddress_2018_11_21_01_46_56 'Microsoft.Sql/servers/firewallRules@2023-08-01-preview' = {
   parent: servers_ssnzdbserver_name_resource
   name: 'ClientIPAddress_2018-11-21_01:46:56'
   properties: {
@@ -122,7 +122,7 @@ resource servers_ssnzdbserver_name_ClientIPAddress_2018_11_21_01_46_56 'Microsof
   }
 }
 
-resource servers_ssnzdbserver_name_ClientIPAddress_2018_11_24_03_51_11 'Microsoft.Sql/servers/firewallRules@2021-02-01-preview' = {
+resource servers_ssnzdbserver_name_ClientIPAddress_2018_11_24_03_51_11 'Microsoft.Sql/servers/firewallRules@2023-08-01-preview' = {
   parent: servers_ssnzdbserver_name_resource
   name: 'ClientIPAddress_2018-11-24_03:51:11'
   properties: {
@@ -131,7 +131,7 @@ resource servers_ssnzdbserver_name_ClientIPAddress_2018_11_24_03_51_11 'Microsof
   }
 }
 
-resource servers_ssnzdbserver_name_ClientIPAddress_2018_11_26_02_34_24 'Microsoft.Sql/servers/firewallRules@2021-02-01-preview' = {
+resource servers_ssnzdbserver_name_ClientIPAddress_2018_11_26_02_34_24 'Microsoft.Sql/servers/firewallRules@2023-08-01-preview' = {
   parent: servers_ssnzdbserver_name_resource
   name: 'ClientIPAddress_2018-11-26_02:34:24'
   properties: {
@@ -140,7 +140,7 @@ resource servers_ssnzdbserver_name_ClientIPAddress_2018_11_26_02_34_24 'Microsof
   }
 }
 
-resource servers_ssnzdbserver_name_ClientIPAddress_2018_12_31_8_57_39 'Microsoft.Sql/servers/firewallRules@2021-02-01-preview' = {
+resource servers_ssnzdbserver_name_ClientIPAddress_2018_12_31_8_57_39 'Microsoft.Sql/servers/firewallRules@2023-08-01-preview' = {
   parent: servers_ssnzdbserver_name_resource
   name: 'ClientIPAddress_2018-12-31_8-57-39'
   properties: {
@@ -149,7 +149,7 @@ resource servers_ssnzdbserver_name_ClientIPAddress_2018_12_31_8_57_39 'Microsoft
   }
 }
 
-resource servers_ssnzdbserver_name_ClientIPAddress_2020_10_22_20_46_9 'Microsoft.Sql/servers/firewallRules@2021-02-01-preview' = {
+resource servers_ssnzdbserver_name_ClientIPAddress_2020_10_22_20_46_9 'Microsoft.Sql/servers/firewallRules@2023-08-01-preview' = {
   parent: servers_ssnzdbserver_name_resource
   name: 'ClientIPAddress_2020-10-22_20-46-9'
   properties: {
@@ -158,7 +158,7 @@ resource servers_ssnzdbserver_name_ClientIPAddress_2020_10_22_20_46_9 'Microsoft
   }
 }
 
-resource servers_ssnzdbserver_name_ClientIPAddress_2020_10_23_8_29_11 'Microsoft.Sql/servers/firewallRules@2021-02-01-preview' = {
+resource servers_ssnzdbserver_name_ClientIPAddress_2020_10_23_8_29_11 'Microsoft.Sql/servers/firewallRules@2023-08-01-preview' = {
   parent: servers_ssnzdbserver_name_resource
   name: 'ClientIPAddress_2020-10-23_8-29-11'
   properties: {
@@ -167,7 +167,7 @@ resource servers_ssnzdbserver_name_ClientIPAddress_2020_10_23_8_29_11 'Microsoft
   }
 }
 
-resource servers_ssnzdbserver_name_ClientIPAddress_2020_11_25_12_57_53 'Microsoft.Sql/servers/firewallRules@2021-02-01-preview' = {
+resource servers_ssnzdbserver_name_ClientIPAddress_2020_11_25_12_57_53 'Microsoft.Sql/servers/firewallRules@2023-08-01-preview' = {
   parent: servers_ssnzdbserver_name_resource
   name: 'ClientIPAddress_2020-11-25_12-57-53'
   properties: {
@@ -176,7 +176,7 @@ resource servers_ssnzdbserver_name_ClientIPAddress_2020_11_25_12_57_53 'Microsof
   }
 }
 
-resource servers_ssnzdbserver_name_ClientIPAddress_2021_7_2_16_22_8 'Microsoft.Sql/servers/firewallRules@2021-02-01-preview' = {
+resource servers_ssnzdbserver_name_ClientIPAddress_2021_7_2_16_22_8 'Microsoft.Sql/servers/firewallRules@2023-08-01-preview' = {
   parent: servers_ssnzdbserver_name_resource
   name: 'ClientIPAddress_2021-7-2_16-22-8'
   properties: {
@@ -185,7 +185,7 @@ resource servers_ssnzdbserver_name_ClientIPAddress_2021_7_2_16_22_8 'Microsoft.S
   }
 }
 
-resource servers_ssnzdbserver_name_FullMoonCafe 'Microsoft.Sql/servers/firewallRules@2021-02-01-preview' = {
+resource servers_ssnzdbserver_name_FullMoonCafe 'Microsoft.Sql/servers/firewallRules@2023-08-01-preview' = {
   parent: servers_ssnzdbserver_name_resource
   name: 'FullMoonCafe'
   properties: {
@@ -194,7 +194,7 @@ resource servers_ssnzdbserver_name_FullMoonCafe 'Microsoft.Sql/servers/firewallR
   }
 }
 
-resource servers_ssnzdbserver_name_FullMoonCafe2 'Microsoft.Sql/servers/firewallRules@2021-02-01-preview' = {
+resource servers_ssnzdbserver_name_FullMoonCafe2 'Microsoft.Sql/servers/firewallRules@2023-08-01-preview' = {
   parent: servers_ssnzdbserver_name_resource
   name: 'FullMoonCafe2'
   properties: {
@@ -203,7 +203,7 @@ resource servers_ssnzdbserver_name_FullMoonCafe2 'Microsoft.Sql/servers/firewall
   }
 }
 
-resource servers_ssnzdbserver_name_MasterShin 'Microsoft.Sql/servers/firewallRules@2021-02-01-preview' = {
+resource servers_ssnzdbserver_name_MasterShin 'Microsoft.Sql/servers/firewallRules@2023-08-01-preview' = {
   parent: servers_ssnzdbserver_name_resource
   name: 'MasterShin'
   properties: {
