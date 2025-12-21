@@ -18,7 +18,7 @@ param databaseName string = 'SSNZDB'
 @description('Firewall rules for SQL Server')
 param firewallRules array = []
 
-resource sqlServer 'Microsoft.Sql/servers@2021-02-01-preview' = {
+resource sqlServer 'Microsoft.Sql/servers@2023-08-01-preview' = {
   name: sqlServerName
   location: location
   properties: {
@@ -30,7 +30,7 @@ resource sqlServer 'Microsoft.Sql/servers@2021-02-01-preview' = {
   }
 }
 
-resource sqlDatabase 'Microsoft.Sql/servers/databases@2021-02-01-preview' = {
+resource sqlDatabase 'Microsoft.Sql/servers/databases@2023-08-01-preview' = {
   parent: sqlServer
   name: databaseName
   location: location
@@ -52,7 +52,7 @@ resource sqlDatabase 'Microsoft.Sql/servers/databases@2021-02-01-preview' = {
 }
 
 // Create firewall rules dynamically
-resource firewallRule 'Microsoft.Sql/servers/firewallRules@2021-02-01-preview' = [for rule in firewallRules: {
+resource firewallRule 'Microsoft.Sql/servers/firewallRules@2023-08-01-preview' = [for rule in firewallRules: {
   parent: sqlServer
   name: rule.name
   properties: {
