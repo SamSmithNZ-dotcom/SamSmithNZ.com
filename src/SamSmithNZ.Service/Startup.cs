@@ -35,7 +35,10 @@ namespace SamSmithNZ.Service
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SamSmithNZ.Service", Version = "v1" });
             });
 
-            services.AddApplicationInsightsTelemetry(this.Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
+            services.AddApplicationInsightsTelemetry(options =>
+            {
+                options.ConnectionString = this.Configuration["APPINSIGHTS_CONNECTIONSTRING"];
+            });
 
             //Foo Fighters
             services.AddScoped<SamSmithNZ.Service.DataAccess.FooFighters.Interfaces.IAlbumDataAccess, SamSmithNZ.Service.DataAccess.FooFighters.AlbumDataAccess>();
