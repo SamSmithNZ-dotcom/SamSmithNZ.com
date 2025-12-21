@@ -1,0 +1,127 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.39.26.7824",
+      "templateHash": "7310853667212871563"
+    }
+  },
+  "parameters": {
+    "sqlServerName": {
+      "type": "string",
+      "defaultValue": "ssnzdbserver",
+      "metadata": {
+        "description": "Name of the SQL Server"
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "eastus",
+      "metadata": {
+        "description": "Location for the SQL Server"
+      }
+    },
+    "administratorLogin": {
+      "type": "string",
+      "defaultValue": "ssnzadmin",
+      "metadata": {
+        "description": "SQL Server administrator login"
+      }
+    },
+    "administratorLoginPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "SQL Server administrator password"
+      }
+    },
+    "databaseName": {
+      "type": "string",
+      "defaultValue": "SSNZDB",
+      "metadata": {
+        "description": "Name of the SQL Database"
+      }
+    },
+    "firewallRules": {
+      "type": "array",
+      "defaultValue": [],
+      "metadata": {
+        "description": "Firewall rules for SQL Server"
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Sql/servers",
+      "apiVersion": "2021-02-01-preview",
+      "name": "[parameters('sqlServerName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "administratorLogin": "[parameters('administratorLogin')]",
+        "administratorLoginPassword": "[parameters('administratorLoginPassword')]",
+        "version": "12.0",
+        "publicNetworkAccess": "Enabled",
+        "restrictOutboundNetworkAccess": "Disabled"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases",
+      "apiVersion": "2021-02-01-preview",
+      "name": "[format('{0}/{1}', parameters('sqlServerName'), parameters('databaseName'))]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "Basic",
+        "tier": "Basic",
+        "capacity": 5
+      },
+      "properties": {
+        "collation": "SQL_Latin1_General_CP1_CI_AS",
+        "maxSizeBytes": 2147483648,
+        "catalogCollation": "SQL_Latin1_General_CP1_CI_AS",
+        "zoneRedundant": false,
+        "readScale": "Disabled",
+        "requestedBackupStorageRedundancy": "Geo",
+        "maintenanceConfigurationId": "/subscriptions/65b8d298-e5bd-4735-912e-8b9c510c4e00/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_Default",
+        "isLedgerOn": false
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))]"
+      ]
+    },
+    {
+      "copy": {
+        "name": "firewallRule",
+        "count": "[length(parameters('firewallRules'))]"
+      },
+      "type": "Microsoft.Sql/servers/firewallRules",
+      "apiVersion": "2021-02-01-preview",
+      "name": "[format('{0}/{1}', parameters('sqlServerName'), parameters('firewallRules')[copyIndex()].name)]",
+      "properties": {
+        "startIpAddress": "[parameters('firewallRules')[copyIndex()].startIpAddress]",
+        "endIpAddress": "[parameters('firewallRules')[copyIndex()].endIpAddress]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))]"
+      ]
+    }
+  ],
+  "outputs": {
+    "sqlServerId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))]"
+    },
+    "sqlServerName": {
+      "type": "string",
+      "value": "[parameters('sqlServerName')]"
+    },
+    "sqlDatabaseId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Sql/servers/databases', parameters('sqlServerName'), parameters('databaseName'))]"
+    },
+    "sqlDatabaseName": {
+      "type": "string",
+      "value": "[parameters('databaseName')]"
+    }
+  }
+}
