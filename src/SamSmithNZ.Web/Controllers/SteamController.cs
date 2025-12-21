@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SamSmithNZ.Service.Models.Steam;
-using SamSmithNZ.Web.Models.Steam;
 using SamSmithNZ.Web.Services.Interfaces;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SamSmithNZ.Web.Controllers
@@ -15,51 +12,55 @@ namespace SamSmithNZ.Web.Controllers
 
         private readonly ISteamServiceApiClient _ServiceApiClient;
 
-        public SteamController(ISteamServiceApiClient serviceApiClient  )
+        public SteamController(ISteamServiceApiClient serviceApiClient)
         {
             _ServiceApiClient = serviceApiClient;
         }
 
         public async Task<IActionResult> Index(string steamID)
         {
-            
-            Player player = await _ServiceApiClient.GetPlayer(steamID);
-            List<Game> games = await _ServiceApiClient.GetPlayerGames(steamID);
 
-            return View(new IndexViewModel
-            {
-                SteamId = steamID,
-                Player = player,
-                Games = games
-            });
+            //Player player = await _ServiceApiClient.GetPlayer(steamID);
+            //List<Game> games = await _ServiceApiClient.GetPlayerGames(steamID);
+
+            //return View(new IndexViewModel
+            //{
+            //    SteamId = steamID,
+            //    Player = player,
+            //    Games = games
+            //});
+            return View();
         }
 
         public async Task<IActionResult> GameDetails(string steamID, string appID, bool showCompletedAchievements = false)
         {
-            
-            Player player = await _ServiceApiClient.GetPlayer(steamID);
-            GameDetail gameDetail = await _ServiceApiClient.GetGameDetail(steamID, appID);
 
-            return View(new GameDetailViewModel(gameDetail, showCompletedAchievements)
-            {
-                SteamId = steamID,
-                AppId = appID,
-                Player = player
-            });
+
+            return View("Index");
+
+            //Player player = await _ServiceApiClient.GetPlayer(steamID);
+            //GameDetail gameDetail = await _ServiceApiClient.GetGameDetail(steamID, appID);
+
+            //return View(new GameDetailViewModel(gameDetail, showCompletedAchievements)
+            //{
+            //    SteamId = steamID,
+            //    AppId = appID,
+            //    Player = player
+            //});
         }
 
-        [HttpGet]
-        [HttpPost]
-        public IActionResult GameDetailsPost(string steamID, string appID, bool showCompletedAchievements = false)
-        {
-            return RedirectToAction("GameDetails",
-                new
-                {
-                    steamID = steamID,
-                    appID = appID,
-                    showCompletedAchievements = showCompletedAchievements
-                });
-        }
+        //[HttpGet]
+        //[HttpPost]
+        //public IActionResult GameDetailsPost(string steamID, string appID, bool showCompletedAchievements = false)
+        //{
+        //    return RedirectToAction("GameDetails",
+        //        new
+        //        {
+        //            steamID = steamID,
+        //            appID = appID,
+        //            showCompletedAchievements = showCompletedAchievements
+        //        });
+        //}
 
         public IActionResult SteamIsDown()
         {

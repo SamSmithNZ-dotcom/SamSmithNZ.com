@@ -27,18 +27,18 @@
                 <p>I've been collecting guitar tab for my favorite bands since 1997. I've then edited, standardized and ranked the quality as I learned to play them. <a href="@Url.Action("Index", "GuitarTab")">View Guitar Tab &raquo;</a></p>
             </div>
             <div class="col-lg-4 col-md-4 col-xs-12 desc" style="padding-top:20px;">
-                <h3><b>Steam Analytics</b></h3>
-                <a class="b-link-fade b-animate-go" href="@Url.Action("Index", "Steam", new { steamID = "76561197971691578" })">
-                    <img src="~/Images/NewHomePage/steam.jpg" alt="" style="width: 100%; height: 200px">
-                </a>
-                <p>Tapping into my Steam Account via the <a href="https://steamcommunity.com/dev" target="_blank">Steam Web API</a>. I'm trying to develop better insights and interesting views of achievements. <a href="@Url.Action("Index", "Steam", new { steamID = "76561197971691578" })">View Steam Analytics &raquo;</a></p>
-            </div>
-            <div class="col-lg-4 col-md-4 col-xs-12 desc" style="padding-top:20px;">
                 <h3><b>World Cup Analysis</b></h3>
                 <a class="b-link-fade b-animate-go" href="@Url.Action("Index", "WorldCup")">
                     <img src="~/Images/NewHomePage/soccer.jpg" alt="" style="width: 100%; height: 200px">
                 </a>
                 <p>A collection of statistics from all World Cups... <a href="@Url.Action("Index", "WorldCup")">View World Cup Analysis &raquo;</a></p>
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-12 desc" style="padding-top:20px;">
+                <h3><b>M&M's Counter</b></h3>
+                <a class="b-link-fade b-animate-go" href="@Url.Action("Index", "MandMCounter")">
+                    <img width="350" height="200" src="~/Images/NewHomePage/mandms.jpeg" alt="">
+                </a>
+                <p>A few years ago in an office competition, I poorly guessed the number of M&M's in a jar. This project uses math to try to work around this. Also supports Skittles and Peanut M&M's <a href="@Url.Action("Index", "MandMCounter")">View M&M Counter &raquo;</a></p>
             </div>
         </div>
 
@@ -58,17 +58,6 @@
                 <p>I've been saving my iTunes library files for analysis since 2006. This project is a result of this work. <a href="@Url.Action("Index", "iTunes")">View iTunes Listening Analysis &raquo;</a></p>
             </div>
             <div class="col-lg-4 col-md-4 col-xs-12 desc" style="padding-top:20px;">
-                <h3><b>M&M's Counter</b></h3>
-                <a class="b-link-fade b-animate-go" href="@Url.Action("Index", "MandMCounter")">
-                    <img width="350" height="200" src="~/Images/NewHomePage/mandms.jpeg" alt="">
-                </a>
-                <p>A few years ago in an office competition, I poorly guessed the number of M&M's in a jar. This project uses math to try to work around this. Also supports Skittles and Peanut M&M's <a href="@Url.Action("Index", "MandMCounter")">View M&M Counter &raquo;</a></p>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-xs-12 desc" style="padding-top:20px;">
                 <h3><b>Game Development</b></h3>
                 <a class="b-link-fade b-animate-go" href="@Url.Action("Index", "GameDev")">
                     <img src="~/Images/NewHomePage/unity.png" alt="" style="width: 100%; height: 200px">
@@ -76,6 +65,17 @@
                 <p>This details past attempts to create my own turn based strategy game with Unity3D... <a href="@Url.Action("Index", "GameDev")">View Game Development &raquo;</a></p>
             </div>
         </div>
+
+
+@*         <div class="row">
+            <div class="col-lg-4 col-md-4 col-xs-12 desc" style="padding-top:20px;">
+                <h3><b>Steam Analytics</b></h3>
+                <a class="b-link-fade b-animate-go" href="@Url.Action("Index", "Steam", new { steamID = "76561197971691578" })">
+                    <img src="~/Images/NewHomePage/steam.jpg" alt="" style="width: 100%; height: 200px">
+                </a>
+                <p>Tapping into my Steam Account via the <a href="https://steamcommunity.com/dev" target="_blank">Steam Web API</a>. I'm trying to develop better insights and interesting views of achievements. <a href="@Url.Action("Index", "Steam", new { steamID = "76561197971691578" })">View Steam Analytics &raquo;</a></p>
+            </div>
+        </div> *@
 
     </div>
 

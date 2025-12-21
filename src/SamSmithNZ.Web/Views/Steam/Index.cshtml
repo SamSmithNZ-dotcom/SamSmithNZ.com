@@ -6,7 +6,9 @@
     Layout = "~/Views/Shared/_LayoutSteam.cshtml";
 }
 
-<h2 class="sectionTitle"><b>@Model.Player.PlayerName's Games</b></h2>
+<h2>This page has been deprecated</h2>
+
+@* <h2 class="sectionTitle"><b>@Model.Player.PlayerName's Games</b></h2>
 @if (@Model.Player.IsPublic == false)
 {
     <span>This profile is private</span>
@@ -50,17 +52,8 @@
             @if (Model.Games.Count > 3)
             {
                 <td rowspan="@Model.Games.Count" style="vertical-align:top;">
-                    @*<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                        <!-- SteamIndexSkyscraper -->
-                        <ins class="adsbygoogle"
-                             style="display:inline-block;width:300px;height:600px"
-                             data-ad-client="ca-pub-2315986579277492"
-                             data-ad-slot="8303043164"></ins>
-                        <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>*@
                 </td>
             }
         </tr>
     </table>
-}
+} *@
