@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31423.177
+# Visual Studio Version 18
+VisualStudioVersion = 18.3.11312.210 d18.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SamSmithNZ.Web", "SamSmithNZ.Web\SamSmithNZ.Web.csproj", "{D532011B-E666-4378-BE7C-4C5ED95536C3}"
 EndProject
@@ -36,6 +36,15 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamSmithNZ.LegoDataMigration.Console", "SamSmithNZ.LegoDataMigration.Console\SamSmithNZ.LegoDataMigration.Console.csproj", "{6278FFEF-AB13-46DA-A224-1C148BB98BDA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamSmithNZ.LegoProcessing.Function", "SamSmithNZ.LegoProcessing.Function\SamSmithNZ.LegoProcessing.Function.csproj", "{07DDDE8A-82BB-45EE-A14A-168482940953}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bicep", "Bicep", "{88B44193-A1CE-4ABA-BCB9-511AA2AD556D}"
+	ProjectSection(SolutionItems) = preProject
+		SamSmithNZ.IaC\modules\appServices.bicep = SamSmithNZ.IaC\modules\appServices.bicep
+		SamSmithNZ.IaC\modules\database.bicep = SamSmithNZ.IaC\modules\database.bicep
+		SamSmithNZ.IaC\modules\keyVault.bicep = SamSmithNZ.IaC\modules\keyVault.bicep
+		SamSmithNZ.IaC\modules\monitoring.bicep = SamSmithNZ.IaC\modules\monitoring.bicep
+		SamSmithNZ.IaC\modules\storage.bicep = SamSmithNZ.IaC\modules\storage.bicep
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,6 +106,7 @@ Global
 		{ACC46946-6BAE-4306-8F7E-557B9D93BDFA} = {A58047F7-CD2E-4F21-B9C7-E5AC3C55EC96}
 		{6278FFEF-AB13-46DA-A224-1C148BB98BDA} = {A58047F7-CD2E-4F21-B9C7-E5AC3C55EC96}
 		{07DDDE8A-82BB-45EE-A14A-168482940953} = {A58047F7-CD2E-4F21-B9C7-E5AC3C55EC96}
+		{88B44193-A1CE-4ABA-BCB9-511AA2AD556D} = {A3A53F95-9C8E-4DA0-82F5-8508921F8B96}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4EEAC4BE-79C5-466F-A449-1A01011EBC93}
