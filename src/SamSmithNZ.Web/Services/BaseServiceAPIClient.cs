@@ -21,7 +21,7 @@ namespace SamSmithNZ.Web.Services
             HttpResponseMessage response = await _client.GetAsync(url);
             if (response.IsSuccessStatusCode == true)
             {
-                Stream stream = await response.Content.ReadAsStreamAsync();
+                await using Stream stream = await response.Content.ReadAsStreamAsync();
                 if (stream != null && stream.Length > 0)
                 {
                     return await JsonSerializer.DeserializeAsync<List<T>>(stream);
@@ -43,7 +43,7 @@ namespace SamSmithNZ.Web.Services
             HttpResponseMessage response = await _client.GetAsync(url);
             if (response.IsSuccessStatusCode == true)
             {
-                Stream stream = await response.Content.ReadAsStreamAsync();
+                await using Stream stream = await response.Content.ReadAsStreamAsync();
                 if (stream != null && stream.Length > 0)
                 {
                     return await JsonSerializer.DeserializeAsync<T>(stream);
@@ -104,7 +104,7 @@ namespace SamSmithNZ.Web.Services
             HttpResponseMessage response = await _client.GetAsync(url);
             if (response.IsSuccessStatusCode == true)
             {
-                Stream stream = await response.Content.ReadAsStreamAsync();
+                await using Stream stream = await response.Content.ReadAsStreamAsync();
                 if (stream != null && stream.Length > 0)
                 {
                     return await JsonSerializer.DeserializeAsync<R>(stream);
