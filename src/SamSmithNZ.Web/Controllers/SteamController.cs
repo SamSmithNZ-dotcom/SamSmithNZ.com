@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SamSmithNZ.Service.Models.Steam;
+using SamSmithNZ.Web.Models.Steam;
 using SamSmithNZ.Web.Services.Interfaces;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SamSmithNZ.Web.Controllers
@@ -19,34 +22,38 @@ namespace SamSmithNZ.Web.Controllers
 
         public async Task<IActionResult> Index(string steamID)
         {
+            // Parallelize independent API calls
+            Task<Player> playerTask = _ServiceApiClient.GetPlayer(steamID);
+            Task<List<Game>> gamesTask = _ServiceApiClient.GetPlayerGames(steamID);
+            await Task.WhenAll(playerTask, gamesTask);
 
-            //Player player = await _ServiceApiClient.GetPlayer(steamID);
-            //List<Game> games = await _ServiceApiClient.GetPlayerGames(steamID);
+            Player player = await playerTask;
+            List<Game> games = await gamesTask;
 
-            //return View(new IndexViewModel
-            //{
-            //    SteamId = steamID,
-            //    Player = player,
-            //    Games = games
-            //});
-            return View();
+            return View(new IndexViewModel
+            {
+                SteamId = steamID,
+                Player = player,
+                Games = games
+            });
         }
 
         public async Task<IActionResult> GameDetails(string steamID, string appID, bool showCompletedAchievements = false)
         {
+            // Parallelize independent API calls
+            Task<Player> playerTask = _ServiceApiClient.GetPlayer(steamID);
+            Task<GameDetail> gameDetailTask = _ServiceApiClient.GetGameDetail(steamID, appID);
+            await Task.WhenAll(playerTask, gameDetailTask);
 
+            Player player = await playerTask;
+            GameDetail gameDetail = await gameDetailTask;
 
-            return View("Index");
-
-            //Player player = await _ServiceApiClient.GetPlayer(steamID);
-            //GameDetail gameDetail = await _ServiceApiClient.GetGameDetail(steamID, appID);
-
-            //return View(new GameDetailViewModel(gameDetail, showCompletedAchievements)
-            //{
-            //    SteamId = steamID,
-            //    AppId = appID,
-            //    Player = player
-            //});
+            return View(new GameDetailViewModel(gameDetail, showCompletedAchievements)
+            {
+                SteamId = steamID,
+                AppId = appID,
+                Player = player
+            });
         }
 
         //[HttpGet]
