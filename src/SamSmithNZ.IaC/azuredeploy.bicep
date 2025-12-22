@@ -18,7 +18,7 @@ param certificates_www_samsmithnz_com_ssnz_prod_eu_web_name string = 'www.samsmi
 param vaults_ssnzkeyvault_name string = 'ssnzkeyvault'
 param storageAccounts_ssnzdbserverlogstorage_name string = 'ssnzdbserverlogstorage'
 
-resource components_ssnzapplicationinsights_name_resource 'microsoft.insights/components@2020-02-02' = {
+resource components_ssnzapplicationinsights_name_resource 'microsoft.insights/components@2020-02-02-preview' = {
   name: components_ssnzapplicationinsights_name
   location: 'eastus'
   kind: 'web'
@@ -31,7 +31,7 @@ resource components_ssnzapplicationinsights_name_resource 'microsoft.insights/co
   }
 }
 
-resource serverfarms_ssnzwinserviceplan_name_resource 'Microsoft.Web/serverfarms@2021-01-15' = {
+resource serverfarms_ssnzwinserviceplan_name_resource 'Microsoft.Web/serverfarms@2023-12-01' = {
   name: serverfarms_ssnzwinserviceplan_name
   location: 'East US'
   sku: {
@@ -55,7 +55,7 @@ resource serverfarms_ssnzwinserviceplan_name_resource 'Microsoft.Web/serverfarms
   }
 }
 
-resource sites_mandm_prod_eu_service_name_resource 'Microsoft.Web/sites@2021-01-15' = {
+resource sites_mandm_prod_eu_service_name_resource 'Microsoft.Web/sites@2023-12-01' = {
   name: sites_mandm_prod_eu_service_name
   location: 'East US'
   kind: 'app'
@@ -100,7 +100,7 @@ resource sites_mandm_prod_eu_service_name_resource 'Microsoft.Web/sites@2021-01-
   }
 }
 
-resource sites_ssnz_prod_eu_service_name_resource 'Microsoft.Web/sites@2021-01-15' = {
+resource sites_ssnz_prod_eu_service_name_resource 'Microsoft.Web/sites@2023-12-01' = {
   name: sites_ssnz_prod_eu_service_name
   location: 'East US'
   kind: 'app'
@@ -145,7 +145,7 @@ resource sites_ssnz_prod_eu_service_name_resource 'Microsoft.Web/sites@2021-01-1
   }
 }
 
-resource sites_ssnz_prod_eu_web_name_resource 'Microsoft.Web/sites@2021-01-15' = {
+resource sites_ssnz_prod_eu_web_name_resource 'Microsoft.Web/sites@2023-12-01' = {
   name: sites_ssnz_prod_eu_web_name
   location: 'East US'
   kind: 'app'
@@ -202,7 +202,7 @@ resource sites_ssnz_prod_eu_web_name_resource 'Microsoft.Web/sites@2021-01-15' =
   }
 }
 
-resource sites_mandm_prod_eu_service_name_web 'Microsoft.Web/sites/config@2021-01-15' = {
+resource sites_mandm_prod_eu_service_name_web 'Microsoft.Web/sites/config@2023-12-01' = {
   parent: sites_mandm_prod_eu_service_name_resource
   name: 'web'
   location: 'East US'
@@ -278,7 +278,7 @@ resource sites_mandm_prod_eu_service_name_web 'Microsoft.Web/sites/config@2021-0
   }
 }
 
-resource sites_ssnz_prod_eu_service_name_web 'Microsoft.Web/sites/config@2021-01-15' = {
+resource sites_ssnz_prod_eu_service_name_web 'Microsoft.Web/sites/config@2023-12-01' = {
   parent: sites_ssnz_prod_eu_service_name_resource
   name: 'web'
   location: 'East US'
@@ -354,7 +354,7 @@ resource sites_ssnz_prod_eu_service_name_web 'Microsoft.Web/sites/config@2021-01
   }
 }
 
-resource sites_ssnz_prod_eu_web_name_web 'Microsoft.Web/sites/config@2021-01-15' = {
+resource sites_ssnz_prod_eu_web_name_web 'Microsoft.Web/sites/config@2023-12-01' = {
   parent: sites_ssnz_prod_eu_web_name_resource
   name: 'web'
   location: 'East US'
@@ -430,7 +430,7 @@ resource sites_ssnz_prod_eu_web_name_web 'Microsoft.Web/sites/config@2021-01-15'
   }
 }
 
-resource vaults_ssnzkeyvault_name_resource 'Microsoft.KeyVault/vaults@2021-04-01-preview' = {
+resource vaults_ssnzkeyvault_name_resource 'Microsoft.KeyVault/vaults@2023-07-01' = {
   name: vaults_ssnzkeyvault_name
   location: 'eastus'
   properties: {
@@ -542,7 +542,7 @@ resource vaults_ssnzkeyvault_name_resource 'Microsoft.KeyVault/vaults@2021-04-01
   }
 }
 
-resource storageAccounts_ssnzdbserverlogstorage_name_resource 'Microsoft.Storage/storageAccounts@2021-04-01' = {
+resource storageAccounts_ssnzdbserverlogstorage_name_resource 'Microsoft.Storage/storageAccounts@2023-05-01' = {
   name: storageAccounts_ssnzdbserverlogstorage_name
   location: 'eastus'
   sku: {

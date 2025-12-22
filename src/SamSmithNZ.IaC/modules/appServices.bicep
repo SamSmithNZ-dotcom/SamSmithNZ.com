@@ -18,7 +18,7 @@ param mandmServiceAppName string = 'mandm-prod-eu-service'
 param customDomainVerificationId string = '94F391F7B468D7216F02F51D8356390A89B6F3949B2E9888D070424D1169AF7C'
 
 // App Service Plan
-resource appServicePlan 'Microsoft.Web/serverfarms@2021-01-15' = {
+resource appServicePlan 'Microsoft.Web/serverfarms@2023-12-01' = {
   name: appServicePlanName
   location: location
   sku: {
@@ -43,7 +43,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2021-01-15' = {
 }
 
 // Web App (ssnz-prod-eu-web)
-resource webApp 'Microsoft.Web/sites@2021-01-15' = {
+resource webApp 'Microsoft.Web/sites@2023-12-01' = {
   name: webAppName
   location: location
   kind: 'app'
@@ -101,7 +101,7 @@ resource webApp 'Microsoft.Web/sites@2021-01-15' = {
 }
 
 // Service App (ssnz-prod-eu-service)
-resource serviceApp 'Microsoft.Web/sites@2021-01-15' = {
+resource serviceApp 'Microsoft.Web/sites@2023-12-01' = {
   name: serviceAppName
   location: location
   kind: 'app'
@@ -147,7 +147,7 @@ resource serviceApp 'Microsoft.Web/sites@2021-01-15' = {
 }
 
 // M&M Service App (mandm-prod-eu-service)
-resource mandmServiceApp 'Microsoft.Web/sites@2021-01-15' = {
+resource mandmServiceApp 'Microsoft.Web/sites@2023-12-01' = {
   name: mandmServiceAppName
   location: location
   kind: 'app'
@@ -193,7 +193,7 @@ resource mandmServiceApp 'Microsoft.Web/sites@2021-01-15' = {
 }
 
 // Web App Configuration
-resource webAppConfig 'Microsoft.Web/sites/config@2021-01-15' = {
+resource webAppConfig 'Microsoft.Web/sites/config@2023-12-01' = {
   parent: webApp
   name: 'web'
   properties: {
@@ -269,7 +269,7 @@ resource webAppConfig 'Microsoft.Web/sites/config@2021-01-15' = {
 }
 
 // Service App Configuration
-resource serviceAppConfig 'Microsoft.Web/sites/config@2021-01-15' = {
+resource serviceAppConfig 'Microsoft.Web/sites/config@2023-12-01' = {
   parent: serviceApp
   name: 'web'
   properties: {
@@ -345,7 +345,7 @@ resource serviceAppConfig 'Microsoft.Web/sites/config@2021-01-15' = {
 }
 
 // M&M Service App Configuration
-resource mandmServiceAppConfig 'Microsoft.Web/sites/config@2021-01-15' = {
+resource mandmServiceAppConfig 'Microsoft.Web/sites/config@2023-12-01' = {
   parent: mandmServiceApp
   name: 'web'
   properties: {
