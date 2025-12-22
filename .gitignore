@@ -225,3 +225,7 @@ $RECYCLE.BIN/
 **/Scripts/MandMCounterServices/*.js
 **/Scripts/app.js.map
 **/Scripts/app.js
+
+# Bicep generated ARM templates (*.json files in IaC directory)
+src/SamSmithNZ.IaC/*.json
+src/SamSmithNZ.IaC/modules/*.json

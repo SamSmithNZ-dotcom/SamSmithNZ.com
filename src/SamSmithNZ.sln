@@ -31,8 +31,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UtilityApps", "UtilityApps"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SamSmithNZ.FFLSetlistScraper.WinForms", "SamSmithNZ.FFLSetlistScraper.WinForms\SamSmithNZ.FFLSetlistScraper.WinForms.csproj", "{569CBCC3-301D-4558-A003-4E6CF9414B1B}"
 EndProject
-Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "SamSmithNZ.IaC", "SamSmithNZ.IaC\SamSmithNZ.IaC.deployproj", "{54FF8914-567D-4F04-A30E-869823A55B3B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SamSmithNZ.ExportGuitarTab.Console", "SamSmithNZ.ExportGuitarTab.Console\SamSmithNZ.ExportGuitarTab.Console.csproj", "{ACC46946-6BAE-4306-8F7E-557B9D93BDFA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamSmithNZ.LegoDataMigration.Console", "SamSmithNZ.LegoDataMigration.Console\SamSmithNZ.LegoDataMigration.Console.csproj", "{6278FFEF-AB13-46DA-A224-1C148BB98BDA}"
@@ -75,10 +73,6 @@ Global
 		{569CBCC3-301D-4558-A003-4E6CF9414B1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{569CBCC3-301D-4558-A003-4E6CF9414B1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{569CBCC3-301D-4558-A003-4E6CF9414B1B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{54FF8914-567D-4F04-A30E-869823A55B3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{54FF8914-567D-4F04-A30E-869823A55B3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{54FF8914-567D-4F04-A30E-869823A55B3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{54FF8914-567D-4F04-A30E-869823A55B3B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ACC46946-6BAE-4306-8F7E-557B9D93BDFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ACC46946-6BAE-4306-8F7E-557B9D93BDFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACC46946-6BAE-4306-8F7E-557B9D93BDFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
