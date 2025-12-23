@@ -76,21 +76,21 @@ namespace SamSmithNZ.Web.Services
             return await base.GetMessageScalar<float>(url);
         }
 
-        public async Task<float> GetJellybeansDataForUnit(string unit, float quantity)
+        public async Task<float> GetJellyBeansDataForUnit(string unit, float quantity)
         {
-            Uri url = new($"api/SkittleCounter/GetDataForUnit?unit=" + unit + "&quantity=" + quantity, UriKind.Relative);
+            Uri url = new($"api/JellyBeanCounter/GetDataForUnit?unit=" + unit + "&quantity=" + quantity, UriKind.Relative);
             return await base.GetMessageScalar<float>(url);
         }
 
-        public async Task<float> GetJellybeansDataForRectangle(string unit, float height, float width, float length)
+        public async Task<float> GetJellyBeansDataForRectangle(string unit, float height, float width, float length)
         {
-            Uri url = new($"api/SkittleCounter/GetDataForRectangle?unit=" + unit + "&height=" + height + "&width=" + width + "&length=" + length, UriKind.Relative);
+            Uri url = new($"api/JellyBeanCounter/GetDataForRectangle?unit=" + unit + "&height=" + height + "&width=" + width + "&length=" + length, UriKind.Relative);
             return await base.GetMessageScalar<float>(url);
         }
 
-        public async Task<float> GetJellybeansDataForCylinder(string unit, float height, float radius)
+        public async Task<float> GetJellyBeansDataForCylinder(string unit, float height, float radius)
         {
-            Uri url = new($"api/SkittleCounter/GetDataForCylinder?unit=" + unit + "&height=" + height + "&radius=" + radius, UriKind.Relative);
+            Uri url = new($"api/JellyBeanCounter/GetDataForCylinder?unit=" + unit + "&height=" + height + "&radius=" + radius, UriKind.Relative);
             return await base.GetMessageScalar<float>(url);
         }
 

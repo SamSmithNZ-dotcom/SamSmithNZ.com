@@ -15,9 +15,9 @@ namespace SamSmithNZ.Web.Services.Interfaces
         Task<float> GetSkittlesDataForUnit(string unit, float quantity);
         Task<float> GetSkittlesDataForRectangle(string unit, float height, float width, float length);
         Task<float> GetSkittlesDataForCylinder(string unit, float height, float radius);
-        Task<float> GetJellybeansDataForUnit(string unit, float quantity);
-        Task<float> GetJellybeansDataForRectangle(string unit, float height, float width, float length);
-        Task<float> GetJellybeansDataForCylinder(string unit, float height, float radius);
+        Task<float> GetJellyBeansDataForUnit(string unit, float quantity);
+        Task<float> GetJellyBeansDataForRectangle(string unit, float height, float width, float length);
+        Task<float> GetJellyBeansDataForCylinder(string unit, float height, float radius);
 
 
         Task<List<string>> GetUnitsForVolume();
