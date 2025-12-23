@@ -27,8 +27,8 @@ namespace SamSmithNZ.Tests.GuitarTab
             List<Album> results = await controller.GetAlbums(true);
 
             //assert
-            Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotNull(results);
+            Assert.IsNotEmpty(results);
         }
 
         [TestMethod()]
@@ -66,25 +66,25 @@ namespace SamSmithNZ.Tests.GuitarTab
                     break;
                 }
             }
-            Assert.IsTrue(foundTCATS == true);
+            Assert.IsTrue(foundTCATS);
         }
 
         private static void TestTCATS(Album results)
         {
-            Assert.IsTrue(results != null);
-            Assert.IsTrue(results.AlbumCode == 14);
-            Assert.IsTrue(results.AlbumName == "The Colour And The Shape");
-            Assert.IsTrue(results.AlbumYear == 1997);
-            Assert.IsTrue(results.ArtistName == "Foo Fighters");
-            Assert.IsTrue(results.ArtistNameTrimed == "FooFighters");
-            Assert.IsTrue(results.AverageRating == 5);
-            Assert.IsTrue(results.IncludeInIndex == true);
-            Assert.IsTrue(results.IncludeOnWebsite == true);
-            Assert.IsTrue(results.IsBassTab == false);
-            Assert.IsTrue(results.IsMiscCollectionAlbum == false);
-            Assert.IsTrue(results.IsNewAlbum == false);
-            Assert.IsTrue(results.IsLeadArtist == false);
-            Assert.IsTrue(results.BassAlbumCode == 102);
+            Assert.IsNotNull(results);
+            Assert.AreEqual(14, results.AlbumCode);
+            Assert.AreEqual("The Colour And The Shape", results.AlbumName);
+            Assert.AreEqual(1997, results.AlbumYear);
+            Assert.AreEqual("Foo Fighters", results.ArtistName);
+            Assert.AreEqual("FooFighters", results.ArtistNameTrimed);
+            Assert.AreEqual(5, results.AverageRating);
+            Assert.IsTrue(results.IncludeInIndex);
+            Assert.IsTrue(results.IncludeOnWebsite);
+            Assert.IsFalse(results.IsBassTab);
+            Assert.IsFalse(results.IsMiscCollectionAlbum);
+            Assert.IsFalse(results.IsNewAlbum);
+            Assert.IsFalse(results.IsLeadArtist);
+            Assert.AreEqual(102, results.BassAlbumCode);
         }
 
         [TestMethod()]
@@ -118,38 +118,39 @@ namespace SamSmithNZ.Tests.GuitarTab
             item = await controller.GetAlbum(albumCode, true);
 
             //assert
-            Assert.IsTrue(item != null);
-            Assert.IsTrue(item.AlbumCode == 242);
-            Assert.IsTrue(item.AlbumName == albumName);
-            Assert.IsTrue(item.AlbumYear == 2014);
-            Assert.IsTrue(item.ArtistName == artistName);
-            Assert.IsTrue(item.ArtistNameTrimed == artistName.Replace(" ", ""));
-            Assert.IsTrue(item.AverageRating == 0);
-            Assert.IsTrue(item.IncludeInIndex == false);
-            Assert.IsTrue(item.IncludeOnWebsite == false);
-            Assert.IsTrue(item.IsBassTab == false);
-            Assert.IsTrue(item.IsMiscCollectionAlbum == false);
-            Assert.IsTrue(item.IsNewAlbum == false);
+            Assert.IsNotNull(item);
+            Assert.AreEqual(242, item.AlbumCode);
+            Assert.AreEqual(albumName, item.AlbumName);
+            Assert.AreEqual(2014, item.AlbumYear);
+            Assert.AreEqual(artistName, item.ArtistName);
+            Assert.AreEqual(artistName.Replace(" ", ""), item.ArtistNameTrimed);
+            Assert.AreEqual(0, item.AverageRating);
+            Assert.IsFalse(item.IncludeInIndex);
+            Assert.IsFalse(item.IncludeOnWebsite);
+            Assert.IsFalse(item.IsBassTab);
+            Assert.IsFalse(item.IsMiscCollectionAlbum);
+            Assert.IsFalse(item.IsNewAlbum);
         }
 
         private static List<Album> GetAlbumsTestData()
         {
-            return new List<Album>() {
-            new Album{
-                AlbumCode = 14,
-                AlbumName = "The Colour And The Shape",
-                ArtistName = "Foo Fighters",
-                ArtistNameTrimed = "FooFighters",
-                AlbumYear = 1997,
-                IncludeInIndex = true,
-                IncludeOnWebsite = true,
-                IsBassTab = false,
-                IsMiscCollectionAlbum = false,
-                IsNewAlbum = false,
-                IsLeadArtist = false,
-                AverageRating = 5M,
-                BassAlbumCode = 102
-            } };
+            return new() {
+                new Album{
+                    AlbumCode = 14,
+                    AlbumName = "The Colour And The Shape",
+                    ArtistName = "Foo Fighters",
+                    ArtistNameTrimed = "FooFighters",
+                    AlbumYear = 1997,
+                    IncludeInIndex = true,
+                    IncludeOnWebsite = true,
+                    IsBassTab = false,
+                    IsMiscCollectionAlbum = false,
+                    IsNewAlbum = false,
+                    IsLeadArtist = false,
+                    AverageRating = 5M,
+                    BassAlbumCode = 102
+                } 
+            };
         }
     }
 }
