@@ -1,9 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using SamSmithNZ.Service.Models.FooFighters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SamSmithNZ.Web.Services.Interfaces
@@ -20,6 +15,9 @@ namespace SamSmithNZ.Web.Services.Interfaces
         Task<float> GetSkittlesDataForUnit(string unit, float quantity);
         Task<float> GetSkittlesDataForRectangle(string unit, float height, float width, float length);
         Task<float> GetSkittlesDataForCylinder(string unit, float height, float radius);
+        Task<float> GetJellyBeansDataForUnit(string unit, float quantity);
+        Task<float> GetJellyBeansDataForRectangle(string unit, float height, float width, float length);
+        Task<float> GetJellyBeansDataForCylinder(string unit, float height, float radius);
 
 
         Task<List<string>> GetUnitsForVolume();

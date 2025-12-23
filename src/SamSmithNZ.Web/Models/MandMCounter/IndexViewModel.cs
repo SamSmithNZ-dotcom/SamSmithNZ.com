@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SamSmithNZ.Web.Models.MandMCounter
 {
@@ -10,15 +7,15 @@ namespace SamSmithNZ.Web.Models.MandMCounter
     {
         public IndexViewModel(List<string> unitsForVolume, List<string> unitsForContainer)
         {
-            UnitsForVolume = new List<SelectListItem>();
+            UnitsForVolume = new();
             foreach (string item in unitsForVolume)
             {
-                UnitsForVolume.Add(new SelectListItem(item, item));
+                UnitsForVolume.Add(new(item, item));
             }
-            UnitsForContainer = new List<SelectListItem>();
+            UnitsForContainer = new();
             foreach (string item in unitsForContainer)
             {
-                UnitsForContainer.Add(new SelectListItem(item, item));
+                UnitsForContainer.Add(new(item, item));
             }
         }
 
@@ -34,6 +31,7 @@ namespace SamSmithNZ.Web.Models.MandMCounter
         public float MandMResult { get; set; }
         public float PeanutMandMResult { get; set; }
         public float SkittlesResult { get; set; }
+        public float JellyBeans { get; set; }
         public string ActiveTab { get; set; }
     }
 }

@@ -1,15 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SamSmithNZ.Web.Services;
 using SamSmithNZ.Web.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SamSmithNZ.Web
 {
@@ -26,7 +21,10 @@ namespace SamSmithNZ.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
+            services.AddApplicationInsightsTelemetry(options =>
+            {
+                options.ConnectionString = Configuration["APPINSIGHTS_CONNECTIONSTRING"];
+            });
 
             //Add DI for the service api client 
             services.AddScoped<IFooFightersServiceApiClient, FooFightersServiceApiClient>();
