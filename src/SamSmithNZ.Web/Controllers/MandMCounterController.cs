@@ -113,7 +113,8 @@ namespace SamSmithNZ.Web.Controllers
                 quantity = txtQuantity,
                 mandMResult = mandMResult,
                 peanutMandMResult = peanutMandMResult,
-                skittlesResult = skittlesResult
+                skittlesResult = skittlesResult,
+                jellyBeansResult = jellyBeansResult
             });
         }
 
@@ -145,7 +146,8 @@ namespace SamSmithNZ.Web.Controllers
                 length = txtLength,
                 mandMResult = mandMResult,
                 peanutMandMResult = peanutMandMResult,
-                skittlesResult = skittlesResult
+                skittlesResult = skittlesResult,
+                jellyBeansResult = jellyBeansResult
             });
         }
 
@@ -174,7 +176,8 @@ namespace SamSmithNZ.Web.Controllers
                 radius = txtRadius,
                 mandMResult = mandMResult,
                 peanutMandMResult = peanutMandMResult,
-                skittlesResult = skittlesResult
+                skittlesResult = skittlesResult,
+                jellyBeansResult = jellyBeansResult
             });
         }
 
