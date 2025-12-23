@@ -87,13 +87,14 @@ namespace SamSmithNZ.Web.Controllers
 
         public async Task<IActionResult> EditAlbum(int albumCode, bool isAdmin = false)
         {
-            Album album = await _ServiceApiClient.GetAlbum(albumCode, true);
-            List<Tab> tabs = await _ServiceApiClient.GetTabs(albumCode);
+            Task<Album> albumTask = _ServiceApiClient.GetAlbum(albumCode, true);
+            Task<List<Tab>> tabsTask = _ServiceApiClient.GetTabs(albumCode);
+            await Task.WhenAll(albumTask, tabsTask);
 
             return View(new AlbumTabsViewModel
             {
-                Album = album,
-                Tabs = tabs,
+                Album = await albumTask,
+                Tabs = await tabsTask,
                 IsAdmin = isAdmin
             });
         }
@@ -103,6 +104,13 @@ namespace SamSmithNZ.Web.Controllers
             bool chkIsBassTab, bool chkIncludeInIndex, bool chkIncludeOnWebsite, bool chkIsMiscCollectionAlbum, bool isAdmin = false)
         //string txtTrackList)
         {
+
+            if (!int.TryParse(txtYear, out int year))
+            {
+                // Return to form with error or use ModelState
+                return RedirectToAction("EditAlbum", new { albumCode = albumCode, isAdmin = isAdmin });
+            }
+
             Album album = new()
             {
                 AlbumCode = albumCode,
@@ -185,7 +193,7 @@ namespace SamSmithNZ.Web.Controllers
             {
                 TabCode = 0,
                 AlbumCode = albumCode,
-                TabName = "Track " + (tabs.Count + 1).ToString(),
+                TabName = $"Track {tabs.Count + 1}",
                 TabText = "",
                 TabOrder = (tabs.Count + 1),
                 Rating = 0, // no rating
