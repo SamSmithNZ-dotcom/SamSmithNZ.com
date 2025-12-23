@@ -65,17 +65,17 @@ namespace SamSmithNZ.Web.Controllers
             {
                 model.MandMResult = (float)mandMResult;
             }
-            if (mandMResult != null)
+            if (peanutMandMResult != null)
             {
                 model.PeanutMandMResult = (float)peanutMandMResult;
             }
-            if (mandMResult != null)
+            if (skittlesResult != null)
             {
                 model.SkittlesResult = (float)skittlesResult;
             }
-            if (mandMResult != null)
+            if (jellyBeansResult != null)
             {
-                model.JellyBeans = (float)jellyBeansResult;
+                model.JellyBeansResult = (float)jellyBeansResult;
             }
             //Select the target active tab
             model.ActiveTab = "0";
