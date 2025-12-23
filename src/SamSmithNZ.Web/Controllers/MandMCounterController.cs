@@ -15,22 +15,23 @@ namespace SamSmithNZ.Web.Controllers
             _ServiceApiClient = ServiceApiClient;
         }
 
-        public async Task<IActionResult> Index(string volumeUnit = null,  
-            float? quantity = null, 
+        public async Task<IActionResult> Index(string volumeUnit = null,
+            float? quantity = null,
             string containerUnit = null,
-            float? height = null, 
-            float? width = null, 
+            float? height = null,
+            float? width = null,
             float? length = null,
             float? radius = null,
-            float? mandMResult = null, 
-            float? peanutMandMResult = null, 
-            float? skittlesResult = null)
+            float? mandMResult = null,
+            float? peanutMandMResult = null,
+            float? skittlesResult = null,
+            float? jellybeansResult = null)
         {
             //Get the dropdown values
             List<string> unitsForVolume = await _ServiceApiClient.GetUnitsForVolume();
             List<string> unitsForContainer = await _ServiceApiClient.GetUnitsForContainer();
             IndexViewModel model = new(unitsForVolume, unitsForContainer);
-            
+
             //Load in the model values
             if (volumeUnit != null)
             {
@@ -72,6 +73,10 @@ namespace SamSmithNZ.Web.Controllers
             {
                 model.SkittlesResult = (float)skittlesResult;
             }
+            if (mandMResult != null)
+            {
+                model.JellyBeans = (float)jellybeansResult;
+            }
             //Select the target active tab
             model.ActiveTab = "0";
             if (radius != null)
@@ -92,12 +97,14 @@ namespace SamSmithNZ.Web.Controllers
             float mandMResult = 0f;
             float peanutMandMResult = 0f;
             float skittlesResult = 0f;
+            float jellybeansResult = 0f;
             float quantity;
             if (float.TryParse(txtQuantity, out quantity) == true)
             {
                 mandMResult = await _ServiceApiClient.GetMandMDataForUnit(VolumeUnit, quantity);
                 peanutMandMResult = await _ServiceApiClient.GetPeanutMandMDataForUnit(VolumeUnit, quantity);
                 skittlesResult = await _ServiceApiClient.GetSkittlesDataForUnit(VolumeUnit, quantity);
+                jellybeansResult = await _ServiceApiClient.GetJellybeansDataForUnit(VolumeUnit, quantity);
             }
 
             return RedirectToAction("Index", new
@@ -116,6 +123,7 @@ namespace SamSmithNZ.Web.Controllers
             float mandMResult = 0f;
             float peanutMandMResult = 0f;
             float skittlesResult = 0f;
+            float jellybeansResult = 0f;
             float height;
             float width;
             float length;
@@ -126,6 +134,7 @@ namespace SamSmithNZ.Web.Controllers
                 mandMResult = await _ServiceApiClient.GetMandMDataForRectangle(ContainerUnit, height, width, length);
                 peanutMandMResult = await _ServiceApiClient.GetPeanutMandMDataForRectangle(ContainerUnit, height, width, length);
                 skittlesResult = await _ServiceApiClient.GetSkittlesDataForRectangle(ContainerUnit, height, width, length);
+                jellybeansResult = await _ServiceApiClient.GetJellybeansDataForRectangle(ContainerUnit, height, width, length);
             }
 
             return RedirectToAction("Index", new
@@ -146,6 +155,7 @@ namespace SamSmithNZ.Web.Controllers
             float mandMResult = 0f;
             float peanutMandMResult = 0f;
             float skittlesResult = 0f;
+            float jellybeansResult = 0f;
             float height;
             float radius;
             if (float.TryParse(txtHeight, out height) == true &&
@@ -154,6 +164,7 @@ namespace SamSmithNZ.Web.Controllers
                 mandMResult = await _ServiceApiClient.GetMandMDataForCylinder(ContainerUnit, height, radius);
                 peanutMandMResult = await _ServiceApiClient.GetPeanutMandMDataForCylinder(ContainerUnit, height, radius);
                 skittlesResult = await _ServiceApiClient.GetSkittlesDataForCylinder(ContainerUnit, height, radius);
+                jellybeansResult = await _ServiceApiClient.GetJellybeansDataForCylinder(ContainerUnit, height, radius);
             }
 
             return RedirectToAction("Index", new
