@@ -14,7 +14,7 @@ namespace SamSmithNZ.Service.DataAccess.GuitarTab
     {
         public SearchDataAccess(IConfiguration configuration)
         {
-            base.SetupConnectionString(configuration);
+            SetupConnectionString(configuration);
         }
 
         public async Task<List<Search>> GetList(Guid? recordid)
@@ -22,7 +22,7 @@ namespace SamSmithNZ.Service.DataAccess.GuitarTab
             DynamicParameters parameters = new();
             parameters.Add("@RecordId", recordid, DbType.Guid);
 
-            return await base.GetList("Tab_GetSearchResults", parameters);
+            return await GetList("Tab_GetSearchResults", parameters);
         }
 
         public async Task<Guid> SaveItem(string searchText)
@@ -30,7 +30,7 @@ namespace SamSmithNZ.Service.DataAccess.GuitarTab
             DynamicParameters parameters = new();
             parameters.Add("@SearchText", searchText, DbType.String);
 
-            return await base.GetScalarItem<Guid>("Tab_SaveSearchParameters", parameters);
+            return await GetScalarItem<Guid>("Tab_SaveSearchParameters", parameters);
         }
 
     }

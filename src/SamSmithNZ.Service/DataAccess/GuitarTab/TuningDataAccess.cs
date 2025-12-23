@@ -13,12 +13,12 @@ namespace SamSmithNZ.Service.DataAccess.GuitarTab
     {
         public TuningDataAccess(IConfiguration configuration)
         {
-            base.SetupConnectionString(configuration);
+            SetupConnectionString(configuration);
         }
 
         public async Task<List<Tuning>> GetList()
         {
-            return await base.GetList("Tab_GetTunings");
+            return await GetList("Tab_GetTunings");
         }
     }
 }

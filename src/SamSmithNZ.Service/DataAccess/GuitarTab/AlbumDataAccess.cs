@@ -13,7 +13,7 @@ namespace SamSmithNZ.Service.DataAccess.GuitarTab
     {
         public AlbumDataAccess(IConfiguration configuration)
         {
-            base.SetupConnectionString(configuration);
+            SetupConnectionString(configuration);
         }
 
         public async Task<List<Album>> GetList(bool isAdmin)
@@ -21,7 +21,7 @@ namespace SamSmithNZ.Service.DataAccess.GuitarTab
             DynamicParameters parameters = new();
             parameters.Add("@IsAdmin", isAdmin, DbType.Boolean);
 
-            return await base.GetList("Tab_GetAlbums", parameters);
+            return await GetList("Tab_GetAlbums", parameters);
         }
 
         public async Task<Album> GetItem(int albumCode, bool isAdmin)
@@ -30,7 +30,7 @@ namespace SamSmithNZ.Service.DataAccess.GuitarTab
             parameters.Add("@AlbumCode", albumCode, DbType.Int32);
             parameters.Add("@IsAdmin", isAdmin, DbType.Boolean);
 
-            return await base.GetItem("Tab_GetAlbums", parameters);
+            return await GetItem("Tab_GetAlbums", parameters);
         }
 
         public async Task<Album> SaveItem(Album item)
@@ -46,7 +46,7 @@ namespace SamSmithNZ.Service.DataAccess.GuitarTab
             parameters.Add("@IncludeInIndex", item.IncludeInIndex, DbType.Boolean);
             parameters.Add("@IncludeOnWebsite", item.IncludeOnWebsite, DbType.Boolean);
 
-            item.AlbumCode = await base.GetScalarItem<int>("Tab_SaveAlbum", parameters);
+            item.AlbumCode = await GetScalarItem<int>("Tab_SaveAlbum", parameters);
             return item;
         }
 
