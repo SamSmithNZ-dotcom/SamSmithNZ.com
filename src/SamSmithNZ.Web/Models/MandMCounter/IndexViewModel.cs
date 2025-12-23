@@ -31,7 +31,7 @@ namespace SamSmithNZ.Web.Models.MandMCounter
         public float MandMResult { get; set; }
         public float PeanutMandMResult { get; set; }
         public float SkittlesResult { get; set; }
-        public float JellyBeans { get; set; }
+        public float JellyBeansResult { get; set; }
         public string ActiveTab { get; set; }
     }
 }
