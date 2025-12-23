@@ -25,7 +25,7 @@ namespace SamSmithNZ.Web.Controllers
             float? mandMResult = null,
             float? peanutMandMResult = null,
             float? skittlesResult = null,
-            float? JellyBeansResult = null)
+            float? jellyBeansResult = null)
         {
             //Get the dropdown values
             List<string> unitsForVolume = await _ServiceApiClient.GetUnitsForVolume();
@@ -75,7 +75,7 @@ namespace SamSmithNZ.Web.Controllers
             }
             if (mandMResult != null)
             {
-                model.JellyBeans = (float)JellyBeansResult;
+                model.JellyBeans = (float)jellyBeansResult;
             }
             //Select the target active tab
             model.ActiveTab = "0";
@@ -97,14 +97,14 @@ namespace SamSmithNZ.Web.Controllers
             float mandMResult = 0f;
             float peanutMandMResult = 0f;
             float skittlesResult = 0f;
-            float JellyBeansResult = 0f;
+            float jellyBeansResult = 0f;
             float quantity;
             if (float.TryParse(txtQuantity, out quantity) == true)
             {
                 mandMResult = await _ServiceApiClient.GetMandMDataForUnit(VolumeUnit, quantity);
                 peanutMandMResult = await _ServiceApiClient.GetPeanutMandMDataForUnit(VolumeUnit, quantity);
                 skittlesResult = await _ServiceApiClient.GetSkittlesDataForUnit(VolumeUnit, quantity);
-                JellyBeansResult = await _ServiceApiClient.GetJellyBeansDataForUnit(VolumeUnit, quantity);
+                jellyBeansResult = await _ServiceApiClient.GetJellyBeansDataForUnit(VolumeUnit, quantity);
             }
 
             return RedirectToAction("Index", new
@@ -123,7 +123,7 @@ namespace SamSmithNZ.Web.Controllers
             float mandMResult = 0f;
             float peanutMandMResult = 0f;
             float skittlesResult = 0f;
-            float JellyBeansResult = 0f;
+            float jellyBeansResult = 0f;
             float height;
             float width;
             float length;
@@ -134,7 +134,7 @@ namespace SamSmithNZ.Web.Controllers
                 mandMResult = await _ServiceApiClient.GetMandMDataForRectangle(ContainerUnit, height, width, length);
                 peanutMandMResult = await _ServiceApiClient.GetPeanutMandMDataForRectangle(ContainerUnit, height, width, length);
                 skittlesResult = await _ServiceApiClient.GetSkittlesDataForRectangle(ContainerUnit, height, width, length);
-                JellyBeansResult = await _ServiceApiClient.GetJellyBeansDataForRectangle(ContainerUnit, height, width, length);
+                jellyBeansResult = await _ServiceApiClient.GetJellyBeansDataForRectangle(ContainerUnit, height, width, length);
             }
 
             return RedirectToAction("Index", new
@@ -155,7 +155,7 @@ namespace SamSmithNZ.Web.Controllers
             float mandMResult = 0f;
             float peanutMandMResult = 0f;
             float skittlesResult = 0f;
-            float JellyBeansResult = 0f;
+            float jellyBeansResult = 0f;
             float height;
             float radius;
             if (float.TryParse(txtHeight, out height) == true &&
@@ -164,7 +164,7 @@ namespace SamSmithNZ.Web.Controllers
                 mandMResult = await _ServiceApiClient.GetMandMDataForCylinder(ContainerUnit, height, radius);
                 peanutMandMResult = await _ServiceApiClient.GetPeanutMandMDataForCylinder(ContainerUnit, height, radius);
                 skittlesResult = await _ServiceApiClient.GetSkittlesDataForCylinder(ContainerUnit, height, radius);
-                JellyBeansResult = await _ServiceApiClient.GetJellyBeansDataForCylinder(ContainerUnit, height, radius);
+                jellyBeansResult = await _ServiceApiClient.GetJellyBeansDataForCylinder(ContainerUnit, height, radius);
             }
 
             return RedirectToAction("Index", new
