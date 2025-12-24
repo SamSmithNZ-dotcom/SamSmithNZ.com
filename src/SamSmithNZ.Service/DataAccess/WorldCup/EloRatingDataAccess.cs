@@ -313,13 +313,12 @@ namespace SamSmithNZ.Service.DataAccess.WorldCup
 
                 private static TeamELORating GetTeamELORating(int tournamentCode, int teamCode, string teamName, int? currentELORanking, List<TeamELORating> teamList)
                 {
-                    foreach (TeamELORating item in teamList)
+                    TeamELORating existingTeam = teamList.FirstOrDefault(item => item.TeamCode == teamCode);
+                    if (existingTeam != null)
                     {
-                        if (item.TeamCode == teamCode)
-                        {
-                            return item;
-                        }
+                        return existingTeam;
                     }
+
                     if (currentELORanking < 500 || currentELORanking == null)
                     {
                         currentELORanking = 1000;
