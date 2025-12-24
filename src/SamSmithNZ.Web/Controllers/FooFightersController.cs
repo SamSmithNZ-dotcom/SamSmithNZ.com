@@ -24,15 +24,16 @@ namespace SamSmithNZ.Web.Controllers
 
         public async Task<IActionResult> ShowHistory(int yearCode = 0)
         {
-            List<Year> years = await _ServiceApiClient.GetYears();
-            List<AverageSetlist> averageSetlists = await _ServiceApiClient.GetAverageSetlist(yearCode);
-            List<Show> shows = await _ServiceApiClient.GetShowsByYear(yearCode);
+            Task<List<Year>> yearsTask = _ServiceApiClient.GetYears();
+            Task<List<AverageSetlist>> averageSetlistsTask = _ServiceApiClient.GetAverageSetlist(yearCode);
+            Task<List<Show>> showsTask = _ServiceApiClient.GetShowsByYear(yearCode);
+            await Task.WhenAll(yearsTask, averageSetlistsTask, showsTask);
 
-            return View(new ShowHistoryViewModel(years)
+            return View(new ShowHistoryViewModel(await yearsTask)
             {
                 YearCode = yearCode,
-                AverageSetlists = averageSetlists,
-                Shows = shows
+                AverageSetlists = await averageSetlistsTask,
+                Shows = await showsTask
             });
         }
 
@@ -54,13 +55,14 @@ namespace SamSmithNZ.Web.Controllers
             {
                 songCode = (int)songkey;
             }
-            Song song = await _ServiceApiClient.GetSong(songCode);
-            List<Show> shows = await _ServiceApiClient.GetShowsBySong(songCode);
+            Task<Song> songTask = _ServiceApiClient.GetSong(songCode);
+            Task<List<Show>> showsTask = _ServiceApiClient.GetShowsBySong(songCode);
+            await Task.WhenAll(songTask, showsTask);
 
             return View(new SongViewModel
             {
-                Song = song,
-                Shows = shows
+                Song = await songTask,
+                Shows = await showsTask
             });
         }
 
@@ -71,13 +73,14 @@ namespace SamSmithNZ.Web.Controllers
             {
                 showCode = (int)showkey;
             }
-            Show show = await _ServiceApiClient.GetShow(showCode);
-            List<Song> songs = await _ServiceApiClient.GetSongsByShow(showCode);
+            Task<Show> showTask = _ServiceApiClient.GetShow(showCode);
+            Task<List<Song>> songsTask = _ServiceApiClient.GetSongsByShow(showCode);
+            await Task.WhenAll(showTask, songsTask);
 
             return View(new ShowViewModel
             {
-                Show = show,
-                Songs = songs
+                Show = await showTask,
+                Songs = await songsTask
             });
         }
 
@@ -88,13 +91,14 @@ namespace SamSmithNZ.Web.Controllers
             {
                 albumCode = (int)albumkey;
             }
-            Album album = await _ServiceApiClient.GetAlbum(albumCode);
-            List<Song> songs = await _ServiceApiClient.GetSongsByAlbum(albumCode);
+            Task<Album> albumTask = _ServiceApiClient.GetAlbum(albumCode);
+            Task<List<Song>> songsTask = _ServiceApiClient.GetSongsByAlbum(albumCode);
+            await Task.WhenAll(albumTask, songsTask);
 
             return View(new AlbumViewModel
             {
-                Album = album,
-                Songs = songs
+                Album = await albumTask,
+                Songs = await songsTask
             });
         }
 
