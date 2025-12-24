@@ -3,7 +3,6 @@ using Microsoft.Extensions.Configuration;
 using SamSmithNZ.Service.DataAccess.Base;
 using SamSmithNZ.Service.DataAccess.ITunes.Interfaces;
 using SamSmithNZ.Service.Models.ITunes;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
@@ -14,13 +13,14 @@ namespace SamSmithNZ.Service.DataAccess.ITunes
     {
         public PlaylistDataAccess(IConfiguration configuration)
         {
-            base.SetupConnectionString(configuration);
+            SetupConnectionString(configuration);
         }
+
         public async Task<List<Playlist>> GetList()
         {
             DynamicParameters parameters = new();
 
-            return await base.GetList("ITunes_GetPlaylists", parameters);
+            return await GetList("ITunes_GetPlaylists", parameters);
         }
 
         public async Task<Playlist> GetItem(int playlistCode)
@@ -28,7 +28,7 @@ namespace SamSmithNZ.Service.DataAccess.ITunes
             DynamicParameters parameters = new();
             parameters.Add("@PlaylistCode", playlistCode, DbType.Int32);
 
-            return await base.GetItem("ITunes_GetPlaylists", parameters);
+            return await GetItem("ITunes_GetPlaylists", parameters);
         }
 
         //public async Task<int> SaveItem(DateTime dteDate)
@@ -36,7 +36,7 @@ namespace SamSmithNZ.Service.DataAccess.ITunes
         //    DynamicParameters parameters = new();
         //    parameters.Add("@PlaylistDate", dteDate, DbType.DateTime);
 
-        //    return await base.GetScalarItem<int>("ITunes_ImportCreateNewPlayList", parameters);
+        //    return await GetScalarItem<int>("ITunes_ImportCreateNewPlayList", parameters);
         //}
 
         //public async Task<bool> DeleteItem(int playlistCode)
@@ -44,7 +44,7 @@ namespace SamSmithNZ.Service.DataAccess.ITunes
         //    DynamicParameters parameters = new();
         //    parameters.Add("@PlaylistCode", playlistCode, DbType.Int32);
 
-        //    return await base.SaveItem("ITunes_ImportDeletePlaylistTracks", parameters);
+        //    return await SaveItem("ITunes_ImportDeletePlaylistTracks", parameters);
         //}
 
     }

@@ -1,8 +1,5 @@
-﻿using Dapper;
-using SamSmithNZ.Service.Models.ITunes;
-using System;
+﻿using SamSmithNZ.Service.Models.ITunes;
 using System.Collections.Generic;
-using System.Data;
 using System.Threading.Tasks;
 
 namespace SamSmithNZ.Service.DataAccess.ITunes.Interfaces
