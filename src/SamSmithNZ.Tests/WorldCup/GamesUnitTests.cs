@@ -30,7 +30,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
             Assert.AreEqual(1, results.Count);
             Assert.AreEqual(14, results[0].TournamentCode);
         }

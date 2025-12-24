@@ -29,8 +29,8 @@ namespace SamSmithNZ.Tests.GuitarTab
             List<Tab> results = await controller.GetTabs(albumCode, sortOrder); 
 
             //assert
-            Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotNull(results);
+            Assert.IsNotEmpty(results);
         }
 
         //3. Get tab 500/Everlong
@@ -45,16 +45,16 @@ namespace SamSmithNZ.Tests.GuitarTab
             Tab results = await controller.GetTab(tabCode); //Tab code of 500/Everlong
 
             //assert
-            Assert.IsTrue(results != null);
-            Assert.IsTrue(results.AlbumCode == 14);
-            Assert.IsTrue(results.Rating == 5);
-            Assert.IsTrue(results.TabCode == 500);
-            Assert.IsTrue(results.TabName == "Everlong");
-            Assert.IsTrue(results.TabNameTrimed == "Everlong");
-            Assert.IsTrue(results.TabOrder == 11);
-            Assert.IsTrue(results.TabText.Length == 7477);
-            Assert.IsTrue(results.TuningCode == 2);
-            Assert.IsTrue(results.TuningName == "Drop D Tuning");
+            Assert.IsNotNull(results);
+            Assert.AreEqual(14, results.AlbumCode);
+            Assert.AreEqual(5, results.Rating);
+            Assert.AreEqual(500, results.TabCode);
+            Assert.AreEqual("Everlong", results.TabName);
+            Assert.AreEqual("Everlong", results.TabNameTrimed);
+            Assert.AreEqual(11, results.TabOrder);
+            Assert.AreEqual(7477, results.TabText.Length);
+            Assert.AreEqual(2, results.TuningCode);
+            Assert.AreEqual("Drop D Tuning", results.TuningName);
             Assert.IsTrue(results.LastUpdated > DateTime.MinValue);
         }
 
@@ -70,7 +70,7 @@ namespace SamSmithNZ.Tests.GuitarTab
             Tab results = await controller.GetTab(tabCode); //Tab code of 0/nothing
 
             //assert
-            Assert.IsTrue(results == null);
+            Assert.IsNull(results);
         }
 
         //Test album 14, sorted by track
@@ -86,24 +86,24 @@ namespace SamSmithNZ.Tests.GuitarTab
             List<Tab> results = await controller.GetTabs(albumCode, sortOrder); 
 
             //assert
-            Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count == 13);
+            Assert.IsNotNull(results);
+            Assert.AreEqual(13, results.Count);
             int i = 0;
             foreach (Tab result in results)
             {
                 i++;
                 if (result.TabCode == 500)
                 {
-                    Assert.IsTrue(i == 11);
-                    Assert.IsTrue(result.AlbumCode == 14);
-                    Assert.IsTrue(result.Rating == 5);
-                    Assert.IsTrue(result.TabCode == 500);
-                    Assert.IsTrue(result.TabName == "Everlong");
-                    Assert.IsTrue(result.TabNameTrimed == "Everlong");
-                    Assert.IsTrue(result.TabOrder == 11);
-                    Assert.IsTrue(result.TabText.Length == 7477);
-                    Assert.IsTrue(result.TuningCode == 2);
-                    Assert.IsTrue(result.TuningName == "Drop D Tuning");
+                    Assert.AreEqual(11, i);
+                    Assert.AreEqual(14, result.AlbumCode);
+                    Assert.AreEqual(5, result.Rating);
+                    Assert.AreEqual(500, result.TabCode);
+                    Assert.AreEqual("Everlong", result.TabName);
+                    Assert.AreEqual("Everlong", result.TabNameTrimed);
+                    Assert.AreEqual(11, result.TabOrder);
+                    Assert.AreEqual(7477, result.TabText.Length);
+                    Assert.AreEqual(2, result.TuningCode);
+                    Assert.AreEqual("Drop D Tuning", result.TuningName);
                     Assert.IsTrue(result.LastUpdated > DateTime.MinValue);
                     break;
                 }
@@ -130,16 +130,16 @@ namespace SamSmithNZ.Tests.GuitarTab
                 i++;
                 if (result.TabCode == 500)
                 {
-                    Assert.IsTrue(i == 5); //Is 5th in the tab order when sorting by tuning
-                    Assert.IsTrue(result.AlbumCode == 14);
-                    Assert.IsTrue(result.Rating == 5);
-                    Assert.IsTrue(result.TabCode == 500);
-                    Assert.IsTrue(result.TabName == "Everlong");
-                    Assert.IsTrue(result.TabNameTrimed == "Everlong");
-                    Assert.IsTrue(result.TabOrder == 11);
-                    Assert.IsTrue(result.TabText.Length == 7477);
-                    Assert.IsTrue(result.TuningCode == 2);
-                    Assert.IsTrue(result.TuningName == "Drop D Tuning");
+                    Assert.AreEqual(5, i); //Is 5th in the tab order when sorting by tuning
+                    Assert.AreEqual(14, result.AlbumCode);
+                    Assert.AreEqual(5, result.Rating);
+                    Assert.AreEqual(500, result.TabCode);
+                    Assert.AreEqual("Everlong", result.TabName);
+                    Assert.AreEqual("Everlong", result.TabNameTrimed);
+                    Assert.AreEqual(11, result.TabOrder);
+                    Assert.AreEqual(7477, result.TabText.Length);
+                    Assert.AreEqual(2, result.TuningCode);
+                    Assert.AreEqual("Drop D Tuning", result.TuningName);
                     Assert.IsTrue(result.LastUpdated > DateTime.MinValue);
                     break;
                 }
@@ -170,13 +170,13 @@ namespace SamSmithNZ.Tests.GuitarTab
             List<Tab> results = await controller.GetTabs(albumCode, sortOrder);
 
             //assert part 2: check that the track is correct
-            Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
-            Assert.IsTrue(results[0].TabCode > 0);
-            Assert.IsTrue(results[0].AlbumCode == albumCode);
-            Assert.IsTrue(results[0].TabName == "Test track 14");
-            Assert.IsTrue(results[0].TabNameTrimed == "Testtrack14");
-            Assert.IsTrue(results[0].TabText == "Test track text 14");
+            Assert.IsNotNull(results);
+            Assert.IsNotEmpty(results);
+            Assert.IsGreaterThan(0, results[0].TabCode);
+            Assert.AreEqual(albumCode, results[0].AlbumCode);
+            Assert.AreEqual("Test track 14", results[0].TabName);
+            Assert.AreEqual("Testtrack14", results[0].TabNameTrimed);
+            Assert.AreEqual("Test track text 14", results[0].TabText);
             Assert.IsTrue(results[0].LastUpdated > DateTime.MinValue);
 
             //act part 3: delete the tracks
@@ -189,8 +189,8 @@ namespace SamSmithNZ.Tests.GuitarTab
             results = await controller.GetTabs(albumCode, sortOrder);
 
             //assert part 4: check that the tracks have all been deleted
-            Assert.IsTrue(results != null);
-            Assert.AreEqual(0, results.Count);
+            Assert.IsNotNull(results);
+            Assert.IsEmpty(results);
         }
 
     }

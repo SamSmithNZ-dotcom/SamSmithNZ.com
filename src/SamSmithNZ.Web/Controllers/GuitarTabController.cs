@@ -19,14 +19,23 @@ namespace SamSmithNZ.Web.Controllers
 
         public async Task<IActionResult> Index(bool isAdmin = false)
         {
-            List<Artist> artists = await _ServiceApiClient.GetArtists(isAdmin);
-            List<Album> albums = await _ServiceApiClient.GetAlbums(isAdmin);
+            // Execute both API calls in parallel
+            Task<List<Artist>> artistsTask = _ServiceApiClient.GetArtists(isAdmin);
+            Task<List<Album>> albumsTask = _ServiceApiClient.GetAlbums(isAdmin);
+            await Task.WhenAll(artistsTask, albumsTask);
+
+            List<Artist> artists = await artistsTask;
+            List<Album> albums = await albumsTask;
+
+            // Use ToLookup for O(1) lookups instead of O(n) per artist
+            ILookup<string, Album> albumLookup = albums.ToLookup(a => a.ArtistName);
+
+            // Combine artists and their albums
             List<KeyValuePair<Artist, List<Album>>> items = new();
             foreach (Artist artist in artists)
             {
-                List<Album> artistAlbums = (albums.Where(a => a.ArtistName == artist.ArtistName)).ToList<Album>();
-                KeyValuePair<Artist, List<Album>> newItem = new(artist, artistAlbums);
-                items.Add(newItem);
+                List<Album> artistAlbums = albumLookup[artist.ArtistName].ToList();
+                items.Add(new KeyValuePair<Artist, List<Album>>(artist, artistAlbums));
             }
 
             return View(new IndexViewModel
@@ -43,13 +52,14 @@ namespace SamSmithNZ.Web.Controllers
 
         public async Task<IActionResult> Album(int albumCode, bool isAdmin = false)
         {
-            Album album = await _ServiceApiClient.GetAlbum(albumCode, isAdmin);
-            List<Tab> tabs = await _ServiceApiClient.GetTabs(albumCode);
+            Task<Album> albumTask = _ServiceApiClient.GetAlbum(albumCode, isAdmin);
+            Task<List<Tab>> tabsTask = _ServiceApiClient.GetTabs(albumCode);
+            await Task.WhenAll(albumTask, tabsTask);
 
             return View(new AlbumViewModel()
             {
-                Album = album,
-                Tabs = tabs,
+                Album = await albumTask,
+                Tabs = await tabsTask,
                 IsAdmin = isAdmin
             });
         }
@@ -77,13 +87,14 @@ namespace SamSmithNZ.Web.Controllers
 
         public async Task<IActionResult> EditAlbum(int albumCode, bool isAdmin = false)
         {
-            Album album = await _ServiceApiClient.GetAlbum(albumCode, true);
-            List<Tab> tabs = await _ServiceApiClient.GetTabs(albumCode);
+            Task<Album> albumTask = _ServiceApiClient.GetAlbum(albumCode, true);
+            Task<List<Tab>> tabsTask = _ServiceApiClient.GetTabs(albumCode);
+            await Task.WhenAll(albumTask, tabsTask);
 
             return View(new AlbumTabsViewModel
             {
-                Album = album,
-                Tabs = tabs,
+                Album = await albumTask,
+                Tabs = await tabsTask,
                 IsAdmin = isAdmin
             });
         }
@@ -93,6 +104,13 @@ namespace SamSmithNZ.Web.Controllers
             bool chkIsBassTab, bool chkIncludeInIndex, bool chkIncludeOnWebsite, bool chkIsMiscCollectionAlbum, bool isAdmin = false)
         //string txtTrackList)
         {
+
+            if (!int.TryParse(txtYear, out int year))
+            {
+                // Return to form with error or use ModelState
+                return RedirectToAction("EditAlbum", new { albumCode = albumCode, isAdmin = isAdmin });
+            }
+
             Album album = new()
             {
                 AlbumCode = albumCode,
@@ -127,11 +145,15 @@ namespace SamSmithNZ.Web.Controllers
         public async Task<IActionResult> EditTab(int tabCode, bool isAdmin = false)
         {
 
-            Tab tab = await _ServiceApiClient.GetTab(tabCode);
-            List<Rating> ratings = await _ServiceApiClient.GetRatings();
-            List<Tuning> tunings = await _ServiceApiClient.GetTunings();
+            Task<Tab> tabTask = _ServiceApiClient.GetTab(tabCode);
+            Task<List<Rating>> ratingsTask = _ServiceApiClient.GetRatings();
+            Task<List<Tuning>> tuningsTask = _ServiceApiClient.GetTunings();
+            await Task.WhenAll(tabTask, ratingsTask, tuningsTask);
 
-            return View(new TabsViewModel(ratings, tunings)
+            //because we need all of the properties of Tab, we await here, instead of in the view return
+            Tab tab = await tabTask;
+
+            return View(new TabsViewModel(await ratingsTask, await tuningsTask)
             {
                 Tab = tab,
                 Rating = tab.Rating == null ? "" : tab.Rating.ToString(),
@@ -171,7 +193,7 @@ namespace SamSmithNZ.Web.Controllers
             {
                 TabCode = 0,
                 AlbumCode = albumCode,
-                TabName = "Track " + (tabs.Count + 1).ToString(),
+                TabName = $"Track {tabs.Count + 1}",
                 TabText = "",
                 TabOrder = (tabs.Count + 1),
                 Rating = 0, // no rating

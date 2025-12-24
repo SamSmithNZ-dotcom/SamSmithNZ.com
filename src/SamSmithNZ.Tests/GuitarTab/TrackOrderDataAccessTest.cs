@@ -22,8 +22,8 @@ namespace SamSmithNZ.Tests.GuitarTab
             List<TrackOrder> results = await controller.GetTrackOrders();
 
             //assert
-            Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotNull(results);
+            Assert.IsNotEmpty(results);
         }
 
         [TestMethod()]
@@ -36,12 +36,12 @@ namespace SamSmithNZ.Tests.GuitarTab
             List<TrackOrder> results = await controller.GetTrackOrders();
 
             //assert
-            Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count >= 2);
-            Assert.IsTrue(results[0].SortOrderCode == 0);
-            Assert.IsTrue(results[0].SortOrderName != "[unknown]");
-            Assert.IsTrue(results[1].SortOrderCode == 1);
-            Assert.IsTrue(results[1].SortOrderName != "");
+            Assert.IsNotNull(results);
+            Assert.IsGreaterThanOrEqualTo(2, results.Count);
+            Assert.AreEqual(0, results[0].SortOrderCode);
+            Assert.AreNotEqual("[unknown]", results[0].SortOrderName);
+            Assert.AreEqual(1, results[1].SortOrderCode);
+            Assert.AreNotEqual("", results[1].SortOrderName);
         }
     }
 }

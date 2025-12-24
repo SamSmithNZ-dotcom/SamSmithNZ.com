@@ -13,7 +13,7 @@ namespace SamSmithNZ.Service.DataAccess.GuitarTab
     {
         public TabDataAccess(IConfiguration configuration)
         {
-            base.SetupConnectionString(configuration);
+            SetupConnectionString(configuration);
         }
 
         public async Task<List<Tab>> GetList(int albumCode, int sortOrder)
@@ -22,7 +22,7 @@ namespace SamSmithNZ.Service.DataAccess.GuitarTab
             parameters.Add("@AlbumCode", albumCode, DbType.Int32);
             parameters.Add("@SortOrder", sortOrder, DbType.Int32);
 
-            return await base.GetList("Tab_GetTabs", parameters);
+            return await GetList("Tab_GetTabs", parameters);
         }
 
         public async Task<Tab> GetItem(int tabCode)
@@ -30,7 +30,7 @@ namespace SamSmithNZ.Service.DataAccess.GuitarTab
             DynamicParameters parameters = new();
             parameters.Add("@TabCode", tabCode, DbType.Int32);
 
-            List<Tab> results = await base.GetList("Tab_GetTabs", parameters);
+            List<Tab> results = await GetList("Tab_GetTabs", parameters);
 
             //Sometimes a tab can be associated with multiple albums, so we need to get a list and return the first record in those cases
             if (results.Count > 0)
@@ -54,7 +54,7 @@ namespace SamSmithNZ.Service.DataAccess.GuitarTab
             parameters.Add("@Rating", item.Rating, DbType.Int32);
             parameters.Add("@TuningCode", item.TuningCode, DbType.Int32);
 
-            return await base.SaveItem("Tab_SaveTab", parameters);
+            return await SaveItem("Tab_SaveTab", parameters);
         }
 
         public async Task<bool> DeleteItem(int tabCode)
@@ -62,7 +62,7 @@ namespace SamSmithNZ.Service.DataAccess.GuitarTab
             DynamicParameters parameters = new();
             parameters.Add("@TabCode", tabCode, DbType.Int32);
 
-            return await base.SaveItem("Tab_DeleteTab", parameters);
+            return await SaveItem("Tab_DeleteTab", parameters);
         }
 
     }

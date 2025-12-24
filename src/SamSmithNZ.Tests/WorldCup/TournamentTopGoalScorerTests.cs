@@ -25,7 +25,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
             Assert.IsTrue(results[0].PlayerName == "Harry Kane");
             Assert.IsTrue(results[0].FlagName != "");
             Assert.IsTrue(results[0].GoalsScored > 0);
@@ -47,7 +47,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
             Assert.IsTrue(results[0].PlayerName == "Ahmed Fathy");
             Assert.IsTrue(results[0].FlagName != "");
             Assert.IsTrue(results[0].GoalsScored > 0);

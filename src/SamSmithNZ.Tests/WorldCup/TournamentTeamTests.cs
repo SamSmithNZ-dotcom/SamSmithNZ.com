@@ -24,7 +24,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
         }
 
         [TestMethod()]
@@ -39,7 +39,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
             bool found1 = false;
             foreach (TournamentTeam item in results)
             {
@@ -64,7 +64,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
         }
 
         [TestMethod()]
@@ -79,7 +79,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
             bool found1 = false;
             foreach (TournamentTeam item in results)
             {

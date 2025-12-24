@@ -23,7 +23,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
         }
 
         [TestMethod()]
@@ -38,7 +38,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
             Assert.IsTrue(results[0].Number == 2);
             Assert.IsTrue(results[0].PlayerCode > 0);
             Assert.IsTrue(results[0].PlayerName == "Alves, Dani (Brazil)");

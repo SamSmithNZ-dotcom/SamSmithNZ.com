@@ -25,7 +25,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
             bool found19 = false;
             foreach (StatsAverageTournamentGoals item in results)
             {

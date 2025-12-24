@@ -27,8 +27,8 @@ namespace SamSmithNZ.Tests.GuitarTab
             List<Search> results = await controller.GetSearchResults(searchText, recordId);
 
             //assert
-            Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count == 2);
+            Assert.IsNotNull(results);
+            Assert.HasCount(2, results);
         }
 
         //3. Specific Search Tab 14
@@ -44,15 +44,15 @@ namespace SamSmithNZ.Tests.GuitarTab
             List<Search> results = await controller.GetSearchResults(searchText, recordId);
 
             //assert
-            Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count >= 0);
-            Assert.IsTrue(results[0] != null);
-            Assert.IsTrue(results[0].AlbumCode == 14);
-            Assert.IsTrue(results[0].ArtistAlbumResult == "Foo Fighters - The Colour And The Shape");
-            Assert.IsTrue(results[0].IsBassTab == false);
-            Assert.IsTrue(results[0].TrackName == "Everlong");
-            Assert.IsTrue(results[0].TrackResult == "11. Everlong");
-            Assert.IsTrue(results[0].SearchText == "Everlong");
+            Assert.IsNotNull(results);
+            Assert.IsGreaterThanOrEqualTo(0, results.Count);
+            Assert.IsNotNull(results[0]);
+            Assert.AreEqual(14, results[0].AlbumCode);
+            Assert.AreEqual("Foo Fighters - The Colour And The Shape", results[0].ArtistAlbumResult);
+            Assert.IsFalse(results[0].IsBassTab);
+            Assert.AreEqual("Everlong", results[0].TrackName);
+            Assert.AreEqual("11. Everlong", results[0].TrackResult);
+            Assert.AreEqual("Everlong", results[0].SearchText);
 
         }
 
@@ -67,22 +67,22 @@ namespace SamSmithNZ.Tests.GuitarTab
             List<Search> results = await controller.GetSearchResults(searchText);
 
             //assert 
-            Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count >= 19);
-            Assert.IsTrue(results[0] != null);
-            Assert.IsTrue(results[0].AlbumCode == 168);
-            Assert.IsTrue(results[0].ArtistAlbumResult == "Cure - Disintegration");
-            Assert.IsTrue(results[0].IsBassTab == false);
-            Assert.IsTrue(results[0].TrackName == "Homesick");
-            Assert.IsTrue(results[0].TrackResult == "11. Homesick");
-            Assert.IsTrue(results[0].SearchText == "home");
-            Assert.IsTrue(results[1] != null);
-            Assert.IsTrue(results[1].AlbumCode == 203);
-            Assert.IsTrue(results[1].ArtistAlbumResult == "Foo Fighters - Echoes, Silence, Patience And Grace");
-            Assert.IsTrue(results[1].IsBassTab == false);
-            Assert.IsTrue(results[1].TrackName == "Home");
-            Assert.IsTrue(results[1].TrackResult == "12. Home");
-            Assert.IsTrue(results[1].SearchText == "home");
+            Assert.IsNotNull(results);
+            Assert.IsGreaterThanOrEqualTo(19, results.Count);
+            Assert.IsNotNull(results[0]);
+            Assert.AreEqual(168, results[0].AlbumCode);
+            Assert.AreEqual("Cure - Disintegration", results[0].ArtistAlbumResult);
+            Assert.IsFalse(results[0].IsBassTab);
+            Assert.AreEqual("Homesick", results[0].TrackName);
+            Assert.AreEqual("11. Homesick", results[0].TrackResult);
+            Assert.AreEqual("home", results[0].SearchText);
+            Assert.IsNotNull(results[1]);
+            Assert.AreEqual(203, results[1].AlbumCode);
+            Assert.AreEqual("Foo Fighters - Echoes, Silence, Patience And Grace", results[1].ArtistAlbumResult);
+            Assert.IsFalse(results[1].IsBassTab);
+            Assert.AreEqual("Home", results[1].TrackName);
+            Assert.AreEqual("12. Home", results[1].TrackResult);
+            Assert.AreEqual("home", results[1].SearchText);
         }
 
         [TestMethod()]
@@ -96,8 +96,8 @@ namespace SamSmithNZ.Tests.GuitarTab
             List<Search> results = await controller.GetSearchResults(searchText);
 
             //assert 
-            Assert.IsTrue(results != null);
-            Assert.AreEqual(0, results.Count);
+            Assert.IsNotNull(results);
+            Assert.IsEmpty(results);
         }
 
     }

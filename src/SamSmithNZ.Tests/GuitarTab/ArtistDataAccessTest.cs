@@ -23,8 +23,8 @@ namespace SamSmithNZ.Tests.GuitarTab
             List<Artist> results = await controller.GetArtists(includeAllItems);
 
             //assert
-            Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotNull(results);
+            Assert.IsNotEmpty(results);
         }
 
         [TestMethod()]
@@ -38,10 +38,10 @@ namespace SamSmithNZ.Tests.GuitarTab
             List<Artist> results = await controller.GetArtists(includeAllItems);
 
             //assert
-            Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
-            Assert.IsTrue(results[0].ArtistName == "Ash");
-            Assert.IsTrue(results[0].ArtistNameTrimed == "Ash");
+            Assert.IsNotNull(results);
+            Assert.IsNotEmpty(results);
+            Assert.AreEqual("Ash", results[0].ArtistName);
+            Assert.AreEqual("Ash", results[0].ArtistNameTrimed);
         }
 
         [TestMethod()]
@@ -55,28 +55,28 @@ namespace SamSmithNZ.Tests.GuitarTab
             List<Artist> results = await controller.GetArtists(includeAllItems);
 
             //assert
-            Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
-            Assert.IsTrue(results[0].ArtistName == "(Top Songs)");
-            Assert.IsTrue(results[0].ArtistNameTrimed == "(TopSongs)");
+            Assert.IsNotNull(results);
+            Assert.IsNotEmpty(results);
+            Assert.AreEqual("(Top Songs)", results[0].ArtistName);
+            Assert.AreEqual("(TopSongs)", results[0].ArtistNameTrimed);
         }
 
-        [TestMethod()]
-        public async Task ArtistsIncludeAllItemsExistTest()
-        {
-            //arrange
-            ArtistController controller = new(new ArtistDataAccess(base.Configuration));
-            bool includeAllItems = true;
+                [TestMethod()]
+                public async Task ArtistsIncludeAllItemsExistTest()
+                {
+                    //arrange
+                    ArtistController controller = new(new ArtistDataAccess(base.Configuration));
+                    bool includeAllItems = true;
 
-            //act
-            List<Artist> results = await controller.GetArtists(includeAllItems);
+                    //act
+                    List<Artist> results = await controller.GetArtists(includeAllItems);
 
-            //assert
-            Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+                    //assert
+                    Assert.IsNotNull(results);
+                    Assert.IsNotEmpty(results);
+                }
+
+            }
         }
-
-    }
-}
 
 

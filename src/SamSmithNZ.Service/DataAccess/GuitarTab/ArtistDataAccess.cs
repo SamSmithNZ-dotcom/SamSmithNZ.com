@@ -13,7 +13,7 @@ namespace SamSmithNZ.Service.DataAccess.GuitarTab
     {
         public ArtistDataAccess(IConfiguration configuration)
         {
-            base.SetupConnectionString(configuration);
+            SetupConnectionString(configuration);
         }
 
         public async Task<List<Artist>> GetList(bool? includeAllItems, bool isAdmin)
@@ -25,7 +25,7 @@ namespace SamSmithNZ.Service.DataAccess.GuitarTab
             }
             parameters.Add("@IsAdmin", isAdmin, DbType.Boolean);
 
-            return await base.GetList("Tab_GetArtists", parameters);
+            return await GetList("Tab_GetArtists", parameters);
         }
 
     }

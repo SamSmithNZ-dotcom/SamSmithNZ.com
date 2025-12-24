@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace SamSmithNZ.Service.Models.GuitarTab
+﻿namespace SamSmithNZ.Service.Models.GuitarTab
 {
     public class Tuning
     {
