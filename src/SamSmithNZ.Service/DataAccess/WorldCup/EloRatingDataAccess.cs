@@ -5,6 +5,7 @@ using SamSmithNZ.Service.DataAccess.WorldCup.Interfaces;
 using SamSmithNZ.Service.Models.WorldCup;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 using static SamSmithNZ.Service.DataAccess.WorldCup.EloRating;
 
@@ -23,23 +24,37 @@ namespace SamSmithNZ.Service.DataAccess.WorldCup
         {
             GameDataAccess da = new(_configuration);
             List<Game> games = await da.GetListByTournament(tournamentCode);
+
+            TournamentTeamDataAccess tournamentTeamDA = new(_configuration);
+            List<TournamentTeam> tournamentTeams = await tournamentTeamDA.GetQualifiedTeams(tournamentCode);
+            Dictionary<int, TournamentTeam> teamCache = tournamentTeams.ToDictionary(t => t.TeamCode);
+
+            GamePreEloRatingDataAccess preEloDA = new(_configuration);
+            List<Game> gamesToUpdate = new();
+
             foreach (Game game in games)
             {
                 if (game.Team1NormalTimeScore != null || game.Team2NormalTimeScore != null)
                 {
-                    await UpdateGameELORating(tournamentCode, game.GameCode);
+                    bool updated = await UpdateGameELORatingOptimized(tournamentCode, game, teamCache, preEloDA);
+                    if (updated)
+                    {
+                        gamesToUpdate.Add(game);
+                    }
                 }
             }
 
+            if (gamesToUpdate.Count > 0)
+            {
+                await BatchUpdateGames(gamesToUpdate);
+            }
+
+            if (teamCache.Count > 0)
+            {
+                await BatchUpdateTournamentTeams(tournamentCode, teamCache.Values.ToList());
+            }
+
             return true;
-            //List<TeamELORating> results = await CalculateEloForTournamentAsync(tournamentCode);
-
-            //foreach (TeamELORating item in results)
-            //{
-            //    await SaveTeamELORatingAsync(tournamentCode, item.TeamCode, item.ELORating);
-            //}
-
-            //return results;
         }
 
         public async Task<bool> UpdateGameELORating(int tournamentCode,
@@ -296,23 +311,115 @@ namespace SamSmithNZ.Service.DataAccess.WorldCup
             return await base.SaveItem("FB_SaveTournamentTeamELORating", parameters);
         }
 
-        private static TeamELORating GetTeamELORating(int tournamentCode, int teamCode, string teamName, int? currentELORanking, List<TeamELORating> teamList)
-        {
-            foreach (TeamELORating item in teamList)
-            {
-                if (item.TeamCode == teamCode)
+                private static TeamELORating GetTeamELORating(int tournamentCode, int teamCode, string teamName, int? currentELORanking, List<TeamELORating> teamList)
                 {
-                    return item;
+                    foreach (TeamELORating item in teamList)
+                    {
+                        if (item.TeamCode == teamCode)
+                        {
+                            return item;
+                        }
+                    }
+                    if (currentELORanking < 500 || currentELORanking == null)
+                    {
+                        currentELORanking = 1000;
+                    }
+                    TeamELORating newTeam = new(tournamentCode, teamCode, teamName, (int)currentELORanking);
+                    teamList.Add(newTeam);
+                    return newTeam;
                 }
-            }
-            if (currentELORanking < 500 || currentELORanking == null)
-            {
-                currentELORanking = 1000;
-            }
-            TeamELORating newTeam = new(tournamentCode, teamCode, teamName, (int)currentELORanking);
-            teamList.Add(newTeam);
-            return newTeam;
-        }
 
-    }
-}
+                private async Task<bool> UpdateGameELORatingOptimized(int tournamentCode, Game game, 
+                    Dictionary<int, TournamentTeam> teamCache, GamePreEloRatingDataAccess preEloDA)
+                {
+                    double diff = 400;
+
+                    bool gamePreELORatingIsDirty = false;
+                    if (game.Team1PreGameEloRating == 0 || game.Team2PreGameEloRating == 0)
+                    {
+                        gamePreELORatingIsDirty = true;
+                    }
+
+                    GamePreEloRating gamePreELORating = await preEloDA.GetGamePreELORatings(tournamentCode, game.GameCode);
+                    game.Team1PreGameEloRating = gamePreELORating.Team1PreELORating;
+                    game.Team2PreGameEloRating = gamePreELORating.Team2PreELORating;
+
+                    List<TeamELORating> teamRatingList = new();
+                    TeamELORating team1 = GetTeamELORating(tournamentCode, game.Team1Code, game.Team1Name, game.Team1PreGameEloRating, teamRatingList);
+                    TeamELORating team2 = GetTeamELORating(tournamentCode, game.Team2Code, game.Team2Name, game.Team2PreGameEloRating, teamRatingList);
+                    EloRating eloRating = new();
+                    WhoWonEnum? result = eloRating.WhoWon(game);
+                    double kFactor = eloRating.CalculateKFactor(game);
+                    if (result != null)
+                    {
+                        (int, int) eloResult;
+                        if (result == WhoWonEnum.Team1)
+                        {
+                            eloResult = eloRating.GetEloRatingScoresForMatchUp((int)game.Team1PreGameEloRating, (int)game.Team2PreGameEloRating, true, false, kFactor, diff);
+                            team1.Wins++;
+                            team2.Losses++;
+                        }
+                        else if (result == WhoWonEnum.Team2)
+                        {
+                            eloResult = eloRating.GetEloRatingScoresForMatchUp((int)game.Team1PreGameEloRating, (int)game.Team2PreGameEloRating, false, true, kFactor, diff);
+                            team1.Losses++;
+                            team2.Wins++;
+                        }
+                        else
+                        {
+                            eloResult = eloRating.GetEloRatingScoresForMatchUp((int)game.Team1PreGameEloRating, (int)game.Team2PreGameEloRating, false, false, kFactor, diff);
+                            team1.Draws++;
+                            team2.Draws++;
+                        }
+                        team1.ELORating = eloResult.Item1;
+                        team1.GameCount++;
+                        team2.ELORating = eloResult.Item2;
+                        team2.GameCount++;
+
+                        bool needsUpdate = gamePreELORatingIsDirty || game.Team1PostGameEloRating == null || 
+                            game.Team2PostGameEloRating == null || game.Team1PostGameEloRating != team1.ELORating || 
+                            game.Team2PostGameEloRating != team2.ELORating;
+
+                        if (needsUpdate)
+                        {
+                            game.Team1PostGameEloRating = team1.ELORating;
+                            game.Team2PostGameEloRating = team2.ELORating;
+
+                            if (teamCache.TryGetValue(game.Team1Code, out TournamentTeam tournamentTeam1))
+                            {
+                                tournamentTeam1.CurrentEloRating = team1.ELORating;
+                            }
+                            if (teamCache.TryGetValue(game.Team2Code, out TournamentTeam tournamentTeam2))
+                            {
+                                tournamentTeam2.CurrentEloRating = team2.ELORating;
+                            }
+
+                            return true;
+                        }
+                    }
+
+                    return false;
+                }
+
+                private async Task<bool> BatchUpdateGames(List<Game> games)
+                {
+                    GameDataAccess da = new(_configuration);
+                    foreach (Game game in games)
+                    {
+                        await da.SaveItem(game);
+                    }
+                    return true;
+                }
+
+                private async Task<bool> BatchUpdateTournamentTeams(int tournamentCode, List<TournamentTeam> teams)
+                {
+                    TournamentTeamDataAccess da = new(_configuration);
+                    foreach (TournamentTeam team in teams)
+                    {
+                        await da.SaveELOItem(team);
+                    }
+                    return true;
+                }
+
+            }
+        }
