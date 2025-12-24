@@ -27,7 +27,7 @@ namespace SamSmithNZ.Tests.FooFighters
             List<Show> items = await controller.GetShowsBySong(songKey);
 
             //assert
-            Assert.IsTrue(items != null);
+            Assert.IsNotNull(items);
             Assert.IsTrue(items.Count > 0);
         }
 
@@ -42,18 +42,18 @@ namespace SamSmithNZ.Tests.FooFighters
             List<Show> items = await controller.GetShowsBySong(songKey);
 
             //assert
-            Assert.IsTrue(items != null);
+            Assert.IsNotNull(items);
             Assert.IsTrue(items.Count > 0);
-            Assert.IsTrue(items[0].Notes != "");
+            Assert.AreNotEqual("", items[0].Notes);
             Assert.IsTrue(items[0].NumberOfSongsPlayed >= 0);
-            Assert.IsTrue(items[0].ShowCity == "Portland, OR");
-            Assert.IsTrue(items[0].ShowCountry == null);
+            Assert.AreEqual("Portland, OR", items[0].ShowCity);
+            Assert.IsNull(items[0].ShowCountry);
             Assert.IsTrue(items[0].ShowDate >= DateTime.MinValue);
-            Assert.IsTrue(items[0].ShowCode == 3);
-            Assert.IsTrue(items[0].ShowLocation != "");
+            Assert.AreEqual(3, items[0].ShowCode);
+            Assert.AreNotEqual("", items[0].ShowLocation);
             Assert.IsTrue(items[0].LastUpdated > DateTime.MinValue);
-            Assert.IsTrue(items[0].FFLCode == 0);
-            Assert.IsTrue(items[0].FFLURL == null);
+            Assert.AreEqual(0, items[0].FFLCode);
+            Assert.IsNull(items[0].FFLURL);
         }
 
         [TestMethod()]
@@ -67,7 +67,7 @@ namespace SamSmithNZ.Tests.FooFighters
             List<Show> items = await controller.GetShowsByYear(yearCode);
 
             //assert
-            Assert.IsTrue(items != null);
+            Assert.IsNotNull(items);
             Assert.IsTrue(items.Count > 0);
         }
 
@@ -82,13 +82,13 @@ namespace SamSmithNZ.Tests.FooFighters
             List<Show> items = await controller.GetShowsByYear(yearCode);
 
             //assert
-            Assert.IsTrue(items != null);
+            Assert.IsNotNull(items);
             Assert.IsTrue(items.Count > 0);
             Assert.IsTrue(items[2].NumberOfSongsPlayed >= 0);
-            Assert.IsTrue(items[2].ShowCity == "Seattle, WA");
+            Assert.AreEqual("Seattle, WA", items[2].ShowCity);
             Assert.IsTrue(items[2].ShowDate >= DateTime.MinValue);
-            Assert.IsTrue(items[2].ShowCode == 4);
-            Assert.IsTrue(items[2].ShowLocation != "");
+            Assert.AreEqual(4, items[2].ShowCode);
+            Assert.AreNotEqual("", items[2].ShowLocation);
         }
 
 
@@ -103,19 +103,19 @@ namespace SamSmithNZ.Tests.FooFighters
             Show result = await controller.GetShow(showKey);
 
             //assert
-            Assert.IsTrue(result != null);
+            Assert.IsNotNull(result);
             //Assert.IsTrue(result.IsCancelledShow == false);
             //Assert.IsTrue(result.IsPostponedShow == false);
             //Assert.IsTrue(result.Notes != "");
             //Assert.IsTrue(result.NumberOfRecordings >= 0);
-            Assert.IsTrue(result.NumberOfSongsPlayed >= 0);
+            Assert.IsGreaterThanOrEqualTo(0, result.NumberOfSongsPlayed);
             //Assert.IsTrue(result.NumberOfUnconfirmedRecordings >= 0);
             //Assert.IsTrue(result.OtherPerformers != "");
-            Assert.IsTrue(result.ShowCity == "Portland, OR");
+            Assert.AreEqual("Portland, OR", result.ShowCity);
             //Assert.IsTrue(result.ShowCountry == "United States");
             Assert.IsTrue(result.ShowDate >= DateTime.MinValue);
-            Assert.IsTrue(result.ShowCode == 3);
-            Assert.IsTrue(result.ShowLocation != "");
+            Assert.AreEqual(3, result.ShowCode);
+            Assert.AreNotEqual("", result.ShowLocation);
         }
 
         [TestMethod()]
@@ -129,7 +129,7 @@ namespace SamSmithNZ.Tests.FooFighters
             Show result = await controller.GetShow(showKey);
 
             //assert
-            Assert.IsTrue(result == null);
+            Assert.IsNull(result);
             ////Assert.IsTrue(result.IsCancelledShow == false);
             ////Assert.IsTrue(result.IsPostponedShow == false);
             ////Assert.IsTrue(result.Notes != "");

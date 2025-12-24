@@ -24,10 +24,10 @@ namespace SamSmithNZ.Tests.FooFighters
             List<Album> items = await controller.GetAlbums(); 
 
             //assert
-            Assert.IsTrue(items != null);
-            Assert.IsTrue(items.Count > 0); //There is more than one
-            Assert.IsTrue(items[0].AlbumCode > 0); //The first item has an id
-            Assert.IsTrue(items[0].AlbumName.Length > 0); //The first item has an name
+            Assert.IsNotNull(items);
+            Assert.IsNotEmpty(items); //There is more than one
+            Assert.IsGreaterThan(0, items[0].AlbumCode); //The first item has an id
+            Assert.IsGreaterThan(0, items[0].AlbumName.Length); //The first item has an name
         }
 
         [TestMethod()]
@@ -41,10 +41,10 @@ namespace SamSmithNZ.Tests.FooFighters
             Album item = await controller.GetAlbum(albumKey);
 
             //assert
-            Assert.IsTrue(item != null);
-            Assert.IsTrue(item.AlbumImage == "220px-FooFighters-FooFighters.jpg");
-            Assert.IsTrue(item.AlbumCode == 1);
-            Assert.IsTrue(item.AlbumName == "Foo Fighters");
+            Assert.IsNotNull(item);
+            Assert.AreEqual("220px-FooFighters-FooFighters.jpg", item.AlbumImage);
+            Assert.AreEqual(1, item.AlbumCode);
+            Assert.AreEqual("Foo Fighters", item.AlbumName);
             Assert.IsTrue(item.AlbumReleaseDate >= DateTime.MinValue);
         }
 
