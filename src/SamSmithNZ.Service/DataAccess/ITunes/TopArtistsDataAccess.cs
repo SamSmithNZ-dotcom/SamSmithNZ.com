@@ -3,7 +3,6 @@ using Microsoft.Extensions.Configuration;
 using SamSmithNZ.Service.DataAccess.Base;
 using SamSmithNZ.Service.DataAccess.ITunes.Interfaces;
 using SamSmithNZ.Service.Models.ITunes;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
@@ -14,7 +13,7 @@ namespace SamSmithNZ.Service.DataAccess.ITunes
     {
         public TopArtistsDataAccess(IConfiguration configuration)
         {
-            base.SetupConnectionString(configuration);
+            SetupConnectionString(configuration);
         }
 
         public async Task<List<TopArtists>> GetList(int playlistCode, bool showJustSummary)
@@ -23,7 +22,7 @@ namespace SamSmithNZ.Service.DataAccess.ITunes
             parameters.Add("@PlaylistCode", playlistCode, DbType.Int32);
             parameters.Add("@ShowJustSummary", showJustSummary, DbType.Boolean);
 
-            return await base.GetList("ITunes_GetTopArtists", parameters);
+            return await GetList("ITunes_GetTopArtists", parameters);
         }
      
         public async Task<List<TopArtists>> GetList(bool showJustSummary)
@@ -31,7 +30,7 @@ namespace SamSmithNZ.Service.DataAccess.ITunes
             DynamicParameters parameters = new();
             parameters.Add("@ShowJustSummary", showJustSummary, DbType.Boolean);
 
-            return await base.GetList("ITunes_GetTopArtists", parameters);
+            return await GetList("ITunes_GetTopArtists", parameters);
         }  
 
     }
