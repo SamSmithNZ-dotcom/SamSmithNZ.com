@@ -11,12 +11,12 @@ namespace SamSmithNZ.Service.DataAccess.FooFighters
     {
         public YearDataAccess(IConfiguration configuration)
         {
-            base.SetupConnectionString(configuration);
+            SetupConnectionString(configuration);
         }
 
         public async Task<List<Year>> GetList()
         {
-            return await base.GetList("FFL_GetYearList");
+            return await GetList("FFL_GetYearList");
         }
       
     }

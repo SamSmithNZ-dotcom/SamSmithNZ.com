@@ -23,8 +23,8 @@ namespace SamSmithNZ.Tests.FooFighters
             List<Year> items = await controller.GetYears();
 
             //assert
-            Assert.IsTrue(items != null);
-            Assert.IsTrue(items.Count > 0);
+            Assert.IsNotNull(items);
+            Assert.IsNotEmpty(items);
 
         }
 
@@ -38,10 +38,10 @@ namespace SamSmithNZ.Tests.FooFighters
             List<Year> items = await controller.GetYears();
 
             //assert
-            Assert.IsTrue(items != null);
-            Assert.IsTrue(items.Count > 0);
-            Assert.IsTrue(items[^1].YearCode == 1995);  //^1 is same as items.Count-1
-            Assert.IsTrue(items[^1].YearText != ""); //^1 is same as items.Count-1
+            Assert.IsNotNull(items);
+            Assert.IsNotEmpty(items);
+            Assert.AreEqual(1995, items[^1].YearCode);  //^1 is same as items.Count-1
+            Assert.AreNotEqual("", items[^1].YearText); //^1 is same as items.Count-1
         }
 
     }

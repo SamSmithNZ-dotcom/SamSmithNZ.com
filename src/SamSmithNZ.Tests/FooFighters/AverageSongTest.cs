@@ -26,8 +26,8 @@ namespace SamSmithNZ.Tests.FooFighters
             List<AverageSetlist> items = await controller.GetAverageSetlist(yearCode, minimumSongCount, showAllSongs);
 
             //assert
-            Assert.IsTrue(items != null);
-            Assert.IsTrue(items.Count > 0);
+            Assert.IsNotNull(items);
+            Assert.IsNotEmpty(items);
         }
 
         [TestMethod()]
@@ -43,14 +43,14 @@ namespace SamSmithNZ.Tests.FooFighters
             List<AverageSetlist> items = await controller.GetAverageSetlist(yearCode, minimumSongCount, showAllSongs);
 
             //assert
-            Assert.IsTrue(items != null);
-            Assert.IsTrue(items.Count > 0);
-            Assert.IsTrue(items[0].SongCode > 0);
-            Assert.IsTrue(items[0].SongName != "");
-            Assert.IsTrue(items[0].AvgShowSongOrder > 0);
-            Assert.IsTrue(items[0].SongCount > 0);
-            Assert.IsTrue(items[0].SongRank > 0);
-            Assert.IsTrue(items[0].YearCode > 0);
+            Assert.IsNotNull(items);
+            Assert.IsNotEmpty(items);
+            Assert.IsGreaterThan(0, items[0].SongCode);
+            Assert.AreNotEqual("", items[0].SongName);
+            Assert.IsGreaterThan(0, items[0].AvgShowSongOrder);
+            Assert.IsGreaterThan(0, items[0].SongCount);
+            Assert.IsGreaterThan(0, items[0].SongRank);
+            Assert.IsGreaterThan(0, items[0].YearCode);
         }
 
     }
