@@ -26,7 +26,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
         }
 
         [TestMethod()]
@@ -42,7 +42,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
             Assert.IsTrue(results[0].RoundCode == "A");
             Assert.IsTrue(results[0].IsLastRound == false);
         }

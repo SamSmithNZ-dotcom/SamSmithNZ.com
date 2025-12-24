@@ -22,8 +22,8 @@ namespace SamSmithNZ.Tests.GuitarTab
             List<Rating> results = await controller.GetRatings();
 
             //assert
-            Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotNull(results);
+            Assert.IsNotEmpty(results);
         }
 
         [TestMethod()]
@@ -34,12 +34,12 @@ namespace SamSmithNZ.Tests.GuitarTab
 
             //act
             List<Rating> results = await controller.GetRatings();
-            
+
             //assert
-            Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
-            Assert.IsTrue(results[0].RatingCode == 0);
-            Assert.IsTrue(results[1].RatingCode == 1);
+            Assert.IsNotNull(results);
+            Assert.IsNotEmpty(results);
+            Assert.AreEqual(0, results[0].RatingCode);
+            Assert.AreEqual(1, results[1].RatingCode);
         }
 
     }

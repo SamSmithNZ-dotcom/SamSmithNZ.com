@@ -23,7 +23,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
             Assert.IsTrue(results[0].GameCode > 0);
             Assert.IsTrue(results[0].GoalCode > 0);
             Assert.IsTrue(results[0].GoalTime == 11);
@@ -77,7 +77,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
             Assert.IsTrue(results[0].GameCode > 0);
             Assert.IsTrue(results[0].GoalCode > 0);
             Assert.IsTrue(results[0].GoalTime == 11);
@@ -143,7 +143,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
             Assert.AreEqual(0, gameCode);
             Assert.AreEqual(0, injuryTimeGoalsNotInInjuryTime);
         }

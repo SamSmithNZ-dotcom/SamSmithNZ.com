@@ -27,7 +27,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
         }
 
         [TestMethod()]
@@ -44,7 +44,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
             Assert.IsTrue(results[0].Draws >= 0);
             Assert.IsTrue(results[0].GoalDifference >= 0);
             Assert.IsTrue(results[0].GoalsAgainst >= 0);

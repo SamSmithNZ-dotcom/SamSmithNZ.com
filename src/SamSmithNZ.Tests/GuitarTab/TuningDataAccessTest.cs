@@ -22,8 +22,8 @@ namespace SamSmithNZ.Tests.GuitarTab
             List<Tuning> results = await controller.GetTunings();
 
             //assert
-            Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotNull(results);
+            Assert.IsNotEmpty(results);
         }
 
         [TestMethod()]
@@ -36,10 +36,10 @@ namespace SamSmithNZ.Tests.GuitarTab
             List<Tuning> results = await controller.GetTunings();
 
             //assert
-            Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
-            Assert.IsTrue(results[0].TuningCode == 0);
-            Assert.IsTrue(results[0].TuningName == "[unknown]");
+            Assert.IsNotNull(results);
+            Assert.IsNotEmpty(results);
+            Assert.AreEqual(0, results[0].TuningCode);
+            Assert.AreEqual("[unknown]", results[0].TuningName);
         }
 
     }

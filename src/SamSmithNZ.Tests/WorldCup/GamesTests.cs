@@ -30,7 +30,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
             foreach (Game result in results)
             {
                 if (result.GameCode == 11)
@@ -107,7 +107,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
             foreach (Game item in results)
             {
                 if (item.GameCode == gameCode)
@@ -131,7 +131,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
             foreach (Game item in results)
             {
                 if (item.GameCode == gameCode)
@@ -193,7 +193,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
             foreach (Game item in results)
             {
                 if (item.GameCode == gameCode)
@@ -253,7 +253,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
             foreach (Game item in results)
             {
                 if (item.GameCode == gameCode)
@@ -308,7 +308,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
             foreach (Game item in results)
             {
                 if (item.GameCode == gameCode)
@@ -363,7 +363,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
             foreach (Game item in results)
             {
                 if (item.GameCode == gameCode)
@@ -460,7 +460,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
             int totalGamesCheck = (gamesExpectedWon + gamesExpectedLoss + gamesUnexpectedWin + gamesUnexpectedLoss + gamesUnexpectedDraw + gamesUnknown + gamesNotPlayed);
             Assert.AreEqual(totalGamesCheck, results.Count);
         }
@@ -504,7 +504,7 @@ namespace SamSmithNZ.Tests.WorldCup
 
             //assert
             Assert.IsTrue(results != null);
-            Assert.IsTrue(results.Count > 0);
+            Assert.IsNotEmpty(results);
             int totalGamesCheck = (gamesExpectedWon + gamesExpectedLoss + gamesUnexpectedWin + gamesUnexpectedLoss + gamesUnexpectedDraw + gamesUnknown);
             Assert.AreEqual(totalGamesCheck, results.Count);
             Assert.IsTrue(gamesUnexpectedDraw >= 3);
