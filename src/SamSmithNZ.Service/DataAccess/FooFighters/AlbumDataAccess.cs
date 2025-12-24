@@ -13,12 +13,12 @@ namespace SamSmithNZ.Service.DataAccess.FooFighters
     {
         public AlbumDataAccess(IConfiguration configuration)
         {
-            base.SetupConnectionString(configuration);
+            SetupConnectionString(configuration);
         }
 
         public async Task<List<Album>> GetList()
         {
-            return await base.GetList("FFL_GetAlbums");
+            return await GetList("FFL_GetAlbums");
         }
 
         public async Task<Album> GetItem(int albumCode)
@@ -26,7 +26,7 @@ namespace SamSmithNZ.Service.DataAccess.FooFighters
             DynamicParameters parameters = new();
             parameters.Add("@albumCode", albumCode, DbType.Int32);
 
-            return await base.GetItem("FFL_GetAlbums", parameters);
+            return await GetItem("FFL_GetAlbums", parameters);
         }
     }
 }

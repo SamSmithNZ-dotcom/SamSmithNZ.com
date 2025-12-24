@@ -13,12 +13,12 @@ namespace SamSmithNZ.Service.DataAccess.FooFighters
     {
         public SongDataAccess(IConfiguration configuration)
         {
-            base.SetupConnectionString(configuration);
+            SetupConnectionString(configuration);
         }
 
         public async Task<List<Song>> GetList()
         {
-            return await base.GetList("FFL_GetSongs");
+            return await GetList("FFL_GetSongs");
         }
 
         public async Task<List<Song>> GetListForAlbumAsync(int albumCode)
@@ -26,7 +26,7 @@ namespace SamSmithNZ.Service.DataAccess.FooFighters
             DynamicParameters parameters = new();
             parameters.Add("@AlbumCode", albumCode, DbType.Int32);
 
-            return await base.GetList("FFL_GetSongs", parameters);
+            return await GetList("FFL_GetSongs", parameters);
         }
 
         public async Task<List<Song>> GetListForShowAsync(int showCode)
@@ -34,7 +34,7 @@ namespace SamSmithNZ.Service.DataAccess.FooFighters
             DynamicParameters parameters = new();
             parameters.Add("@ShowCode", showCode, DbType.Int32);
 
-            return await base.GetList("FFL_GetSongs", parameters);
+            return await GetList("FFL_GetSongs", parameters);
         }
 
         public async Task<Song> GetItem(int songCode)
@@ -42,7 +42,7 @@ namespace SamSmithNZ.Service.DataAccess.FooFighters
             DynamicParameters parameters = new();
             parameters.Add("@SongCode", songCode, DbType.Int32);
 
-            return await base.GetItem("FFL_GetSongs", parameters);
+            return await GetItem("FFL_GetSongs", parameters);
         }
 
         public async Task<bool> SaveItem(int songCode, int showCode, int showSongOrder)
@@ -52,7 +52,7 @@ namespace SamSmithNZ.Service.DataAccess.FooFighters
             parameters.Add("@ShowCode", showCode, DbType.Int32);
             parameters.Add("@ShowSongOrder", showSongOrder, DbType.Int32);
 
-            return await base.SaveItem("FFL_SaveShowSong", parameters);
+            return await SaveItem("FFL_SaveShowSong", parameters);
         }
     }
 }

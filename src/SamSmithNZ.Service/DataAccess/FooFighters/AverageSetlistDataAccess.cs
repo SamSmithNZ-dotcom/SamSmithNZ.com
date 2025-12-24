@@ -13,7 +13,7 @@ namespace SamSmithNZ.Service.DataAccess.FooFighters
     {
         public AverageSetlistDataAccess(IConfiguration configuration)
         {
-            base.SetupConnectionString(configuration);
+            SetupConnectionString(configuration);
         }
 
         public async Task<List<AverageSetlist>> GetList(int yearCode, int minimumSongCount, bool showAllSongs)
@@ -23,7 +23,7 @@ namespace SamSmithNZ.Service.DataAccess.FooFighters
             parameters.Add("@ShowMinimumSongCount", minimumSongCount, DbType.Int32);
             parameters.Add("@ShowAllSongs", showAllSongs, DbType.Boolean);
 
-            return await base.GetList("FFL_GetAverageSetlist", parameters);
+            return await GetList("FFL_GetAverageSetlist", parameters);
         }
 
     }

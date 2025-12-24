@@ -13,7 +13,7 @@ namespace SamSmithNZ.Service.DataAccess.FooFighters
     {
         public ShowDataAccess(IConfiguration configuration)
         {
-            base.SetupConnectionString(configuration);
+            SetupConnectionString(configuration);
         }
 
         public async Task<List<Show>> GetListByYearAsync(int yearCode)
@@ -21,7 +21,7 @@ namespace SamSmithNZ.Service.DataAccess.FooFighters
             DynamicParameters parameters = new();
             parameters.Add("@yearCode", yearCode, DbType.Int32);
 
-            return await base.GetList("FFL_GetShows", parameters);
+            return await GetList("FFL_GetShows", parameters);
         }
 
         public async Task<List<Show>> GetListBySongAsync(int songCode)
@@ -29,7 +29,7 @@ namespace SamSmithNZ.Service.DataAccess.FooFighters
             DynamicParameters parameters = new();
             parameters.Add("@songCode", songCode, DbType.Int32);
 
-            return await base.GetList("FFL_GetShows", parameters);
+            return await GetList("FFL_GetShows", parameters);
         }
 
         public async Task<List<Show>> GetListByFFLCode()
@@ -37,7 +37,7 @@ namespace SamSmithNZ.Service.DataAccess.FooFighters
             DynamicParameters parameters = new();
             parameters.Add("@GetFFLCodes", true, DbType.Int32);
 
-            return await base.GetList("FFL_GetShows", parameters);
+            return await GetList("FFL_GetShows", parameters);
         }
 
         public async Task<Show> GetItem(int showCode)
@@ -45,7 +45,7 @@ namespace SamSmithNZ.Service.DataAccess.FooFighters
             DynamicParameters parameters = new();
             parameters.Add("@showCode", showCode, DbType.Int32);
 
-            return await base.GetItem("FFL_GetShows", parameters);
+            return await GetItem("FFL_GetShows", parameters);
         }
 
         public async Task<bool> SaveItem(Show show)
@@ -57,7 +57,7 @@ namespace SamSmithNZ.Service.DataAccess.FooFighters
             parameters.Add("@ShowCity", show.ShowCity, DbType.String);
             parameters.Add("@ShowCountry", show.ShowCountry, DbType.String);
 
-            return await base.SaveItem("FFL_SaveShow", parameters);
+            return await SaveItem("FFL_SaveShow", parameters);
         }
     }
 }
