@@ -144,7 +144,7 @@ namespace SamSmithNZ.Tests.DataAccess.WorldCup
                                 int teamCode = 1;
 
                                 // Act
-                                Game? result = await dataAccess.GetNextGame(tournamentCode, gameCode, teamCode);
+                                await dataAccess.GetNextGame(tournamentCode, gameCode, teamCode);
 
                                 // Assert - result can be null if no next game exists, which is valid
                                 Assert.IsNotNull(dataAccess);
