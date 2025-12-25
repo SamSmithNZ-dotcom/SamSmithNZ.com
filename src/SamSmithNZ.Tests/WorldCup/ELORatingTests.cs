@@ -1,11 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SamSmithnNZ.Tests;
-using SamSmithNZ.Service.Controllers.WorldCup;
 using SamSmithNZ.Service.DataAccess.WorldCup;
-using SamSmithNZ.Service.Models.GuitarTab;
 using SamSmithNZ.Service.Models.WorldCup;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using static SamSmithNZ.Service.DataAccess.WorldCup.EloRating;
 
 namespace SamSmithNZ.Tests.WorldCup
