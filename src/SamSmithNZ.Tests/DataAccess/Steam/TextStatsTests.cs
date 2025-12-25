@@ -313,8 +313,9 @@ namespace SamSmithNZ.Tests.DataAccess.Steam
 
             // Assert
             stats.SortList(false);
-            Assert.IsTrue(stats.TextStatistics.ContainsKey("complete"));
-            Assert.AreEqual(4, stats.TextStatistics["complete"]);
+            int completeCount;
+            Assert.IsTrue(stats.TextStatistics.TryGetValue("complete", out completeCount));
+            Assert.AreEqual(4, completeCount);
             Assert.IsFalse(stats.TextStatistics.ContainsKey("the"));
             Assert.IsFalse(stats.TextStatistics.ContainsKey("10"));
             Assert.IsFalse(stats.TextStatistics.ContainsKey("100"));
