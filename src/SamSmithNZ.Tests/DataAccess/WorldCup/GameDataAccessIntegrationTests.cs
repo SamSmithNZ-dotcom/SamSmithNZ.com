@@ -126,7 +126,7 @@ namespace SamSmithNZ.Tests.DataAccess.WorldCup
                             new Service.DataAccess.WorldCup.GameDataAccess(Configuration);
 
                         // Act
-                        Game? result = await dataAccess.GetNextGame(1, 1, 1);
+                        await dataAccess.GetNextGame(1, 1, 1);
 
                         // Assert - result can be null if no next game exists
                         // This test just verifies the method executes without error
