@@ -5,6 +5,7 @@ using System;
 namespace SamSmithNZ.Tests.Models.WorldCup
 {
     [TestClass]
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     [TestCategory("L0")]
     public class GameTests
     {
