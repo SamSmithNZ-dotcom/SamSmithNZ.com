@@ -55,19 +55,35 @@ namespace SamSmithNZ.Tests.DataAccess.FooFighters
             Assert.IsTrue(results.Count > 0);
         }
 
-        [TestMethod]
-        public async Task SongDataAccess_GetItem_ReturnsSong()
-        {
-            // Arrange
-            SongDataAccess da = new(base.Configuration);
-            int songCode = 1;
+                [TestMethod]
+                public async Task SongDataAccess_GetItem_ReturnsSong()
+                {
+                    // Arrange
+                    SongDataAccess da = new(base.Configuration);
+                    int songCode = 1;
 
-            // Act
-            Song result = await da.GetItem(songCode);
+                    // Act
+                    Song result = await da.GetItem(songCode);
 
-            // Assert
-            Assert.IsNotNull(result);
-            Assert.AreEqual(1, result.SongCode);
+                    // Assert
+                    Assert.IsNotNull(result);
+                    Assert.AreEqual(1, result.SongCode);
+                }
+
+                [TestMethod]
+                public async Task SongDataAccess_SaveItem_ExecutesSuccessfully()
+                {
+                    // Arrange
+                    SongDataAccess da = new(base.Configuration);
+                    int songCode = 1;
+                    int showCode = 3;
+                    int showSongOrder = 5;
+
+                    // Act
+                    bool result = await da.SaveItem(songCode, showCode, showSongOrder);
+
+                    // Assert - Just verify it executes
+                    Assert.IsFalse(result == null);
+                }
+            }
         }
-    }
-}

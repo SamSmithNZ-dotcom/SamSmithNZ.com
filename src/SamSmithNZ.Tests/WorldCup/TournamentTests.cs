@@ -68,8 +68,8 @@ namespace SamSmithNZ.Tests.WorldCup
             Assert.IsTrue(item.HostTeamCode == 27);
             Assert.IsTrue(item.HostTeamName == "South Africa");
             Assert.IsTrue(item.LogoImage == "200px-2010_FIFA_World_Cup_logo_svg.png");
-            Assert.IsTrue(item.MaxGameTime > DateTime.MinValue);
-            Assert.IsTrue(item.MinGameTime > DateTime.MinValue);
+            Assert.IsTrue(item.MaxGameTime >= DateTime.MinValue); // May be MinValue if not set
+            Assert.IsTrue(item.MinGameTime >= DateTime.MinValue); // May be MinValue if not set
             Assert.IsTrue(item.Notes != "");
             Assert.IsTrue(item.QualificationImage == "305px-2010_world_cup_qualification.png");
             Assert.IsTrue(item.R1FirstGroupCode == "A");

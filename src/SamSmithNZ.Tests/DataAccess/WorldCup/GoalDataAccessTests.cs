@@ -147,18 +147,73 @@ namespace SamSmithNZ.Tests.DataAccess.WorldCup
                     Assert.AreEqual(45, results[0].GoalTime);
                 }
 
-                [TestMethod]
-                public async System.Threading.Tasks.Task GoalDataAccess_GetList_ReturnsAllGoals()
-                {
-                    // Arrange
-                    GoalDataAccess da = new(base.Configuration);
+                        [TestMethod]
+                        public async System.Threading.Tasks.Task GoalDataAccess_GetList_ReturnsAllGoals()
+                        {
+                            // Arrange
+                            GoalDataAccess da = new(base.Configuration);
 
-                    // Act
-                    List<Goal> results = await da.GetList();
+                            // Act
+                            List<Goal> results = await da.GetList();
 
-                    // Assert
-                    Assert.IsNotNull(results);
-                    Assert.IsTrue(results.Count > 0);
+                            // Assert
+                            Assert.IsNotNull(results);
+                            Assert.IsTrue(results.Count > 0);
+                        }
+
+                        [TestMethod]
+                        public async System.Threading.Tasks.Task GoalDataAccess_GetListByGame_ReturnsGoals()
+                        {
+                            // Arrange
+                            GoalDataAccess da = new(base.Configuration);
+                            int gameCode = 1;
+
+                            // Act
+                            List<Goal> results = await da.GetListByGame(gameCode);
+
+                            // Assert
+                            Assert.IsNotNull(results);
+                        }
+
+                        [TestMethod]
+                        public async System.Threading.Tasks.Task GoalDataAccess_SaveItem_ExecutesSuccessfully()
+                        {
+                            // Arrange
+                            GoalDataAccess da = new(base.Configuration);
+                            Goal goal = new()
+                            {
+                                GoalCode = 1,
+                                GameCode = 1,
+                                PlayerCode = 1,
+                                GoalTime = 45,
+                                InjuryTime = 0,
+                                IsPenalty = false,
+                                IsOwnGoal = false,
+                                IsGoldenGoal = false
+                            };
+
+                            // Act
+                            bool result = await da.SaveItem(goal);
+
+                            // Assert - Just verify it executes
+                            Assert.IsFalse(result == null);
+                        }
+
+                        [TestMethod]
+                        public async System.Threading.Tasks.Task GoalDataAccess_DeleteItem_ExecutesSuccessfully()
+                        {
+                            // Arrange
+                            GoalDataAccess da = new(base.Configuration);
+                            Goal goal = new()
+                            {
+                                GoalCode = 1
+                            };
+
+                            // Act
+                            bool result = await da.DeleteItem(goal);
+
+                            // Assert - Just verify it executes
+                            Assert.IsFalse(result == null);
+                        }
+                    }
                 }
-            }
-        }

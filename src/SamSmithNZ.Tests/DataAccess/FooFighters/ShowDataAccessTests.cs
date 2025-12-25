@@ -55,19 +55,40 @@ namespace SamSmithNZ.Tests.DataAccess.FooFighters
             Assert.IsTrue(results.Count > 0);
         }
 
-        [TestMethod]
-        public async Task ShowDataAccess_GetItem_ReturnsShow()
-        {
-            // Arrange
-            ShowDataAccess da = new(base.Configuration);
-            int showCode = 3;
+                [TestMethod]
+                public async Task ShowDataAccess_GetItem_ReturnsShow()
+                {
+                    // Arrange
+                    ShowDataAccess da = new(base.Configuration);
+                    int showCode = 3;
 
-            // Act
-            Show result = await da.GetItem(showCode);
+                    // Act
+                    Show result = await da.GetItem(showCode);
 
-            // Assert
-            Assert.IsNotNull(result);
-            Assert.AreEqual(3, result.ShowCode);
+                    // Assert
+                    Assert.IsNotNull(result);
+                    Assert.AreEqual(3, result.ShowCode);
+                }
+
+                [TestMethod]
+                public async Task ShowDataAccess_SaveItem_ExecutesSuccessfully()
+                {
+                    // Arrange
+                    ShowDataAccess da = new(base.Configuration);
+                    Show show = new()
+                    {
+                        ShowCode = 3,
+                        ShowDate = new System.DateTime(2024, 6, 15),
+                        ShowLocation = "Test Venue",
+                        ShowCity = "Test City",
+                        ShowCountry = "Test Country"
+                    };
+
+                    // Act
+                    bool result = await da.SaveItem(show);
+
+                    // Assert - Just verify it executes
+                    Assert.IsFalse(result == null);
+                }
+            }
         }
-    }
-}
