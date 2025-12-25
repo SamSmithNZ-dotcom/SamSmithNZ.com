@@ -27,19 +27,34 @@ namespace SamSmithNZ.Tests.DataAccess.WorldCup
             Assert.AreEqual(19, result.TournamentCode);
         }
 
-        [TestMethod]
-        public async Task TournamentTeamDataAccess_GetTeamsPlacingAsync_ReturnsTeams()
-        {
-            // Arrange
-            TournamentTeamDataAccess da = new(base.Configuration);
-            int tournamentCode = 19;
+                [TestMethod]
+                public async Task TournamentTeamDataAccess_GetTeamsPlacingAsync_ReturnsTeams()
+                {
+                    // Arrange
+                    TournamentTeamDataAccess da = new(base.Configuration);
+                    int tournamentCode = 19;
 
-            // Act
-            var results = await da.GetTeamsPlacingAsync(tournamentCode);
+                    // Act
+                    var results = await da.GetTeamsPlacingAsync(tournamentCode);
 
-            // Assert
-            Assert.IsNotNull(results);
-            Assert.IsTrue(results.Count > 0);
+                    // Assert
+                    Assert.IsNotNull(results);
+                    Assert.IsTrue(results.Count > 0);
+                }
+
+                [TestMethod]
+                public async Task TournamentTeamDataAccess_GetQualifiedTeams_ReturnsTeams()
+                {
+                    // Arrange
+                    TournamentTeamDataAccess da = new(base.Configuration);
+                    int tournamentCode = 19;
+
+                    // Act
+                    var results = await da.GetQualifiedTeams(tournamentCode);
+
+                    // Assert
+                    Assert.IsNotNull(results);
+                    Assert.IsTrue(results.Count > 0);
+                }
+            }
         }
-    }
-}

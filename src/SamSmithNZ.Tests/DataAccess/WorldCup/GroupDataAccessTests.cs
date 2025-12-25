@@ -28,20 +28,37 @@ namespace SamSmithNZ.Tests.DataAccess.WorldCup
             Assert.IsTrue(results.Count > 0);
         }
 
-        [TestMethod]
-        public async Task GroupDataAccess_GetListWithNullRoundCode_ReturnsGroups()
-        {
-            // Arrange
-            GroupDataAccess da = new(base.Configuration);
-            int tournamentCode = 19;
-            int roundNumber = 1;
-            string roundCode = null;
+                [TestMethod]
+                public async Task GroupDataAccess_GetListWithNullRoundCode_ReturnsGroups()
+                {
+                    // Arrange
+                    GroupDataAccess da = new(base.Configuration);
+                    int tournamentCode = 19;
+                    int roundNumber = 1;
+                    string roundCode = null;
 
-            // Act
-            List<Group> results = await da.GetList(tournamentCode, roundNumber, roundCode);
+                    // Act
+                    List<Group> results = await da.GetList(tournamentCode, roundNumber, roundCode);
 
-            // Assert
-            Assert.IsNotNull(results);
+                    // Assert
+                    Assert.IsNotNull(results);
+                }
+
+                [TestMethod]
+                public async Task GroupDataAccess_SaveItemAsync_ExecutesSuccessfully()
+                {
+                    // Arrange
+                    GroupDataAccess da = new(base.Configuration);
+                    int tournamentCode = 19;
+                    int roundNumber = 1;
+                    string roundCode = "A";
+                    int teamCode = 1;
+
+                    // Act
+                    bool result = await da.SaveItemAsync(tournamentCode, roundNumber, roundCode, teamCode);
+
+                    // Assert
+                    Assert.IsTrue(result);
+                }
+            }
         }
-    }
-}

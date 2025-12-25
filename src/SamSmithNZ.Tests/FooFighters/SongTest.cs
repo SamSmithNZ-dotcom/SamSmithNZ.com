@@ -29,6 +29,36 @@ namespace SamSmithNZ.Tests.FooFighters
         }
 
         [TestMethod()]
+        public async Task GetListForShowAsyncTest()
+        {
+            //arrange
+            SongDataAccess da = new(base.Configuration);
+            int showCode = 3;
+
+            //act
+            List<Song> results = await da.GetListForShowAsync(showCode);
+
+            //assert
+            Assert.IsNotNull(results);
+            Assert.IsTrue(results.Count > 0);
+        }
+
+        [TestMethod()]
+        public async Task GetItemTest()
+        {
+            //arrange
+            SongDataAccess da = new(base.Configuration);
+            int songCode = 1;
+
+            //act
+            Song result = await da.GetItem(songCode);
+
+            //assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.SongCode);
+        }
+
+        [TestMethod()]
         public async Task SongThisIsACallTest()
         {
             //arrange

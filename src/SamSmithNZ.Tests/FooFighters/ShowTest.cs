@@ -144,19 +144,49 @@ namespace SamSmithNZ.Tests.FooFighters
                     //Assert.IsTrue(result.ShowLocation != "");
                 }
 
-                [TestMethod()]
-                public async Task GetListByFFLCodeTest()
-                {
-                    //arrange
-                    ShowDataAccess da = new(base.Configuration);
+                        [TestMethod()]
+                        public async Task GetListByFFLCodeTest()
+                        {
+                            //arrange
+                            ShowDataAccess da = new(base.Configuration);
 
-                    //act
-                    List<Show> results = await da.GetListByFFLCode();
+                            //act
+                            List<Show> results = await da.GetListByFFLCode();
 
-                    //assert
-                    Assert.IsNotNull(results);
-                    Assert.IsTrue(results.Count > 0);
+                            //assert
+                            Assert.IsNotNull(results);
+                            Assert.IsTrue(results.Count > 0);
+                        }
+
+                        [TestMethod()]
+                        public async Task GetListBySongAsyncTest()
+                        {
+                            //arrange
+                            ShowDataAccess da = new(base.Configuration);
+                            int songCode = 1;
+
+                            //act
+                            List<Show> results = await da.GetListBySongAsync(songCode);
+
+                            //assert
+                            Assert.IsNotNull(results);
+                            Assert.IsTrue(results.Count > 0);
+                        }
+
+                        [TestMethod()]
+                        public async Task GetItemTest()
+                        {
+                            //arrange
+                            ShowDataAccess da = new(base.Configuration);
+                            int showCode = 3;
+
+                            //act
+                            Show result = await da.GetItem(showCode);
+
+                            //assert
+                            Assert.IsNotNull(result);
+                            Assert.AreEqual(3, result.ShowCode);
+                        }
+
+                    }
                 }
-
-            }
-        }

@@ -118,19 +118,36 @@ namespace SamSmithNZ.Tests.DataAccess.WorldCup
                         Assert.IsTrue(result);
                     }
 
-                    [TestMethod]
-                    public async Task GameDataAccess_GetNextGame_ReturnsGame()
-                    {
-                        // Arrange
-                        Service.DataAccess.WorldCup.GameDataAccess dataAccess = 
-                            new Service.DataAccess.WorldCup.GameDataAccess(Configuration);
+                            [TestMethod]
+                            public async Task GameDataAccess_GetNextGame_ReturnsGame()
+                            {
+                                // Arrange
+                                Service.DataAccess.WorldCup.GameDataAccess dataAccess = 
+                                    new Service.DataAccess.WorldCup.GameDataAccess(Configuration);
 
-                        // Act
-                        await dataAccess.GetNextGame(1, 1, 1);
+                                // Act
+                                await dataAccess.GetNextGame(1, 1, 1);
 
-                        // Assert - result can be null if no next game exists
-                        // This test just verifies the method executes without error
-                        Assert.IsNotNull(dataAccess);
+                                // Assert - result can be null if no next game exists
+                                // This test just verifies the method executes without error
+                                Assert.IsNotNull(dataAccess);
+                            }
+
+                            [TestMethod]
+                            public async Task GameDataAccess_GetNextGame_WithValidData_ReturnsNextGame()
+                            {
+                                // Arrange
+                                Service.DataAccess.WorldCup.GameDataAccess dataAccess = 
+                                    new Service.DataAccess.WorldCup.GameDataAccess(Configuration);
+                                int tournamentCode = 19;
+                                int gameCode = 7328;
+                                int teamCode = 1;
+
+                                // Act
+                                Game? result = await dataAccess.GetNextGame(tournamentCode, gameCode, teamCode);
+
+                                // Assert - result can be null if no next game exists, which is valid
+                                Assert.IsNotNull(dataAccess);
+                            }
+                        }
                     }
-                }
-            }
