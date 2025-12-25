@@ -134,7 +134,7 @@ namespace SamSmithNZ.Tests.WorldCup
                         Assert.IsTrue(item.RegionCode == 5);
                         Assert.IsTrue(item.RegionName == "OFC");
                         Assert.IsTrue(item.ELORatingDifference != "");
-                        Assert.IsTrue(item.IsActive == false);
+                        Assert.IsTrue(!item.IsActive);
                         Assert.IsTrue(item.ChanceToWin == 0);
                         Assert.IsTrue(item.GF >= 0);
                         Assert.IsTrue(item.GA >= 0);
