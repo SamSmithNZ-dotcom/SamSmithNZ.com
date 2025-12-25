@@ -312,7 +312,7 @@ namespace SamSmithNZ.Tests.DataAccess.Steam
             stats.AddItem("Win 100 matches", ' ');
 
             // Assert
-            List<KeyValuePair<string, int>> sorted = stats.SortList(false);
+            stats.SortList(false);
             Assert.IsTrue(stats.TextStatistics.ContainsKey("complete"));
             Assert.AreEqual(4, stats.TextStatistics["complete"]);
             Assert.IsFalse(stats.TextStatistics.ContainsKey("the"));
