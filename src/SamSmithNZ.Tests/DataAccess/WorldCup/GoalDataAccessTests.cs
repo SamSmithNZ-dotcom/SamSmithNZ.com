@@ -131,20 +131,34 @@ namespace SamSmithNZ.Tests.DataAccess.WorldCup
             Assert.AreEqual(0, results.Count);
         }
 
-        [TestMethod]
-        public void ProcessGoalHTMLMigration_WithHTMLEntities_ParsesCorrectly()
-        {
-            // Arrange
-            GoalDataAccess da = new(base.Configuration);
-            string goalText = "45&#39;";
-            string playerName = "Test";
+                [TestMethod]
+                public void ProcessGoalHTMLMigration_WithHTMLEntities_ParsesCorrectly()
+                {
+                    // Arrange
+                    GoalDataAccess da = new(base.Configuration);
+                    string goalText = "45&#39;";
+                    string playerName = "Test";
 
-            // Act
-            List<Goal> results = da.ProcessGoalHTMLMigration(goalText, playerName);
+                    // Act
+                    List<Goal> results = da.ProcessGoalHTMLMigration(goalText, playerName);
 
-            // Assert
-            Assert.AreEqual(1, results.Count);
-            Assert.AreEqual(45, results[0].GoalTime);
+                    // Assert
+                    Assert.AreEqual(1, results.Count);
+                    Assert.AreEqual(45, results[0].GoalTime);
+                }
+
+                [TestMethod]
+                public async System.Threading.Tasks.Task GoalDataAccess_GetList_ReturnsAllGoals()
+                {
+                    // Arrange
+                    GoalDataAccess da = new(base.Configuration);
+
+                    // Act
+                    List<Goal> results = await da.GetList();
+
+                    // Assert
+                    Assert.IsNotNull(results);
+                    Assert.IsTrue(results.Count > 0);
+                }
+            }
         }
-    }
-}

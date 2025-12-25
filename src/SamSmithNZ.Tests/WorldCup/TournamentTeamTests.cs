@@ -101,29 +101,46 @@ namespace SamSmithNZ.Tests.WorldCup
             Assert.AreEqual("Paraguay", results[6].TeamName);
             Assert.AreEqual("Ghana", results[7].TeamName);
             Assert.AreEqual("Portugal", results[8].TeamName);
-            Assert.AreEqual("Chile", results[9].TeamName);
-        }
+                        Assert.AreEqual("Chile", results[9].TeamName);
+                    }
 
-        private static void TestNewZealandTeam(TournamentTeam item)
-        {
-            Assert.IsTrue(item.TeamCode == 1);
-            Assert.IsTrue(item.TeamName == "New Zealand");
-            Assert.IsTrue(item.FlagName == "22px-Flag_of_New_Zealand_svg.png");
-            Assert.IsTrue(item.CoachName == "Ricki Herbert");
-            Assert.IsTrue(item.CoachNationalityFlagName == "22px-Flag_of_New_Zealand_svg.png");
-            Assert.IsTrue(item.CurrentEloRating >= 0);
-            Assert.IsTrue(item.FifaRanking == 0);
-            Assert.IsTrue(item.Placing != "");
-            Assert.IsTrue(item.RegionCode == 5);
-            Assert.IsTrue(item.RegionName == "OFC");
-            Assert.IsTrue(item.ELORatingDifference != "");
-            Assert.IsTrue(item.IsActive == false);
-            Assert.IsTrue(item.ChanceToWin == 0);
-            Assert.IsTrue(item.GF >= 0);
-            Assert.IsTrue(item.GA >= 0);
-            Assert.IsTrue(item.GD >= 0);
-        }
+                    [TestMethod]
+                    public async Task GetTournamentTeamAsyncTest()
+                    {
+                        //arrange
+                        TournamentTeamDataAccess da = new(base.Configuration);
+                        int tournamentCode = 19;
+                        int teamCode = 1;
+
+                        //act
+                        TournamentTeam result = await da.GetTournamentTeamAsync(tournamentCode, teamCode);
+
+                        //assert
+                        Assert.IsNotNull(result);
+                        Assert.AreEqual(1, result.TeamCode);
+                        Assert.AreEqual("New Zealand", result.TeamName);
+                    }
+
+                    private static void TestNewZealandTeam(TournamentTeam item)
+                    {
+                        Assert.IsTrue(item.TeamCode == 1);
+                        Assert.IsTrue(item.TeamName == "New Zealand");
+                        Assert.IsTrue(item.FlagName == "22px-Flag_of_New_Zealand_svg.png");
+                        Assert.IsTrue(item.CoachName == "Ricki Herbert");
+                        Assert.IsTrue(item.CoachNationalityFlagName == "22px-Flag_of_New_Zealand_svg.png");
+                        Assert.IsTrue(item.CurrentEloRating >= 0);
+                        Assert.IsTrue(item.FifaRanking == 0);
+                        Assert.IsTrue(item.Placing != "");
+                        Assert.IsTrue(item.RegionCode == 5);
+                        Assert.IsTrue(item.RegionName == "OFC");
+                        Assert.IsTrue(item.ELORatingDifference != "");
+                        Assert.IsTrue(item.IsActive == false);
+                        Assert.IsTrue(item.ChanceToWin == 0);
+                        Assert.IsTrue(item.GF >= 0);
+                        Assert.IsTrue(item.GA >= 0);
+                        Assert.IsTrue(item.GD >= 0);
+                    }
 
 
-    }
-}
+                }
+            }

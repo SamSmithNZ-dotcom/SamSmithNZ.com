@@ -18,6 +18,13 @@
                 <ModulePath>.*dapper.dll</ModulePath>
               </Exclude>
             </ModulePaths>
+            <!-- Match source files: -->
+            <Sources>
+              <Exclude>
+                <Source>.*\\DataAccess\\Steam\\.*</Source>
+                <Source>.*\\Models\\Steam\\.*</Source>
+              </Exclude>
+            </Sources>
           </CodeCoverage>
         </Configuration>
       </DataCollector>
