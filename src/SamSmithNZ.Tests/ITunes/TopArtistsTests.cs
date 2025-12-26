@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SamSmithnNZ.Tests;
+using SamSmithNZ.Tests;
 using SamSmithNZ.Service.DataAccess.ITunes;
 using SamSmithNZ.Service.Models.ITunes;
 using System.Collections.Generic;

@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SamSmithnNZ.Tests;
+using SamSmithNZ.Tests;
 using SamSmithNZ.Service.DataAccess.WorldCup;
 using SamSmithNZ.Service.Models.WorldCup;
 using static SamSmithNZ.Service.DataAccess.WorldCup.EloRating;

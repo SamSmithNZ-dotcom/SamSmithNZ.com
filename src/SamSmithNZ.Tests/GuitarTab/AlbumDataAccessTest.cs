@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using SamSmithnNZ.Tests;
+using SamSmithNZ.Tests;
 using SamSmithNZ.Service.Controllers.GuitarTab;
 using SamSmithNZ.Service.DataAccess.GuitarTab;
 using SamSmithNZ.Service.DataAccess.GuitarTab.Interfaces;

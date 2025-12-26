@@ -3,7 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SamSmithnNZ.Tests;
+using SamSmithNZ.Tests;
 using SamSmithNZ.Service.Controllers.GuitarTab;
 using SamSmithNZ.Service.DataAccess.GuitarTab;
 using SamSmithNZ.Service.Models.GuitarTab;
