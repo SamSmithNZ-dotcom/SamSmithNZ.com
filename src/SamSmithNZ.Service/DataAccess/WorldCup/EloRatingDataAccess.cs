@@ -15,6 +15,8 @@ namespace SamSmithNZ.Service.DataAccess.WorldCup
     {
         private readonly IConfiguration _configuration;
         private const double DefaultEloDifference = 400d;
+        private const int MinimumEloRatingThreshold = 500;
+        private const int DefaultEloRating = 1000;
 
         public EloRatingDataAccess(IConfiguration configuration)
         {
@@ -303,12 +305,9 @@ namespace SamSmithNZ.Service.DataAccess.WorldCup
         //    return true;
         //}
 
-        private const int MinimumEloRatingThreshold = 500;
-        private const int DefaultEloRating = 1000;
-
         private static bool ShouldUpdatePostGameEloRatings(Game game, TeamELORating team1, TeamELORating team2, bool gamePreELORatingIsDirty)
         {
-            return gamePreELORatingIsDirty == true || 
+            return gamePreELORatingIsDirty || 
                    game.Team1PostGameEloRating == null || 
                    game.Team2PostGameEloRating == null || 
                    game.Team1PostGameEloRating != team1.ELORating || 
