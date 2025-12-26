@@ -51,7 +51,7 @@ namespace SamSmithNZ.Web.Services
 
         public async Task<List<AverageSetlist>> GetAverageSetlist(int yearCode, int minimumSongCount = 0, bool showAllSongs = false)
         {
-            var queryParams = new Dictionary<string, string>
+            Dictionary<string, string> queryParams = new Dictionary<string, string>
             {
                 { "YearCode", yearCode.ToString() },
                 { "MinimumSongCount", minimumSongCount.ToString() },
