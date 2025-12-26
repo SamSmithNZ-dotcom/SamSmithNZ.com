@@ -7,7 +7,7 @@ namespace SamSmithNZ.Tests.DataAccess.WorldCup
 {
     [TestClass]
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-    public class ThirdPlaceMatchDataAccessTests : SamSmithnNZ.Tests.BaseIntegrationTest
+    public class ThirdPlaceMatchDataAccessTests : SamSmithNZ.Tests.BaseIntegrationTest
     {
         [TestMethod]
         public async Task ThirdPlaceMatchDataAccess_GetList_ReturnsResults()

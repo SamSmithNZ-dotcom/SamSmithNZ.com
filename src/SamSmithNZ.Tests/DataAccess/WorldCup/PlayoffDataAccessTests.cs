@@ -7,7 +7,7 @@ namespace SamSmithNZ.Tests.DataAccess.WorldCup
 {
     [TestClass]
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-    public class PlayoffDataAccessTests : SamSmithnNZ.Tests.BaseIntegrationTest
+    public class PlayoffDataAccessTests : SamSmithNZ.Tests.BaseIntegrationTest
     {
         [TestMethod]
         public async Task PlayoffDataAccess_GetList_ReturnsResults()
