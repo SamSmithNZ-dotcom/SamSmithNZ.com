@@ -52,7 +52,7 @@ namespace SamSmithNZ.Tests.WorldCup
                 Assert.IsTrue(results[0].GoalsAgainst >= 0);
                 Assert.IsTrue(results[0].GoalsFor >= 0);
                 Assert.IsTrue(results[0].GroupRanking >= 0);
-                Assert.IsTrue(results[0].HasQualifiedForNextRound == true);
+                Assert.IsTrue(results[0].HasQualifiedForNextRound);
                 Assert.IsTrue(results[0].Losses >= 0);
                 Assert.IsTrue(results[0].Played >= 0);
                 Assert.IsTrue(results[0].Points >= 0);
