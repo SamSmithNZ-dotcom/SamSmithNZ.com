@@ -102,7 +102,6 @@ namespace SamSmithNZ.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> SaveAlbum(int albumCode, string txtArtist, string txtAlbumName, string txtYear,
             bool chkIsBassTab, bool chkIncludeInIndex, bool chkIncludeOnWebsite, bool chkIsMiscCollectionAlbum, bool isAdmin = false)
-        //string txtTrackList)
         {
 
             if (!int.TryParse(txtYear, out int year))
@@ -116,7 +115,7 @@ namespace SamSmithNZ.Web.Controllers
                 AlbumCode = albumCode,
                 ArtistName = txtArtist,
                 AlbumName = txtAlbumName,
-                AlbumYear = int.Parse(txtYear),
+                AlbumYear = year,
                 IsBassTab = chkIsBassTab,
                 IncludeInIndex = chkIncludeInIndex,
                 IncludeOnWebsite = chkIncludeOnWebsite,
@@ -165,15 +164,25 @@ namespace SamSmithNZ.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> SaveTab(int tabCode, int albumCode, string txtTabName, string txtTabText, string txtOrder, string cboRating, string cboTuning, bool isAdmin = false)
         {
+            // Safely parse numeric values from the request, falling back to 0 on invalid input
+            int tabOrder = 0;
+            int.TryParse(txtOrder, out tabOrder);
+
+            int rating = 0; // 0 = no rating, consistent with AddNewTrack
+            int.TryParse(cboRating, out rating);
+
+            int tuningCode = 0; // 0 = no tuning, consistent with AddNewTrack
+            int.TryParse(cboTuning, out tuningCode);
+
             Tab tab = new()
             {
                 TabCode = tabCode,
                 AlbumCode = albumCode,
                 TabName = txtTabName,
                 TabText = txtTabText,
-                TabOrder = int.Parse(txtOrder),
-                Rating = int.Parse(cboRating),
-                TuningCode = int.Parse(cboTuning)
+                TabOrder = tabOrder,
+                Rating = rating,
+                TuningCode = tuningCode
             };
             await _ServiceApiClient.SaveTab(tab);
 
