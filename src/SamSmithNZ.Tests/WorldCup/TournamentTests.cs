@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SamSmithnNZ.Tests;
+using SamSmithNZ.Tests;
 using SamSmithNZ.Service.Controllers.WorldCup;
 using SamSmithNZ.Service.DataAccess.WorldCup;
 using SamSmithNZ.Service.Models.WorldCup;
@@ -13,6 +13,8 @@ namespace SamSmithNZ.Tests.WorldCup
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public class TournamentTests : BaseIntegrationTest
     {
+        private const int SOUTH_AFRICA_TOURNAMENT_CODE = 19;
+
         [TestMethod()]
         public async Task TournamentsListTest()
         {
@@ -26,16 +28,16 @@ namespace SamSmithNZ.Tests.WorldCup
             //assert
             Assert.IsTrue(results != null);
             Assert.IsNotEmpty(results);
-            bool found19 = false;
+            bool foundSouthAfricaTournament = false;
             foreach (Tournament item in results)
             {
-                if (item.TournamentCode == 19)
+                if (item.TournamentCode == SOUTH_AFRICA_TOURNAMENT_CODE)
                 {
-                    found19 = true;
+                    foundSouthAfricaTournament = true;
                     TestSouthAfricaTournament(item);
                 }
             }
-            Assert.IsTrue(found19);
+            Assert.IsTrue(foundSouthAfricaTournament);
         }
 
         [TestMethod()]
@@ -43,7 +45,7 @@ namespace SamSmithNZ.Tests.WorldCup
         {
             //arrange
             TournamentController controller = new(new TournamentDataAccess(base.Configuration));
-            int tournamentCode = 19;
+            int tournamentCode = SOUTH_AFRICA_TOURNAMENT_CODE;
 
             //act
             Tournament result = await controller.GetTournament(tournamentCode);
@@ -93,7 +95,7 @@ namespace SamSmithNZ.Tests.WorldCup
             Assert.IsTrue(item.R3NumberOfTeamsFromGroupThatAdvance == 0);
             Assert.IsTrue(item.R3NumberOfTeamsInGroup == 0);
             Assert.IsTrue(item.R3TotalNumberOfTeamsThatAdvance == 0);
-            Assert.IsTrue(item.TournamentCode == 19);
+            Assert.IsTrue(item.TournamentCode == SOUTH_AFRICA_TOURNAMENT_CODE);
             Assert.IsTrue(item.TournamentName == "South Africa 2010");
             Assert.IsTrue(item.TournamentYear == 2010);
         }
