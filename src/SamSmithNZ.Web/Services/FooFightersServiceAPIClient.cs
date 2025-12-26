@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Configuration;
 using SamSmithNZ.Service.Models.FooFighters;
 using SamSmithNZ.Web.Services.Interfaces;
 using System;
@@ -12,13 +13,10 @@ namespace SamSmithNZ.Web.Services
     {
         private readonly IConfiguration _configuration;
 
-        public FooFightersServiceApiClient(IConfiguration configuration)
+        public FooFightersServiceApiClient(IConfiguration configuration, HttpClient client)
         {
             _configuration = configuration;
-            HttpClient client = new()
-            {
-                BaseAddress = new(_configuration["AppSettings:WebServiceURL"])
-            };
+            client.BaseAddress = new Uri(_configuration["AppSettings:WebServiceURL"]);
             base.SetupClient(client);
         }
 
@@ -38,7 +36,8 @@ namespace SamSmithNZ.Web.Services
 
         public async Task<Album> GetAlbum(int albumCode)
         {
-            Uri url = new($"api/FooFighters/Album/GetAlbum?AlbumCode=" + albumCode, UriKind.Relative);
+            string albumUrl = QueryHelpers.AddQueryString("api/FooFighters/Album/GetAlbum", "AlbumCode", albumCode.ToString());
+            Uri url = new(albumUrl, UriKind.Relative);
             Album result = await base.ReadMessageItem<Album>(url);
             if (result == null)
             {
@@ -52,7 +51,14 @@ namespace SamSmithNZ.Web.Services
 
         public async Task<List<AverageSetlist>> GetAverageSetlist(int yearCode, int minimumSongCount = 0, bool showAllSongs = false)
         {
-            Uri url = new($"api/FooFighters/AverageSetlist/GetAverageSetlist?YearCode=" + yearCode + "&MinimumSongCount=" + minimumSongCount + "&showAllSongs=" + showAllSongs, UriKind.Relative);
+            Dictionary<string, string> queryParams = new Dictionary<string, string>
+            {
+                { "YearCode", yearCode.ToString() },
+                { "MinimumSongCount", minimumSongCount.ToString() },
+                { "showAllSongs", showAllSongs.ToString() }
+            };
+            string averageSetlistUrl = QueryHelpers.AddQueryString("api/FooFighters/AverageSetlist/GetAverageSetlist", queryParams);
+            Uri url = new(averageSetlistUrl, UriKind.Relative);
             List<AverageSetlist> results = await base.ReadMessageList<AverageSetlist>(url);
             if (results == null)
             {
@@ -66,7 +72,8 @@ namespace SamSmithNZ.Web.Services
 
         public async Task<List<Show>> GetShowsByYear(int yearCode)
         {
-            Uri url = new($"api/FooFighters/Show/GetShowsByYear?YearCode=" + yearCode, UriKind.Relative);
+            string showsByYearUrl = QueryHelpers.AddQueryString("api/FooFighters/Show/GetShowsByYear", "YearCode", yearCode.ToString());
+            Uri url = new(showsByYearUrl, UriKind.Relative);
             List<Show> results = await base.ReadMessageList<Show>(url);
             if (results == null)
             {
@@ -80,7 +87,8 @@ namespace SamSmithNZ.Web.Services
 
         public async Task<List<Show>> GetShowsBySong(int songCode)
         {
-            Uri url = new($"api/FooFighters/Show/GetShowsBySong?SongCode=" + songCode, UriKind.Relative);
+            string showsBySongUrl = QueryHelpers.AddQueryString("api/FooFighters/Show/GetShowsBySong", "SongCode", songCode.ToString());
+            Uri url = new(showsBySongUrl, UriKind.Relative);
             List<Show> results = await base.ReadMessageList<Show>(url);
             if (results == null)
             {
@@ -94,7 +102,8 @@ namespace SamSmithNZ.Web.Services
 
         public async Task<Show> GetShow(int showCode)
         {
-            Uri url = new($"api/FooFighters/Show/GetShow?ShowCode=" + showCode, UriKind.Relative);
+            string showUrl = QueryHelpers.AddQueryString("api/FooFighters/Show/GetShow", "ShowCode", showCode.ToString());
+            Uri url = new(showUrl, UriKind.Relative);
             Show result = await base.ReadMessageItem<Show>(url);
             if (result == null)
             {
@@ -122,7 +131,8 @@ namespace SamSmithNZ.Web.Services
 
         public async Task<List<Song>> GetSongsByAlbum(int albumCode)
         {
-            Uri url = new($"api/FooFighters/Song/GetSongsByAlbum?AlbumCode=" + albumCode, UriKind.Relative);
+            string songsByAlbumUrl = QueryHelpers.AddQueryString("api/FooFighters/Song/GetSongsByAlbum", "AlbumCode", albumCode.ToString());
+            Uri url = new(songsByAlbumUrl, UriKind.Relative);
             List<Song> results = await base.ReadMessageList<Song>(url);
             if (results == null)
             {
@@ -136,7 +146,8 @@ namespace SamSmithNZ.Web.Services
 
         public async Task<List<Song>> GetSongsByShow(int showCode)
         {
-            Uri url = new($"api/FooFighters/Song/GetSongsByShow?ShowCode=" + showCode, UriKind.Relative);
+            string songsByShowUrl = QueryHelpers.AddQueryString("api/FooFighters/Song/GetSongsByShow", "ShowCode", showCode.ToString());
+            Uri url = new(songsByShowUrl, UriKind.Relative);
             List<Song> results = await base.ReadMessageList<Song>(url);
             if (results == null)
             {
@@ -150,7 +161,8 @@ namespace SamSmithNZ.Web.Services
 
         public async Task<Song> GetSong(int songCode)
         {
-            Uri url = new($"api/FooFighters/Song/GetSong?SongCode=" + songCode, UriKind.Relative);
+            string songUrl = QueryHelpers.AddQueryString("api/FooFighters/Song/GetSong", "SongCode", songCode.ToString());
+            Uri url = new(songUrl, UriKind.Relative);
             Song result = await base.ReadMessageItem<Song>(url);
             if (result == null)
             {
