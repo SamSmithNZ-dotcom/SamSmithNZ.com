@@ -14,6 +14,8 @@ namespace SamSmithNZ.Service.DataAccess.WorldCup
     public class EloRatingDataAccess : BaseDataAccess<EloRating>, IEloRatingDataAccess
     {
         private readonly IConfiguration _configuration;
+        private const double DefaultEloDifference = 400d;
+
         public EloRatingDataAccess(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -60,7 +62,7 @@ namespace SamSmithNZ.Service.DataAccess.WorldCup
         public async Task<bool> UpdateGameELORating(int tournamentCode,
             int gameCode)
         {
-            double diff = 400;
+            double diff = DefaultEloDifference;
 
             //1. If updating a game, pass in the game code and tournament code to get the pre-elo-ratings
             GameDataAccess da = new(_configuration);
@@ -87,7 +89,7 @@ namespace SamSmithNZ.Service.DataAccess.WorldCup
             if (result != null)
             {
                 (int, int) eloResult;
-                //the game has started yet, we can process the game
+                // The game has finished, we can process the game
                 if (result == WhoWonEnum.Team1)
                 {
                     eloResult = eloRating.GetEloRatingScoresForMatchUp((int)game.Team1PreGameEloRating, (int)game.Team2PreGameEloRating, true, false, kFactor, diff);
@@ -110,7 +112,7 @@ namespace SamSmithNZ.Service.DataAccess.WorldCup
                 team1.GameCount++;
                 team2.ELORating = eloResult.Item2;
                 team2.GameCount++;
-                if (gamePreELORatingIsDirty == true || game.Team1PostGameEloRating == null || game.Team2PostGameEloRating == null || game.Team1PostGameEloRating != team1.ELORating || game.Team2PostGameEloRating != team2.ELORating)
+                if (ShouldUpdatePostGameEloRatings(game, team1, team2, gamePreELORatingIsDirty))
                 {
                     game.Team1PostGameEloRating = team1.ELORating;
                     game.Team2PostGameEloRating = team2.ELORating;
@@ -301,6 +303,18 @@ namespace SamSmithNZ.Service.DataAccess.WorldCup
         //    return true;
         //}
 
+        private const int MinimumEloRatingThreshold = 500;
+        private const int DefaultEloRating = 1000;
+
+        private static bool ShouldUpdatePostGameEloRatings(Game game, TeamELORating team1, TeamELORating team2, bool gamePreELORatingIsDirty)
+        {
+            return gamePreELORatingIsDirty == true || 
+                   game.Team1PostGameEloRating == null || 
+                   game.Team2PostGameEloRating == null || 
+                   game.Team1PostGameEloRating != team1.ELORating || 
+                   game.Team2PostGameEloRating != team2.ELORating;
+        }
+
         public async Task<bool> SaveTeamELORatingAsync(int tournamentCode, int teamCode, int eloRating)
         {
             DynamicParameters parameters = new();
@@ -319,9 +333,9 @@ namespace SamSmithNZ.Service.DataAccess.WorldCup
                         return existingTeam;
                     }
 
-                    if (currentELORanking < 500 || currentELORanking == null)
+                    if (currentELORanking == null || currentELORanking < MinimumEloRatingThreshold)
                     {
-                        currentELORanking = 1000;
+                        currentELORanking = DefaultEloRating;
                     }
                     TeamELORating newTeam = new(tournamentCode, teamCode, teamName, (int)currentELORanking);
                     teamList.Add(newTeam);
@@ -331,7 +345,7 @@ namespace SamSmithNZ.Service.DataAccess.WorldCup
                 private async Task<bool> UpdateGameELORatingOptimized(int tournamentCode, Game game, 
                     Dictionary<int, TournamentTeam> teamCache, GamePreEloRatingDataAccess preEloDA)
                 {
-                    double diff = 400;
+                    double diff = DefaultEloDifference;
 
                     bool gamePreELORatingIsDirty = false;
                     if (game.Team1PreGameEloRating == 0 || game.Team2PreGameEloRating == 0)
