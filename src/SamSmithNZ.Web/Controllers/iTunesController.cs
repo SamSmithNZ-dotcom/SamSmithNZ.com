@@ -11,9 +11,9 @@ namespace SamSmithNZ.Web.Controllers
     {
         private readonly IITunesServiceApiClient _ServiceApiClient;
 
-        public ITunesController(IITunesServiceApiClient ServiceApiClient  )
+        public ITunesController(IITunesServiceApiClient serviceApiClient)
         {
-            _ServiceApiClient = ServiceApiClient;
+            _ServiceApiClient = serviceApiClient;
         }
 
         public async Task<IActionResult> Index()
@@ -25,8 +25,8 @@ namespace SamSmithNZ.Web.Controllers
 
             return View(new IndexViewModel
             {
-                TopArtists = await topArtistsTask,
-                Playlists = await playlistsTask
+                TopArtists = topArtistsTask.Result,
+                Playlists = playlistsTask.Result
             });
         }
 
@@ -40,10 +40,10 @@ namespace SamSmithNZ.Web.Controllers
 
             return View(new PlaylistViewModel
             {
-                Playlist = await playlistTask,
-                TopArtists = await topArtistsTask,
-                Movements = await movementsTask,
-                Tracks = await tracksTask
+                Playlist = playlistTask.Result,
+                TopArtists = topArtistsTask.Result,
+                Movements = movementsTask.Result,
+                Tracks = tracksTask.Result
             });
         }
 
