@@ -16,14 +16,14 @@ namespace SamSmithNZ.Tests.DataAccess.WorldCup
             // Arrange
             TournamentTeamDataAccess da = new(base.Configuration);
             int tournamentCode = 19;
-            int teamCode = 1;
+            int teamCode = 27; // Use South Africa (host team) which definitely exists in tournament 19
 
             // Act
             TournamentTeam result = await da.GetTournamentTeamAsync(tournamentCode, teamCode);
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(1, result.TeamCode);
+            Assert.AreEqual(27, result.TeamCode);
             Assert.AreEqual(19, result.TournamentCode);
         }
 

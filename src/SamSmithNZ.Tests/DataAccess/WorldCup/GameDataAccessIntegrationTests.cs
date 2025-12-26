@@ -87,10 +87,11 @@ namespace SamSmithNZ.Tests.DataAccess.WorldCup
                 new Service.DataAccess.WorldCup.GameDataAccess(Configuration);
 
             // Act
-            Game result = await dataAccess.GetItem(1);
+            Game result = await dataAccess.GetItem(7328); // Use a known valid game code from tournament 19
 
             // Assert
             Assert.IsNotNull(result);
+            Assert.AreEqual(7328, result.GameCode);
         }
 
             [TestMethod]
