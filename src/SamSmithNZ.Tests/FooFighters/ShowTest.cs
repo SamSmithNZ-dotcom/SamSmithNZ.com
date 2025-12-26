@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SamSmithnNZ.Tests;
+using SamSmithNZ.Tests;
 using SamSmithNZ.Service.Controllers.FooFighters;
 using SamSmithNZ.Service.DataAccess.FooFighters;
 using SamSmithNZ.Service.Models.FooFighters;
