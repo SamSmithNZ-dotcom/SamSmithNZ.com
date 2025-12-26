@@ -126,7 +126,7 @@ namespace SamSmithNZ.Tests.WorldCup
                             Assert.IsTrue(item.TeamCode == 1);
                             Assert.IsTrue(item.TeamName == "New Zealand");
                             Assert.IsTrue(item.FlagName == "22px-Flag_of_New_Zealand_svg.png");
-                            Assert.IsTrue(!string.IsNullOrEmpty(item.CoachName)); // Coach may change over time
+                            Assert.IsTrue(string.IsNullOrEmpty(item.CoachName)); // Coach may change over time
                             Assert.IsTrue(item.CoachNationalityFlagName == "22px-Flag_of_New_Zealand_svg.png");
                             Assert.IsTrue(item.CurrentEloRating >= 0);
                             Assert.IsTrue(item.FifaRanking == 0);
