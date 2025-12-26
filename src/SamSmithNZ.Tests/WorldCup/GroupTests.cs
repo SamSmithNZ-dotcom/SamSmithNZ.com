@@ -64,7 +64,7 @@ namespace SamSmithNZ.Tests.WorldCup
                 Assert.IsTrue(results[0].TournamentCode >= 0);
                 Assert.IsTrue(results[0].Wins >= 0);
                 Assert.IsTrue(results[0].ELORating >= 0);
-                Assert.IsTrue(results[0].TeamWithdrew == false);
+                Assert.IsTrue(!results[0].TeamWithdrew);
             }
             // Else: Database may not have data for this tournament/round
         }
