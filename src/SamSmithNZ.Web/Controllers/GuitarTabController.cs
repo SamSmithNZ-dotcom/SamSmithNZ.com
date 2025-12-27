@@ -199,21 +199,25 @@ namespace SamSmithNZ.Web.Controllers
                 ModelState.AddModelError(nameof(txtOrder), "Tab order must be a whole number.");
 
                 // Rebuild the view model in the same way as EditTab to redisplay the form with errors
-                Task<Tab> tabTask = _serviceApiClient.GetTab(tabCode);
                 Task<List<Rating>> ratingsTask = _serviceApiClient.GetRatings();
                 Task<List<Tuning>> tuningsTask = _serviceApiClient.GetTunings();
-                await Task.WhenAll(tabTask, ratingsTask, tuningsTask);
+                await Task.WhenAll(ratingsTask, tuningsTask);
 
-                Tab existingTab = await tabTask;
-                existingTab.TabName = txtTabName;
-                existingTab.TabText = txtTabText;
-                existingTab.TabOrder = tabOrder; // remains 0 when invalid, but shown back to user
-                existingTab.Rating = rating;
-                existingTab.TuningCode = tuningCode;
+                // Create a new tab object with the submitted values to redisplay the form
+                Tab tabForDisplay = new()
+                {
+                    TabCode = tabCode,
+                    AlbumCode = albumCode,
+                    TabName = txtTabName,
+                    TabText = txtTabText,
+                    TabOrder = tabOrder, // remains 0 when invalid, but shown back to user
+                    Rating = rating,
+                    TuningCode = tuningCode
+                };
 
                 TabsViewModel viewModel = new TabsViewModel(await ratingsTask, await tuningsTask)
                 {
-                    Tab = existingTab,
+                    Tab = tabForDisplay,
                     Rating = rating == 0 ? "" : rating.ToString(),
                     Tuning = tuningCode == 0 ? "" : tuningCode.ToString(),
                     IsAdmin = isAdmin
