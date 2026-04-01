@@ -25,7 +25,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Models\Lego\" />
+		<Folder Include="Models\Lego\" />
 	</ItemGroup>
 
 </Project>
