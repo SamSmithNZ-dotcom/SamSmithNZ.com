@@ -30,7 +30,8 @@ BEGIN
 	UPDATE g
 	SET g.wins = 0, g.draws = 0, g.losses = 0,
 	g.goals_for = 0, g.goals_against = 0, g.goal_difference = 0,
-	g.played = 0, g.points = 0
+	g.played = 0, g.points = 0, 
+	g.has_qualified_for_next_round = 0
 	FROM wc_group_stage g
 	WHERE g.tournament_code = @TournamentCode
 
