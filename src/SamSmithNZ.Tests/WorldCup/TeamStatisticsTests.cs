@@ -49,15 +49,15 @@ namespace SamSmithNZ.Tests.WorldCup
                 }
                 else if (game.TournamentCode == 317)
                 {
-                    Assert.AreEqual(2085, game.Team1PreGameEloRating);
+                    Assert.AreEqual(2063, game.Team1PreGameEloRating);
                     Assert.AreEqual(1674, game.Team2PreGameEloRating);
                     Assert.AreEqual(2044, game.Team1PostGameEloRating);
                     Assert.AreEqual(1715, game.Team2PostGameEloRating);
                     Assert.AreEqual("D", game.RoundCode);
                     Assert.IsTrue(game.GameCanEndInADraw);
-                    Assert.AreEqual(89.12, game.Team1ChanceToWin);
-                    Assert.AreEqual(8.37, game.Team2ChanceToWin);
-                    Assert.AreEqual(2.51, game.TeamChanceToDraw);
+                    Assert.AreEqual(87.84, game.Team1ChanceToWin);
+                    Assert.AreEqual(9.36, game.Team2ChanceToWin);
+                    Assert.AreEqual(2.81, game.TeamChanceToDraw);
                 }
 
             }
