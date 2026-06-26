@@ -258,8 +258,6 @@ BEGIN
 		END
 	END
 
-    select * From #tmp_final_placing
-
 	CREATE TABLE #TeamRecord(TeamCode INT, GF INT, GA INT, GD INT)--, PKs INT, PKsMissed INT)
 	INSERT INTO #TeamRecord
 	SELECT g.team_1_code, 
