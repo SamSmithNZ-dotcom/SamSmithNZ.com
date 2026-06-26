@@ -19,6 +19,10 @@ namespace SamSmithNZ.Service.DataAccess.Base
         public void SetupConnectionString(IConfiguration configuration)
         {
             this.ConnectionString = configuration["ConnectionStrings:DefaultConnectionString"];
+            if (string.IsNullOrWhiteSpace(this.ConnectionString))
+            {
+                throw new InvalidOperationException("A connection string was not found. Please set your connection string.");
+            }
         }
 
         public async Task<List<T>> GetList(string query, DynamicParameters parameters = null, int timeOut = 15) //15 seconds is the default timeout
