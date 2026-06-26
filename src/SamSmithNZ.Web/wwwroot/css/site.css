@@ -212,6 +212,11 @@ Pre {
     border-width: 1px;
 }
 
+/* World Cup playoff bracket */
+.PlayoffTeam {
+    font-size: 14px;
+}
+
 
 
 /*New home page and header */

@@ -24,6 +24,13 @@ namespace SamSmithNZ.Tests
                .AddUserSecrets<BaseIntegrationTest>(true);
             Configuration = config.Build();
 
+            // Set environment variable from config for Azure Monitor exporter
+            string appInsightsConnStr = Configuration["APPINSIGHTS_CONNECTIONSTRING"];
+            if (!string.IsNullOrEmpty(appInsightsConnStr))
+            {
+                System.Environment.SetEnvironmentVariable("APPINSIGHTS_CONNECTIONSTRING", appInsightsConnStr);
+            }
+
             //Setup the test server
             _server = new TestServer(WebHost.CreateDefaultBuilder()
                 .UseConfiguration(Configuration)

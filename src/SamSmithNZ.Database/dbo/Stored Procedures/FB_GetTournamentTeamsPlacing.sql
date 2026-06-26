@@ -190,25 +190,72 @@ BEGIN
 		--AND g.team_1_code NOT IN (SELECT TeamCode FROM #tmp_final_placing WHERE NOT TeamCode IS NULL)
 		AND g.team_2_code NOT IN (SELECT TeamCode FROM #tmp_final_placing WHERE NOT TeamCode IS NULL)
 
-		--17th - 32nd Place
-		INSERT INTO #tmp_final_placing 
-		SELECT DISTINCT CASE WHEN te.is_active = 1 THEN 17 ELSE 18 END,  
-			CASE WHEN te.is_active = 1 THEN 'Active in group' ELSE 'Knocked out in group stage' END, 
-			g.team_1_code
-		FROM wc_game g
-		JOIN wc_tournament_team_entry te ON g.tournament_code = te.tournament_code AND g.team_1_code = te.team_code
-		WHERE g.tournament_code = @TournamentCode
-		AND g.team_1_code NOT IN (SELECT TeamCode FROM #tmp_final_placing WHERE NOT TeamCode IS NULL)
-		--AND g.team_2_code NOT IN (SELECT TeamCode FROM #tmp_final_placing WHERE NOT TeamCode IS NULL)
-		INSERT INTO #tmp_final_placing 
-		SELECT DISTINCT CASE WHEN te.is_active = 1 THEN 17 ELSE 18 END, 
-			CASE WHEN te.is_active = 1 THEN 'Active' ELSE 'Knocked out in group stage' END, 
-			g.team_2_code
-		FROM wc_game g
-		JOIN wc_tournament_team_entry te ON g.tournament_code = te.tournament_code AND g.team_2_code = te.team_code
-		WHERE g.tournament_code = @TournamentCode
-		--AND g.team_1_code NOT IN (SELECT TeamCode FROM #tmp_final_placing WHERE NOT TeamCode IS NULL)
-		AND g.team_2_code NOT IN (SELECT TeamCode FROM #tmp_final_placing WHERE NOT TeamCode IS NULL)
+		IF EXISTS (SELECT 1 FROM wc_game g WHERE g.tournament_code = @TournamentCode AND g.round_code = '32')
+		BEGIN
+			--17th - 32nd Place
+			INSERT INTO #tmp_final_placing 
+			SELECT DISTINCT CASE WHEN te.is_active = 1 THEN 17 ELSE 18 END,  
+				CASE WHEN te.is_active = 1 THEN 'Active in top 32' ELSE 'Knocked out in top 32' END, 
+				g.team_1_code
+			FROM wc_game g
+			JOIN wc_tournament_team_entry te ON g.tournament_code = te.tournament_code AND g.team_1_code = te.team_code
+			WHERE g.tournament_code = @TournamentCode
+			AND g.round_code = '32'
+			AND g.team_1_code NOT IN (SELECT TeamCode FROM #tmp_final_placing WHERE NOT TeamCode IS NULL)
+			--AND g.team_2_code NOT IN (SELECT TeamCode FROM #tmp_final_placing WHERE NOT TeamCode IS NULL)
+			INSERT INTO #tmp_final_placing 
+			SELECT DISTINCT CASE WHEN te.is_active = 1 THEN 17 ELSE 18 END, 
+				CASE WHEN te.is_active = 1 THEN 'Active in top 32' ELSE 'Knocked out in top 32' END, 
+				g.team_2_code
+			FROM wc_game g
+			JOIN wc_tournament_team_entry te ON g.tournament_code = te.tournament_code AND g.team_2_code = te.team_code
+			WHERE g.tournament_code = @TournamentCode
+			AND g.round_code = '32'
+			--AND g.team_1_code NOT IN (SELECT TeamCode FROM #tmp_final_placing WHERE NOT TeamCode IS NULL)
+			AND g.team_2_code NOT IN (SELECT TeamCode FROM #tmp_final_placing WHERE NOT TeamCode IS NULL)
+
+			--33rd - 48th Place
+			INSERT INTO #tmp_final_placing 
+			SELECT DISTINCT CASE WHEN te.is_active = 1 THEN 33 ELSE 34 END,  
+				CASE WHEN te.is_active = 1 THEN 'Active in group' ELSE 'Knocked out in group stage' END, 
+				g.team_1_code
+			FROM wc_game g
+			JOIN wc_tournament_team_entry te ON g.tournament_code = te.tournament_code AND g.team_1_code = te.team_code
+			WHERE g.tournament_code = @TournamentCode
+			AND g.team_1_code NOT IN (SELECT TeamCode FROM #tmp_final_placing WHERE NOT TeamCode IS NULL)
+			--AND g.team_2_code NOT IN (SELECT TeamCode FROM #tmp_final_placing WHERE NOT TeamCode IS NULL)
+			INSERT INTO #tmp_final_placing 
+			SELECT DISTINCT CASE WHEN te.is_active = 1 THEN 33 ELSE 34 END, 
+				CASE WHEN te.is_active = 1 THEN 'Active in group' ELSE 'Knocked out in group stage' END, 
+				g.team_2_code
+			FROM wc_game g
+			JOIN wc_tournament_team_entry te ON g.tournament_code = te.tournament_code AND g.team_2_code = te.team_code
+			WHERE g.tournament_code = @TournamentCode
+			--AND g.team_1_code NOT IN (SELECT TeamCode FROM #tmp_final_placing WHERE NOT TeamCode IS NULL)
+			AND g.team_2_code NOT IN (SELECT TeamCode FROM #tmp_final_placing WHERE NOT TeamCode IS NULL)
+		END
+		ELSE
+		BEGIN
+			--17th - 32nd Place
+			INSERT INTO #tmp_final_placing 
+			SELECT DISTINCT CASE WHEN te.is_active = 1 THEN 33 ELSE 34 END,  
+				CASE WHEN te.is_active = 1 THEN 'Active in group' ELSE 'Knocked out in group stage' END, 
+				g.team_1_code
+			FROM wc_game g
+			JOIN wc_tournament_team_entry te ON g.tournament_code = te.tournament_code AND g.team_1_code = te.team_code
+			WHERE g.tournament_code = @TournamentCode
+			AND g.team_1_code NOT IN (SELECT TeamCode FROM #tmp_final_placing WHERE NOT TeamCode IS NULL)
+			--AND g.team_2_code NOT IN (SELECT TeamCode FROM #tmp_final_placing WHERE NOT TeamCode IS NULL)
+			INSERT INTO #tmp_final_placing 
+			SELECT DISTINCT CASE WHEN te.is_active = 1 THEN 33 ELSE 34 END, 
+				CASE WHEN te.is_active = 1 THEN 'Active in group' ELSE 'Knocked out in group stage' END, 
+				g.team_2_code
+			FROM wc_game g
+			JOIN wc_tournament_team_entry te ON g.tournament_code = te.tournament_code AND g.team_2_code = te.team_code
+			WHERE g.tournament_code = @TournamentCode
+			--AND g.team_1_code NOT IN (SELECT TeamCode FROM #tmp_final_placing WHERE NOT TeamCode IS NULL)
+			AND g.team_2_code NOT IN (SELECT TeamCode FROM #tmp_final_placing WHERE NOT TeamCode IS NULL)
+		END
 	END
 
 	CREATE TABLE #TeamRecord(TeamCode INT, GF INT, GA INT, GD INT)--, PKs INT, PKsMissed INT)
@@ -241,7 +288,7 @@ BEGIN
 		ISNULL(ct.flag_name,'') AS CoachNationalityFlagName,
 		te.current_elo_rating AS CurrentEloRating,
 		CASE WHEN @ActiveTeams > 0 THEN te.is_active ELSE 0 END AS IsActive,
-		CASE WHEN @ActiveTeams = 0 THEN fp.SortOrder ELSE 0 END AS SortOrder,
+		fp.SortOrder AS SortOrder,
 		ISNULL(cw.chance_to_win,0) * CONVERT(DECIMAL(8,4), 100) AS ChanceToWin,
 		SUM(tr.GF) AS GF,
 		SUM(tr.GA) AS GA,		
@@ -267,11 +314,11 @@ BEGIN
 		ISNULL(ct.flag_name,''),
 		te.current_elo_rating,
 		CASE WHEN @ActiveTeams > 0 THEN te.is_active ELSE 0 END,
-		CASE WHEN @ActiveTeams = 0 THEN fp.SortOrder ELSE 0 END,
+		fp.SortOrder,
 		ISNULL(cw.chance_to_win,0) * CONVERT(DECIMAL(8,4), 100)
 	ORDER BY ISNULL(cw.chance_to_win,0) * CONVERT(DECIMAL(8,4), 100) DESC,
 		CASE WHEN @ActiveTeams > 0 THEN te.is_active ELSE 0 END DESC, 
-		CASE WHEN @ActiveTeams = 0 THEN fp.SortOrder ELSE 0 END, 		
+		fp.SortOrder,
 		te.current_elo_rating DESC, 
 		t.team_name
 
