@@ -38,7 +38,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
@@ -58,7 +58,7 @@ jobs:
 
     - name: Install .NET SDK
       if: matrix.language == 'csharp'
-      uses: actions/setup-dotnet@v5.1.0
+      uses: actions/setup-dotnet@v5.4.0
       with:
         dotnet-version: 10.0.x
     - name: Build web projects
