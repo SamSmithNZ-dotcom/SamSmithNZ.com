@@ -109,7 +109,7 @@ jobs:
     - name: Download the build artifacts
       uses: actions/download-artifact@v7
     - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v2.0.0
+      uses: microsoft/setup-msbuild@v3.0.0
     - name: Build database project
       run: msbuild 'src/SamSmithNZ.Database/SamSmithNZ.Database.sqlproj' /p:configuration='Release' /p:platform='Any CPU'         
     - name: check directory
