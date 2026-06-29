@@ -97,7 +97,7 @@ BEGIN
 		AND te.team_code = @WinningTeamCode
 	END
 	--Move the team to the next round
-	ELSE IF ((@RoundCode = '16' OR @RoundCode = 'QF' OR @RoundCode = 'SF') AND @WinningTeamCode > 0 AND @LosingTeamCode > 0)
+	ELSE IF ((@RoundCode = '32' OR @RoundCode = '16' OR @RoundCode = 'QF' OR @RoundCode = 'SF') AND @WinningTeamCode > 0 AND @LosingTeamCode > 0)
 	BEGIN
 		DECLARE @NewGameNumber INT
 		SELECT @NewGameNumber = game_number
