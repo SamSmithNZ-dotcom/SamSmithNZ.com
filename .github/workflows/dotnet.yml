@@ -286,7 +286,7 @@ jobs:
     - name: Download the build artifacts
       uses: actions/download-artifact@v8
     - name: Azure Login
-      uses: azure/login@v2
+      uses: azure/login@v3
       with:
         creds: ${{ secrets.ORG_AZURE_SP }}
     # - name: deploy database infrastructure as code
@@ -345,7 +345,7 @@ jobs:
     steps:
     - uses: actions/checkout@v7
     - name: Azure Login
-      uses: azure/login@v2
+      uses: azure/login@v3
       with:
         creds: ${{ secrets.ORG_AZURE_SP }}
     - name: 'Swap Slots: web service'
