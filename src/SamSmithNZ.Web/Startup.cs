@@ -23,7 +23,9 @@ namespace SamSmithNZ.Web
             services.AddControllersWithViews();
             services.AddApplicationInsightsTelemetry(options =>
             {
-                options.ConnectionString = Configuration["APPINSIGHTS_CONNECTIONSTRING"];
+                options.ConnectionString =
+                    Configuration["ApplicationInsights:ConnectionString"] ??
+                    Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"];
             });
 
             //Add DI for the service api client 
