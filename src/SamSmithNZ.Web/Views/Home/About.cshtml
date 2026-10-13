@@ -8,27 +8,56 @@
     <br />
     <p>This website is a place for me to learn, experiment and play with new technologies in a public place. I currently have 8 major projects here, with a few more under the radar prototypes and experiments.</p>
     <p>The source code for this website is available at <a href="https://github.com/SamSmithNZ-dotcom/SamSmithNZ.com" target="_blank">https://github.com/SamSmithNZ-dotcom/SamSmithNZ.com</a></p>
-    <p>
-        <h4>My presence on other websites:</h4>
-        <a href="https://twitter.com/samsmithnz" target="_blank" title="Twitter">
-            <img src="~/AboutMe/twitter.png" style="width:128px;" />
-        </a>
-        <a href="https://github.com/samsmithnz/" target="_blank" title="Github">
-            <img src="~/AboutMe/github.png" style="width:128px;" />
-        </a>
-        <a href="https://linkedin.com/in/samsmithnz/" target="_blank" title="LinkedIn">
-            <img src="~/AboutMe/linkedin.png" style="width:128px;" />
-        </a>
-        <a href="https://samlearnsazure.blog/" target="_blank" title="SamLearnsAzure blog: where I am learning and sharing Azure architecture tips with DevOps">
-            <img src="~/AboutMe/blogger.png" style="width:128px;" />
-        </a>
-        <a href="https://stackoverflow.com/users/337421/sam" target="_blank" title="Stackoverflow">
-            <img src="~/AboutMe/stackoverflow.png" style="width:128px;" />
-        </a>
-        <a href="https://turnbasedengine.blogspot.com/" target="_blank" title="My Game Development Blog (currently paused)">
-            <img src="~/AboutMe/blogger.png" style="width:128px;" />
-        </a>
-    </p>
+
+    <section class="mb-4" aria-labelledby="online-presence-heading">
+        <h4 id="online-presence-heading" class="mb-3">My presence on other websites</h4>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <a class="card h-100 text-dark text-decoration-none" href="https://github.com/samsmithnz/" target="_blank" rel="noopener noreferrer">
+                    <div class="card-body d-flex align-items-center">
+                        <img src="~/AboutMe/github.png" class="mr-3" style="width:64px; height:64px; object-fit:contain;" alt="GitHub logo" />
+                        <div>
+                            <h5 class="card-title mb-1">GitHub</h5>
+                            <p class="card-text text-muted">Explore my open-source projects and contributions.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6 mb-3">
+                <a class="card h-100 text-dark text-decoration-none" href="https://linkedin.com/in/samsmithnz/" target="_blank" rel="noopener noreferrer">
+                    <div class="card-body d-flex align-items-center">
+                        <img src="~/AboutMe/linkedin.png" class="mr-3" style="width:64px; height:64px; object-fit:contain;" alt="LinkedIn logo" />
+                        <div>
+                            <h5 class="card-title mb-1">LinkedIn</h5>
+                            <p class="card-text text-muted">Connect with me and view my professional experience.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6 mb-3">
+                <a class="card h-100 text-dark text-decoration-none" href="https://samlearnsazure.blog/" target="_blank" rel="noopener noreferrer">
+                    <div class="card-body d-flex align-items-center">
+                        <img src="~/AboutMe/blogger.png" class="mr-3" style="width:64px; height:64px; object-fit:contain;" alt="Blog logo" />
+                        <div>
+                            <h5 class="card-title mb-1">Sam Learns Azure</h5>
+                            <p class="card-text text-muted">Azure architecture, DevOps tips, and occasional thoughts.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6 mb-3">
+                <a class="card h-100 text-dark text-decoration-none" href="https://turnbasedengine.blogspot.com/" target="_blank" rel="noopener noreferrer">
+                    <div class="card-body d-flex align-items-center">
+                        <img src="~/AboutMe/blogger.png" class="mr-3" style="width:64px; height:64px; object-fit:contain;" alt="Blog logo" />
+                        <div>
+                            <h5 class="card-title mb-1">Turn-Based Engine</h5>
+                            <p class="card-text text-muted">Follow my game development projects and experiments.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
 
     <h4>History</h4>
     <div>
@@ -37,7 +66,7 @@
             string osPlatform = System.Runtime.InteropServices.RuntimeInformation.OSDescription;
 
             //.NET core version
-            #nullable enable // From: https://stackoverflow.com/questions/55492214/the-annotation-for-nullable-reference-types-should-only-be-used-in-code-within-a
+#nullable enable // From: https://stackoverflow.com/questions/55492214/the-annotation-for-nullable-reference-types-should-only-be-used-in-code-within-a
             string? aspDotnetVersion = Assembly
             .GetEntryAssembly()?
             .GetCustomAttribute<System.Runtime.Versioning.TargetFrameworkAttribute>()?
@@ -45,7 +74,7 @@
 
             //Application version
             string? appVersion = Assembly.GetEntryAssembly()?.GetCustomAttribute<AssemblyFileVersionAttribute>()?.Version;
-            #nullable disable
+#nullable disable
 
             //Last build time
             const int peHeaderOffset = 60;
